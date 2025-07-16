@@ -2,9 +2,1164 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <title>花冈柚子</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* 侧边栏样式 - 保持不变 */
+        .sidebar {
+            width: 60px;
+            background: linear-gradient(135deg,  #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+            transition: all 0.4s ease;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1000;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar:hover {
+            width: 280px;
+        }
+        
+        .sidebar-header {
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-header i {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 18px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease 0.2s;
+        }
+        
+        .sidebar:hover .sidebar-header h2 {
+            opacity: 1;
+        }
+        
+        .menu {
+            padding: 15px 0;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-item i {
+            font-size: 18px;
+            margin-right: 15px;
+            min-width: 24px;
+        }
+        
+        .menu-item span {
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease 0.2s;
+        }
+        
+        .sidebar:hover .menu-item span {
+            opacity: 1;
+        }
+        
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: rgba(0, 0, 0, 0.15);
+            margin-left: 10px;
+            border-radius: 4px;
+        }
+        
+        .sidebar:hover .submenu.active {
+            max-height: 500px;
+        }
+        
+        .submenu-item {
+            padding: 10px 20px 10px 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .submenu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar:hover .submenu-item {
+            opacity: 1;
+        }
+        
+        .active-category > .menu-item {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+
+        .active-page {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-left: 3px solid #ffcc00;
+        }
+        
+        /* 主内容区域 - 修改为右侧对齐 */
+        .main-content {
+            flex: 1;
+            margin-left: 60px;
+            transition: margin-left 0.4s ease;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* 关键修改：使内容向右对齐 */
+        }
+        
+        .sidebar:hover ~ .main-content {
+            margin-left: 280px;
+        }
+        
+        .content-container {
+            width: 100%; /* 控制内容区域宽度 */
+            max-width: 2000px;
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e8f0;
+        }
+        
+        .content-header h1 {
+            color: #1a2a6c;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #1a2a6c, #3a6ea5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 300px;
+            border: 1px solid #e0e6ed;
+        }
+        
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 12px 20px;
+            outline: none;
+            font-size: 16px;
+            background: transparent;
+        }
+        
+        .search-box button {
+            background: linear-gradient(135deg, #2a5298, #1a2a6c);
+            color: white;
+            border: none;
+            padding: 0 22px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .search-box button:hover {
+            background: linear-gradient(135deg, #1a2a6c, #2a5298);
+        }
+        
+        .wiki-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            padding: 40px;
+            min-height: 70vh;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s forwards 0.4s;
+            border: 1px solid #eef2f7;
+            position: relative;
+            overflow: hidden;
+            
+        }
+        
+        .wiki-content:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom,  #ff9a9e 0%, #fad0c4 100%);
+        }
+        
+        .wiki-content h2 {
+            color: #1a2a6c;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f4f9;
+            font-size: 26px;
+            position: relative;
+        }
+        
+        .wiki-content h2:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #2a5298, #3a6ea5);
+            border-radius: 3px;
+        }
+        
+        .wiki-content p {
+            line-height: 1.0;
+            margin-bottom: 22px;
+            color: #444;
+            font-size: 17px;
+        }
+        
+        .wiki-content ul {
+            margin: 25px 0;
+            padding-left: 25px;
+        }
+        
+        .wiki-content li {
+            margin-bottom: 14px;
+            line-height: 1.7;
+            font-size: 16px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .wiki-content img{
+            width: auto;
+            vertical-align: middle;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+            border-left: 4px solid #2a5298;
+            padding: 22px 25px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 8px rgba(42, 82, 152, 0.08);
+        }
+        
+        .info-box p {
+            margin-bottom: 0;
+            color: #1a2a6c;
+            font-size: 16px;
+        }
+        
+        .info-box strong {
+            color: #1a2a6c;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #eef4ff 0%, #dfe9ff 100%);
+            color: #2a5298;
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #d6e0f0;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .category-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(42, 82, 152, 0.15);
+        }
+        
+        .content-footer {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f4f9;
+            display: flex;
+            justify-content: space-between;
+            color: #5a6c84;
+            font-size: 15px;
+            align-items: center;
+        }
+        
+        .last-updated {
+            background: #f0f7ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .contributors {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contributors span {
+            margin-right: 12px;
+            font-weight: 500;
+        }
+        
+        .contributors img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-left: 8px;
+            border: 2px solid white;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s;
+        }
+        
+        .contributors img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .content-container {
+                width: 92%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .content-container {
+                width: 95%;
+            }
+            
+            .wiki-content {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+            }
+            
+            .sidebar:hover {
+                width: 260px;
+            }
+            
+            .main-content {
+                margin-left: 50px;
+            }
+            
+            .sidebar:hover ~ .main-content {
+                margin-left: 260px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-box {
+                width: 100%;
+                margin-top: 20px;
+            }
+            .image-carousel-container {
+                position: relative;
+                width: 100%;
+                margin-bottom: 30px;
+                display: flex;
+                justify-content: center;
+            }      
+
+            .image-carousel {
+                position: relative;
+                max-width: 100%;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                max-width: 900px; /* 最大宽度限制 */
+                overflow: hidden;
+            }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+        
+        .slide-caption {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px 25px;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+            padding: 0 20px;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-btn i {
+            font-size: 24px;
+            color: #1a2a6c;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+            
+            .content-container {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .wiki-content {
+                padding: 25px 20px;
+            }
+            
+            .content-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contributors {
+                margin-top: 20px;
+            }
+        }
+        .chardata
+        {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+        .paneldata
+        {
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .item_text
+        {
+            flex: 1;
+        }
+
+        .item_img
+        {
+            width: 200px;        /* 固定宽度 */
+            height: 200px;       /* 固定高度 */
+            background-color: #f0f0f0; /* 可选：背景色 */
+            display: flex;       /* 内部使用Flex布局 */
+            align-items: center; /* 水平居中 */
+            justify-content: center; /* 垂直居中 */
+            
+        }
+
+        .charitem
+        {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            
+        }
+        .image-carousel-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .image-carousel {
+            position: relative;
+            max-width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px; /* 最大宽度限制 */
+            overflow: hidden;
+        }
+        
+        .carousel-slide {
+            position: relative;
+            width: 100%;
+            display: none;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+            animation: slideIn 0.8s ease;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: rgb(36, 36, 36);
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 18px;
+
+        }
+        
+        /* 翻页按钮位置调整 */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+            padding: 0;
+            pointer-events: none;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            pointer-events: auto;
+        }
+        
+        .prev-btn {
+            margin-left: -70px; /* 向左移动 */
+        }
+        
+        .next-btn {
+            margin-right: -70px; /* 向右移动 */
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-btn i {
+            font-size: 24px;
+            color: #1a2a6c;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        #icon-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        
+        #icon-btn:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #fad0c4 0%, #ff9a9e 100%);
+        }
+        
+        #icon-btn i {
+            font-size: 32px;
+            color: #fff;
+        }
+        @keyframes abbr-tooltip-animation {
+            from { 
+                opacity: 0; 
+                transform: translateX(-50%) translateY(10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(0); 
+            }
+        }
+        
+        /* 工具提示 */
+        .tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        #icon-btn:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: -35px;
+        }
+
+        abbr {
+        cursor: help;
+        position: relative;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        }
+
+                /* 自定义工具提示 */
+        abbr[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: abbr-tooltip-animation 0.3s ease;
+        }
+        
+        /* 为工具提示添加小箭头 */
+        abbr[title]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% - 5px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #2c3e50;
+        }
+
+        /* 经典下划线样式 */
+        .underline abbr {
+        border-bottom: 2px dashed #3498db;
+        }
+        .underline abbr:hover {
+        background-color: #e1f0fa;
+        border-bottom: 2px solid #2980b9;
+        }
+
+
+    </style>
 </head>
 <body>
-    <a>test</a>
+    <!-- 侧边导航栏 - 保持不变 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-book-open"></i>
+            <h2>知识库导航</h2>
+        </div>
+        
+        <div class="menu">
+            <div class="menu-category active-category">
+                <div class="menu-item" style="top: 3px;">
+                    <i class="fas fa-user"></i>
+                    <span>人物详情</span>
+                </div>
+                <div class="submenu active">
+                    <div class="submenu-item active-page">面板数据</div>
+                    <div class="submenu-item">角色被动</div>
+                    <div class="submenu-item">信息</div>
+                    <div class="submenu-item">物品总览</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>物品总览</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item">武器</div>
+                    <div class="submenu-item">护甲</div>
+                    <div class="submenu-item">建筑</div>
+                    <div class="submenu-item">杂项</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-cutlery"></i>
+                    <span>食物</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item">食材</div>
+                    <div class="submenu-item">农作物</div>
+                    <div class="submenu-item">料理</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-bug"></i>
+                    <span>生物</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item">中立生物</div>
+                    <div class="submenu-item">敌对生物</div>
+                    <div class="submenu-item">BOSS</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-file-text"></i>
+                    <span>更新日志</span>
+                </div>
+                <div class="submenu">
+             
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+    
+
+    <!-- 主内容区域 - 修改为右侧对齐 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>人物详情</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+
+            </div>
+                <div class="image-carousel-container">
+                    <div class="image-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slide active">
+                                <img src="../image/yuzu/yuzu_none.png">
+                                <div class="slide-caption">默认皮肤</div>
+                            </div>
+                            <!--
+                            <div class="carousel-slide">
+                                <img src="../image/yuzu/yuzu_none.png">
+                                <div class="slide-caption">默认皮肤</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="../image/yuzu/yuzu_none.png">
+                                <div class="slide-caption">默认皮肤</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="../image/yuzu/yuzu_none.png">
+                                <div class="slide-caption">默认皮肤</div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <div class="indicator active" data-index="0"></div>
+                    <!--
+                    <div class="indicator" data-index="1"></div>
+                    <div class="indicator" data-index="2"></div>
+                    <div class="indicator" data-index="3"></div>
+                    -->
+                </div>
+            </div>
+            
+            <div class="wiki-content">
+                <h2>花冈柚子</h2>
+                
+                <div class="chardata">
+                    <div class="paneldata">
+                    <span><strong>125</strong></span><img src="../image/40px-Health_Meter.png">
+                    </div>
+                    <div class="paneldata">
+                    <span><strong>150</strong></span><img src="../image/40px-Hunger_Meter.png">
+                    </div>
+                    <div class="paneldata">
+                    <span><strong>120</strong></span><img src="../image/40px-Sanity_Meter.png">
+                    </div>
+                </div>
+                
+                <div>
+                    <span><b>角色TAG：</b></span>
+                    <span class="category-tag">偏原版体验</span>
+                    <span class="category-tag">输出</span>
+                    <span class="category-tag">后勤</span>
+                    <span class="category-tag">生存</span>
+                    <span class="category-tag">MOD生物：有</span>
+                    <span class="category-tag">你说得对，但是纸箱</span>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>？？？：</strong>游戏开发部，部长……柚子。真…真的要……把我带上吗？</p>
+                </div>
+                
+                <h2>角色被动</h2>
+                
+                <p>柚子初始携带以下效果：</p>
+                
+                <ul>
+                    <li><strong>基沃托斯光环：</strong> 自身清醒时<b>发出<abbr class="underline" title="最大半径为2单位距离。"><u>微光</u></abbr></b>，光照范围<b>随着理智值的降低而减小。</b></li>
+                    <li><strong>很酷不暴击：</strong> 柚子每次造成伤害时，有<b>20%</b>的概率使本次伤害变为<b>300%</b>（不影响位面伤害）。</li>
+                    <li><strong>自卑症：</strong> 柚子自身携带<b>-2/分钟的<img style="width: 20px;" src="../image/40px-Sanity_Meter.png">流失效果。</b></li>
+                </ul>
+                
+                <h2>信息</h2>
+                
+                <p style="line-height: 30px;"><i>-作为游戏高手绝不能落下经典游戏的游玩经历，柚子来到了永恒大陆！<br>-接下来等待她的是怎样的游戏冒险呢？</i></p>
+                <p>柚子出生时携带 <b>柚子定制千禧外套</b> 。</p>
+                
+                <div class="charitem">
+                    <div class="item_text">
+                        <h3>柚子定制千禧外套</h3>
+                        <p></p>
+                        <p>耐久度：15天</p>
+                        <p><b>仅限柚子使用</b>，装备时占据护甲栏</p>
+                        <p>装备时提供<b>90%的防水，240的保暖</b></p>
+                        <p>装备时自身获得<b>+3/分钟的<img style="width: 20px;" src="../image/40px-Sanity_Meter.png">恢复效果</b></p>
+                        <p>柚子定制千禧外套<b>提供 6 个物品栏</b></p>
+                        <p>装备时，<b>背包的物品栏会显示在屏幕右侧，成为玩家物品栏的一部分，帮助玩家携带和管理更多的物品</b></p>
+                        <p><b>可以通过针线包恢复耐久</b>，每次恢复5天耐久。</p>
+                    </div>
+                    <div class="item_img">
+                        <img src="../image/yuzu/yuzu_coat.png">
+                    </div>
+                </div>
+                <!--
+                <div>
+                    <span class="category-tag">机器学习</span>
+                    <span class="category-tag">深度学习</span>
+                    <span class="category-tag">计算机视觉</span>
+                    <span class="category-tag">自然语言处理</span>
+                    <span class="category-tag">机器人技术</span>
+                    <span class="category-tag">知识表示</span>
+                    <span class="category-tag">强化学习</span>
+                    <span class="category-tag">神经网络</span>
+                </div>
+                -->
+                <h2>物品总览</h2>
+                <ul>
+                  <h3>施工中</h3>
+                </ul>
+
+                <h2>易冲突MOD</h2>
+                <ul>
+                    <p>
+                        <li>大部分多格装备栏</li>
+                        <span>解决办法：推荐使用<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3104797181"><span>额外装备栏（持续更新版本）</span></a>或<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3173431824"><span>四五六格装备栏（全模组兼容）（自用）（可搜索：璇儿，海洋传说，悠）</span></a> </span>
+                    </p>
+                </ul>
+                <!--
+                <div class="content-footer">
+                    <div class="last-updated">最后更新：2023年11月28日</div>
+                    <div class="contributors">
+                        <span>贡献者：</span>
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="贡献者1">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="贡献者2">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="贡献者3">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="贡献者4">
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+            
+            // 分类点击事件
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+                
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // 关闭其他分类
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            otherCategory.querySelector('.submenu').classList.remove('active');
+                        }
+                    });
+                    
+                    // 切换当前分类
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+            
+            // 子菜单项点击事件
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    // 添加当前活动状态
+                    this.classList.add('active-page');
+                    
+                    // 添加动画效果
+                    content.style.opacity = 0;
+                    content.style.transform = "translateY(20px)";
+                    setTimeout(() => {
+                        content.style.transition = "opacity 0.5s, transform 0.5s";
+                        content.style.opacity = 1;
+                        content.style.transform = "translateY(0)";
+                    }, 50);
+                });
+            });
+
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            
+            // 切换到指定幻灯片
+            function goToSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                currentSlide = (index + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+                
+                // 添加动画效果
+                slides[currentSlide].style.animation = "slideIn 0.8s ease";
+                setTimeout(() => {
+                    slides[currentSlide].style.animation = "";
+                }, 800);
+            }
+            
+            // 下一张幻灯片
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // 上一张幻灯片
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+            
+            // 自动轮播
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // 事件监听器
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                resetInterval();
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                resetInterval();
+            });
+            
+            // 指示器点击事件
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(index);
+                    resetInterval();
+                });
+            });
+            
+            // 重置自动轮播计时器
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // 鼠标悬停时暂停自动轮播
+            const carousel = document.querySelector('.image-carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                resetInterval();
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>饥沃托斯wiki</title>
+    <link rel="icon" type="image/png" href="./image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -16,6 +19,11 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
+            background-image: url(./image/main_bg.jpg);
+            backdrop-filter: blur(5px);
+            background-repeat: no-repeat;
+            background-size:auto;
+            background-position: center center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #fff;
             padding: 20px;
@@ -135,7 +143,7 @@
         }
         
         .item:nth-child(3) .item-content {
-            background-image: url(./image/hoshino_leaf/hoshino_none.png);
+            background-image: url(./image/hoshino_leaf/hoshino2_none.png);
         }
         
         .item:nth-child(4) .item-content {
@@ -171,11 +179,116 @@
                 font-size: 2.2rem;
             }
         }
+          #image-popup-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        /* 图标按钮样式 */
+        #icon-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        #icon-btn:hover {
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, #fad0c4 0%, #ff9a9e 100%);
+        }
+        
+        #icon-btn i {
+            font-size: 28px;
+            color: #fff;
+        }
+        
+
+        #icon-btn:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: -30px;
+        }
+        
+        /* 图片容器 - 默认隐藏 */
+        #image-popup {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            width: 300px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+        
+        /* 鼠标悬停时显示图片 */
+        #image-popup-container:hover #image-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* 图片样式 */
+        #popup-image {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        #popup-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-title {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #2c3e50;
+        }
+        
+        /* 小三角形指示器 */
+        #image-popup::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 20px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
     </style>
 </head>
 <body>
+     <div id="image-popup-container">
+        <button id="icon-btn">
+            <i class="fa fa-qrcode"></i>
+        </button>
+        <div id="image-popup">
+            <img id="popup-image" 
+                 src="./image/main_qrcode.jpg" 
+                 alt="加群二维码">
+            <p class="image-title">欢迎加群讨论噢！</p>
+        </div>
+    </div>
     <div class="container">
-
+        
         <div class="carousel-container" id="carouselContainer">
             <div class="carousel" id="carousel">
                 <a href="#" class="item" data-index="1">
@@ -224,7 +337,7 @@
             <div class="dot" data-position="5"></div>
             <div class="dot" data-position="6"></div>
         </div>
-        
+  
     </div>
 
     <script>
