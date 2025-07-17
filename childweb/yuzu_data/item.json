@@ -11,7 +11,7 @@
                     "name": "喵冲", 
                     "imageUrl": "../image/yuzu/yuzu_gun.png",
                     "category": "weapon",
-                    "link": "#",
+                    "link": "./yuzu_item_coat.html",
                     "tags":["榴弹炮","专武","creatable"]
                 },
                 { 
