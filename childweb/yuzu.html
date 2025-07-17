@@ -1238,17 +1238,53 @@
     </main>
 
     <script>
+        // 动态设置GitHub链接
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUrl = window.location.href;
+            const githubLink = document.getElementById('githubLink');
+            
+            if (currentUrl.includes('github.io')) {
+                const repoUrl = currentUrl.split('/').slice(0, 5).join('/');
+                githubLink.href = repoUrl;
+            } else {
+                githubLink.href = 'https://github.com';
+            }
+        });
 
-        function loadIcons() {
-            return fetch("./yuzu_data/item.json")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('网络响应不正常');
-                    }
-                    return response.json();
-                })
-                .then(data => data.icons);
-        }
+        // 从外部JSON文件加载图标数据
+        async function loadIcons() {
+            try {
+                // 使用相对路径指向JSON文件
+                const response = await fetch('./childweb/yuzu_data/item.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误! 状态: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return data.icons;
+            } catch (error) {
+                console.error('加载图标数据失败:', error);
+                
+                // 显示错误信息
+                const grid = document.getElementById('iconGrid');
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>无法加载图标数据</h3>
+                        <p>错误信息: ${error.message}</p>
+                        <p style="margin-top:15px;font-size:0.9rem;">
+                            <strong>GitHub Pages部署提示:</strong> 
+                            请确保您的仓库中有名为"icons.json"的文件
+                        </p>
+                        <p style="margin-top:10px;">
+                            <button id="retryButton" class="github-badge" style="background:#4CAF50;border:none;cursor:pointer;">
+                                <i class="fas fa-sync-alt"></i> 重试加载
+                            </button>
+                        </p>
+                    </div>
+                `;
+            }
         // 目录交互功能
         document.addEventListener('DOMContentLoaded', function() {
             const categories = document.querySelectorAll('.menu-category');
@@ -1513,7 +1549,7 @@
         
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', initPage);
-
+    }
     </script>
 </body>
 </html>
