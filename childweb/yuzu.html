@@ -1238,7 +1238,17 @@
     </main>
 
     <script>
-        
+
+        function loadIcons() {
+            return fetch("./yuzu_data/item.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应不正常');
+                    }
+                    return response.json();
+                })
+                .then(data => data.icons);
+        }
         // 目录交互功能
         document.addEventListener('DOMContentLoaded', function() {
             const categories = document.querySelectorAll('.menu-category');
@@ -1445,42 +1455,65 @@
             });
         }
         
-        // 初始渲染
-        renderIcons(icons);
-        
-        //搜索功能
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const filteredIcons = icons.filter(item => 
-                item.name.toLowerCase().includes(searchTerm) || 
-                item.category.toLowerCase().includes(searchTerm)||
-                item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-            );
-            renderIcons(filteredIcons);
-        });
-        
-        // 分类过滤
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // 更新活动按钮
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        // 初始化页面
+        async function initPage() {
+            try {
+                // 加载图标数据
+                const icons = await loadIcons();
                 
-                // 过滤图标
-                const category = button.dataset.category;
-                if (category === 'all') {
-                    renderIcons(icons);
-                } else {
+                // 初始渲染
+                renderIcons(icons);
+                
+                //搜索功能
+                const searchInput = document.getElementById('searchInput');
+                searchInput.addEventListener('input', () => {
+                    const searchTerm = searchInput.value.toLowerCase();
                     const filteredIcons = icons.filter(item => 
-                    item.category === category||
-                    item.tags.some(tag => tag.toLowerCase().includes(category))
-                );
+                        item.name.toLowerCase().includes(searchTerm) || 
+                        item.category.toLowerCase().includes(searchTerm)||
+                        item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                    );
                     renderIcons(filteredIcons);
-                }
-            });
-        });
+                });
+                
+                // 分类过滤
+                const categoryButtons = document.querySelectorAll('.category-btn');
+                categoryButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // 更新活动按钮
+                        categoryButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        // 过滤图标
+                        const category = button.dataset.category;
+                        if (category === 'all') {
+                            renderIcons(icons);
+                        } else {
+                            const filteredIcons = icons.filter(item => 
+                            item.category === category||
+                            item.tags.some(tag => tag.toLowerCase().includes(category))
+                        );
+                            renderIcons(filteredIcons);
+                        }
+                    });
+                });
+                
+            } catch (error) {
+                console.error('加载图标数据失败:', error);
+                const grid = document.getElementById('iconGrid');
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>无法加载图标数据</h3>
+                        <p>请检查网络连接或稍后再试</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+
     </script>
 </body>
 </html>

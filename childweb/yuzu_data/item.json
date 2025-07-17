@@ -1,0 +1,60 @@
+{
+    "icons": [
+                { 
+                    "name": "柚子定制千禧外套", 
+                    "imageUrl": "../image/yuzu/yuzu_coat.png",
+                    "category": "body",
+                    "link": "./yuzu_item_coat.html",
+                    "tags":["大衣","creatable"]
+                },
+                { 
+                    "name": "喵冲", 
+                    "imageUrl": "../image/yuzu/yuzu_gun.png",
+                    "category": "weapon",
+                    "link": "#",
+                    "tags":["榴弹炮","专武","creatable"]
+                },
+                { 
+                    "name": "榴弹子弹", 
+                    "imageUrl": "../image/yuzu/yuzu_grenade_icon.png",
+                    "category": "other",
+                    "link": "#",
+                    "tags":["creatable"]
+                },
+                { 
+                    "name": "储物柜", 
+                    "imageUrl": "../image/yuzu/yuzu_wardrobe.png",
+                    "category": "building",
+                    "link": "#",
+                    "tags":["柜子","creatable"]
+                },
+                { 
+                    "name": "纸箱", 
+                    "imageUrl":"../image/yuzu/yuzu_paperbox.png",
+                    "category": "body",
+                    "link": "#",
+                    "tags":["箱子","潜行纸箱","creatable"]
+                },
+                { 
+                    "name": "无敌炫酷双色鸡毛掸子", 
+                    "imageUrl": "../image/yuzu/yuzu_duster.png",
+                    "category": "weapon",
+                    "link": "#",
+                    "tags":["creatable"]
+                },
+                { 
+                    "name": "全自动灌溉水桶", 
+                    "imageUrl": "../image/yuzu/yuzu_wateringcan.png",
+                    "category": "tools",
+                    "link": "#",
+                    "tags":["小桃","浇水","creatable"]
+                },
+                { 
+                    "name": "女仆装", 
+                    "imageUrl": "../image/yuzu/yuzu_maidsuit.png",
+                    "category": "body",
+                    "link": "#",
+                    "tags":["creatable","月亮阵营"]
+                }
+            ]
+}
