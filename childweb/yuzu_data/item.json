@@ -11,35 +11,35 @@
                     "name": "喵冲", 
                     "imageUrl": "../image/yuzu/yuzu_gun.png",
                     "category": "weapon",
-                    "link": "./yuzu_item_coat.html",
+                    "link": "./yuzu_item_gun.html",
                     "tags":["榴弹炮","专武","creatable"]
                 },
                 { 
                     "name": "榴弹子弹", 
                     "imageUrl": "../image/yuzu/yuzu_grenade_icon.png",
                     "category": "other",
-                    "link": "#",
+                    "link": "./yuzu_item_grenade.html",
                     "tags":["creatable"]
                 },
                 { 
                     "name": "储物柜", 
                     "imageUrl": "../image/yuzu/yuzu_wardrobe.png",
                     "category": "building",
-                    "link": "#",
+                    "link": "./yuzu_item_wardrobe.html",
                     "tags":["柜子","creatable"]
                 },
                 { 
                     "name": "纸箱", 
                     "imageUrl":"../image/yuzu/yuzu_paperbox.png",
                     "category": "body",
-                    "link": "#",
+                    "link": "./yuzu_item_paperbox.html",
                     "tags":["箱子","潜行纸箱","creatable"]
                 },
                 { 
                     "name": "无敌炫酷双色鸡毛掸子", 
                     "imageUrl": "../image/yuzu/yuzu_duster.png",
                     "category": "weapon",
-                    "link": "#",
+                    "link": "./yuzu_item_duster.html",
                     "tags":["creatable"]
                 },
                 { 

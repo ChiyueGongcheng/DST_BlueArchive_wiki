@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>花冈柚子-榴弹子弹</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* 侧边栏样式 - 保持不变 */
+        .sidebar {
+            width: 60px;
+            background: linear-gradient(135deg,  #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+            transition: all 0.4s ease;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1000;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar:hover {
+            width: 280px;
+        }
+        
+        .sidebar-header {
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-header i {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 18px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease 0.2s;
+        }
+        
+        .sidebar:hover .sidebar-header h2 {
+            opacity: 1;
+        }
+        
+        .menu {
+            padding: 15px 0;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-item i {
+            font-size: 18px;
+            margin-right: 15px;
+            min-width: 24px;
+        }
+        
+        .menu-item span {
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease 0.2s;
+        }
+        
+        .sidebar:hover .menu-item span {
+            opacity: 1;
+        }
+        
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: rgba(0, 0, 0, 0.15);
+            margin-left: 10px;
+            border-radius: 4px;
+        }
+        
+        .sidebar:hover .submenu.active {
+            max-height: 500px;
+        }
+        
+        .submenu-item {
+            padding: 10px 20px 10px 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .submenu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar:hover .submenu-item {
+            opacity: 1;
+        }
+        
+        .active-category > .menu-item {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+
+        .active-page {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-left: 3px solid #ffcc00;
+        }
+        
+        /* 主内容区域 - 修改为右侧对齐 */
+        .main-content {
+            flex: 1;
+            margin-left: 60px;
+            transition: margin-left 0.4s ease;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* 关键修改：使内容向右对齐 */
+        }
+        
+        .sidebar:hover ~ .main-content {
+            margin-left: 280px;
+        }
+        
+        .content-container {
+            width: 100%; /* 控制内容区域宽度 */
+            max-width: 2000px;
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e8f0;
+        }
+        
+        .content-header h1 {
+            color: #1a2a6c;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #1a2a6c, #3a6ea5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 300px;
+            border: 1px solid #e0e6ed;
+        }
+        
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 12px 20px;
+            outline: none;
+            font-size: 16px;
+            background: transparent;
+        }
+        
+        .search-box button {
+            background: linear-gradient(135deg, #2a5298, #1a2a6c);
+            color: white;
+            border: none;
+            padding: 0 22px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .search-box button:hover {
+            background: linear-gradient(135deg, #1a2a6c, #2a5298);
+        }
+        
+        .wiki-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            min-height: 70vh;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s forwards 0.4s;
+            border: 1px solid #eef2f7;
+            position: relative;
+            overflow: hidden;
+            
+        }
+        
+        .wiki-content:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom,  #ff9a9e 0%, #fad0c4 100%);
+        }
+        
+        .wiki-content h2 {
+            color: #1a2a6c;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f4f9;
+            font-size: 26px;
+            position: relative;
+        }
+        
+        .wiki-content h2:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #2a5298, #3a6ea5);
+            border-radius: 3px;
+        }
+        
+        .wiki-content p {
+            line-height: 1.0;
+            margin-bottom: 22px;
+            color: #444;
+            font-size: 17px;
+        }
+        
+        .wiki-content ul {
+            margin: 25px 0;
+            padding-left: 25px;
+        }
+        
+        .wiki-content li {
+            margin-bottom: 14px;
+            line-height: 1.7;
+            font-size: 16px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .wiki-content img{
+            width: auto;
+            vertical-align: middle;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+            border-left: 4px solid #2a5298;
+            padding: 22px 25px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 8px rgba(42, 82, 152, 0.08);
+        }
+        
+        .info-box p {
+            margin-bottom: 0;
+            color: #1a2a6c;
+            font-size: 16px;
+        }
+        
+        .info-box strong {
+            color: #1a2a6c;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #eef4ff 0%, #dfe9ff 100%);
+            color: #2a5298;
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #d6e0f0;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .category-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(42, 82, 152, 0.15);
+        }
+        
+        .content-footer {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f4f9;
+            display: flex;
+            justify-content: space-between;
+            color: #5a6c84;
+            font-size: 15px;
+            align-items: center;
+        }
+        
+        .last-updated {
+            background: #f0f7ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .contributors {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contributors span {
+            margin-right: 12px;
+            font-weight: 500;
+        }
+        
+        .contributors img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-left: 8px;
+            border: 2px solid white;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s;
+        }
+        
+        .contributors img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .content-container {
+                width: 92%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .content-container {
+                width: 95%;
+            }
+            
+            .wiki-content {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+            }
+            
+            .sidebar:hover {
+                width: 260px;
+            }
+            
+            .main-content {
+                margin-left: 50px;
+            }
+            
+            .sidebar:hover ~ .main-content {
+                margin-left: 260px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-box {
+                width: 100%;
+                margin-top: 20px;
+            }
+            .image-carousel-container {
+                position: relative;
+                width: 100%;
+                margin-bottom: 30px;
+                display: flex;
+                justify-content: center;
+            }      
+
+            .image-carousel {
+                position: relative;
+                max-width: 100%;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                max-width: 900px; /* 最大宽度限制 */
+                overflow: hidden;
+            }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+        
+        .slide-caption {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px 25px;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+            padding: 0 20px;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-btn i {
+            font-size: 24px;
+            color: #1a2a6c;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+            
+            .content-container {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .wiki-content {
+                padding: 25px 20px;
+            }
+            
+            .content-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contributors {
+                margin-top: 20px;
+            }
+        }
+        .chardata
+        {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+        .paneldata
+        {
+            padding: 20px;
+            display: inline-block;
+
+        }
+
+        .item_text
+        {
+            padding: 50px;
+            flex: 2;                 /* 占据1份空间 */
+            display: flex;           /* 嵌套Flex布局 */
+            flex-direction: column;  /* 垂直排列子元素 */
+            border-right: 1px dashed #999; /* 分隔线 */
+        }
+
+
+        .item_info
+        {
+            width: 25%;
+            display: grid;
+            grid-template-rows: 11fr; /* 两行等高 */
+            
+        }
+        .top-box, .bottom-box {
+            display: flex;           /* 启用Flex布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center;     /* 垂直居中 */
+        }
+
+        .item_content {
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .item_info p{
+            text-align: center;
+            line-height: 10px;
+        }
+
+        .charitem
+        {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+        }
+
+        
+        .image-carousel-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .image-carousel {
+            position: relative;
+            max-width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px; /* 最大宽度限制 */
+            overflow: hidden;
+        }
+        
+        .carousel-slide {
+            position: relative;
+            width: 100%;
+            display: none;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+            animation: slideIn 0.8s ease;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: rgb(36, 36, 36);
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 18px;
+
+        }
+        
+        /* 翻页按钮位置调整 */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+            padding: 0;
+            pointer-events: none;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            pointer-events: auto;
+        }
+        
+        .prev-btn {
+            margin-left: -70px; /* 向左移动 */
+        }
+        
+        .next-btn {
+            margin-right: -70px; /* 向右移动 */
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-btn i {
+            font-size: 24px;
+            color: #1a2a6c;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        #icon-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        
+        #icon-btn:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #fad0c4 0%, #ff9a9e 100%);
+        }
+        
+        #icon-btn i {
+            font-size: 32px;
+            color: #fff;
+        }
+        @keyframes abbr-tooltip-animation {
+            from { 
+                opacity: 0; 
+                transform: translateX(-50%) translateY(10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(0); 
+            }
+        }
+        
+        /* 工具提示 */
+        .tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        #icon-btn:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: -35px;
+        }
+
+        abbr {
+        cursor: help;
+        position: relative;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        }
+
+                /* 自定义工具提示 */
+        abbr[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: abbr-tooltip-animation 0.3s ease;
+        }
+        
+        /* 为工具提示添加小箭头 */
+        abbr[title]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% - 5px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #2c3e50;
+        }
+
+        /* 经典下划线样式 */
+        .underline abbr {
+        border-bottom: 2px dashed #3498db;
+        }
+        .underline abbr:hover {
+        background-color: #e1f0fa;
+        border-bottom: 2px solid #2980b9;
+        }
+        a
+        {
+            color: inherit;
+            text-decoration: none;
+        }
+        .search-box {
+            display: flex;
+            width: 1000px;
+            margin: 30px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .search-box button {
+            padding: 0 25px;
+            background: #e6f2ff;
+            color: rgb(42, 46, 71);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box button:hover {
+            background: #5783b1;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .category-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgb(0, 0, 0);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px) scale(1.08);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
+        .icon-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .icon-img {
+            transform: scale(1.15);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+       @media (max-width: 768px) {
+            .grid {
+                gap: 12px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-box {
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+                gap: 10px;
+            }
+            
+            .card {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .icon-img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 侧边导航栏 - 保持不变 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-book-open"></i>
+            <h2>知识库导航</h2>
+        </div>
+        
+        <div class="menu">
+            <a href="./yuzu.html">
+                <div class="menu-category">
+                <div class="menu-item" style="top: 3px;">
+                    <i class="fas fa-user"></i>
+                    <span>人物详情</span>
+                </div>
+                <div class="submenu">
+                    <a href="./yuzu.html"><div class="submenu-item">面板数据</div></a>
+                    <a href="./yuzu.html"><div class="submenu-item">角色被动</div></a>
+                    <a href="./yuzu.html"><div class="submenu-item">信息</div></a>
+                    <a href="./yuzu.html"><div class="submenu-item">物品总览</div></a>
+                    <a href="./yuzu.html"><div class="submenu-item">易冲突模组</div></a>
+                </div>
+            </div>
+            </a>
+            
+            <a href="./yuzu_item.html">
+                <div class="menu-category">
+                    <div class="menu-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>物品详情</span>
+                    </div>
+                <div class="submenu">
+
+                </div>
+            </div>
+            </a>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-cutlery"></i>
+                    <span>食物</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item">食材</div>
+                    <div class="submenu-item">农作物</div>
+                    <div class="submenu-item">料理</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-bug"></i>
+                    <span>生物</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item">中立生物</div>
+                    <div class="submenu-item">敌对生物</div>
+                    <div class="submenu-item">BOSS</div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="menu-item">
+                    <i class="fas fa-coffee"></i>
+                    <span>关于作者</span>
+                </div>
+                <div class="submenu">
+             
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+    
+
+    <!-- 主内容区域 - 修改为右侧对齐 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>物品详情</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+
+            </div>
+                
+            
+            <div class="wiki-content">
+                
+                <div class="charitem" style="background-image: url(../image/item_card.png);background-position: center;background-repeat: no-repeat;background-size: cover;">
+                        <div class="item_text">
+                            <div class="item_content">
+                                <div style="backdrop-filter: blur(50px); border-radius: 10px;padding: 30px;box-shadow: 0 2px 10px #1a2a6c;">
+                                    <p>可以作为<b>喵冲</b>的子弹</p>
+                                    <p><b>每次制作将会获得3个榴弹子弹</b></p>
+                                    <p>榴弹子弹在<b>被点燃后会在燃尽时爆炸，对半径3距离单位内的所有生物造成100点物理伤害+25位面伤害</b></p>
+                                    <p>榴弹子弹燃尽爆炸时，<b style="color: red;">会对码头造成伤害，最终能够摧毁码头</b></p>
+                                    <p>堆叠的榴弹子弹燃尽爆炸时，<b>物理伤害会叠加计算</b>,<b style="color: red;">但只会对生物造成一次位面伤害</b></p>
+                                    <p>榴弹子弹伤害<b style="color: red;">通常不可暴击</b></p>
+                                    <br>
+                                    <h3>杂项</h3>
+                                    <li><i>榴弹子弹还有另一个版本的实体，物品id为yuzu_grenade_inf；该实体效果为作为喵冲子弹发射时不会消耗自身</i></li>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="item_info" style="margin: 25px;">
+                            <div class="top-box">
+                                <div class="item_content" style="filter: drop-shadow(0 1px 1px #1a2a6c62);">
+                                    <h3>榴弹子弹</h3>
+                                </div>
+                            </div>
+                            <div class="top-box">
+                                <div class="item_content" style="background-color: #a2c8dd;box-shadow: 0 2px 10px #1a2a6c;">
+                                    <img src="../image/yuzu/yuzu_grenade_icon.png">
+                                </div>
+                            </div>
+                            <div class="bottom-box">
+                                <div class="item_content" style="filter: drop-shadow(0 1px 1px #1a2a6c62);">
+                                    <p style="margin-bottom: 10px;"><b>制作配方</b></p>
+                                    <p><b>1</b><abbr title="火药"><img style="width: 32px;height: 32px;" src="../image/yuzu/material/Gunpowder.png"></abbr><b>+2</b><abbr title="金块"><img style="width: 32px;height: 32px;"  src="../image/yuzu/material/43px-Gold_Nugget.png"></abbr></b></p>
+                                </div>
+                            </div>
+                            <div class="bottom-box" style="margin-bottom: 50px;">
+                                <div class="item_content" style="backdrop-filter: blur(50px);box-shadow: 0 2px 10px #1a2a6c;">
+                                    <p><b><abbr title="该物品配方无法记忆"><u>需要</u></abbr>：</b><img style="width: 24px;height: auto;margin:-10px 0px;" src="../image/yuzu/material/need_L2.png"></p>
+                                    <p><b>伤害：100点物理伤害+25位面伤害</b></p>
+                                    <p><b>耐久次数：无限</b></p>
+                                    <p><b>堆叠上限：10</b></p>
+                                    <p><b>漂浮：否</b></p>
+                                    <p><b>可点燃：燃烧时间3~6秒</b></p>
+                                    <p style="margin-bottom: 1px;"><b>物品id：yuzu_grenade</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                 <div id="item">
+                    <ul>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="搜索物品...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+            
+                        <div class="categories">
+                            <button class="category-btn active" data-category="all">全部</button>
+                            <button class="category-btn" data-category="creatable">可制作</button>
+                            <button class="category-btn" data-category="uncreatable">不可制作</button>
+                            <button class="category-btn" data-category="weapon">武器</button>
+                            <button class="category-btn" data-category="tools">工具</button>
+                            <button class="category-btn" data-category="hat">头部装备</button>
+                            <button class="category-btn" data-category="body">身体装备</button>
+                            <button class="category-btn" data-category="building">建筑</button>
+                            <button class="category-btn" data-category="other">杂项</button>
+                        </div>
+
+                        
+                        <div class="grid" id="iconGrid">
+                            <!-- 图标卡片将通过JavaScript动态生成 -->
+                        </div>
+                    </ul>
+                </div>
+                <!--
+                <div class="content-footer">
+                    <div class="last-updated">最后更新：2023年11月28日</div>
+                    <div class="contributors">
+                        <span>贡献者：</span>
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="贡献者1">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="贡献者2">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="贡献者3">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="贡献者4">
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+            
+            // 分类点击事件
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+                
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // 关闭其他分类
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            otherCategory.querySelector('.submenu').classList.remove('active');
+                        }
+                    });
+                    
+                    // 切换当前分类
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+            
+            // 子菜单项点击事件
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    // 添加当前活动状态
+                    this.classList.add('active-page');
+                    
+                    // 添加动画效果
+                    content.style.opacity = 0;
+                    content.style.transform = "translateY(20px)";
+                    setTimeout(() => {
+                        content.style.transition = "opacity 0.5s, transform 0.5s";
+                        content.style.opacity = 1;
+                        content.style.transform = "translateY(0)";
+                    }, 50);
+                });
+            });
+
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            
+            // 切换到指定幻灯片
+            function goToSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                currentSlide = (index + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
+                
+                // 添加动画效果
+                slides[currentSlide].style.animation = "slideIn 0.8s ease";
+                setTimeout(() => {
+                    slides[currentSlide].style.animation = "";
+                }, 800);
+            }
+            
+            // 下一张幻灯片
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // 上一张幻灯片
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+            
+            // 自动轮播
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // 事件监听器
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                resetInterval();
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                resetInterval();
+            });
+            
+            // 指示器点击事件
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(index);
+                    resetInterval();
+                });
+            });
+            
+            // 重置自动轮播计时器
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // 鼠标悬停时暂停自动轮播
+            const carousel = document.querySelector('.image-carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                resetInterval();
+            });
+        });
+          // 图标数据
+        const icons = [
+            { 
+                name: "柚子定制千禧外套", 
+                imageUrl: "../image/yuzu/yuzu_coat.png",
+                category: "body",
+                link: "#",
+                tags:["大衣","creatable"]
+            },
+            { 
+                name: "喵冲", 
+                imageUrl: "../image/yuzu/yuzu_gun.png",
+                category: "weapon",
+                link: "#",
+                tags:["榴弹炮","专武","creatable"]
+            },
+            { 
+                name: "榴弹子弹", 
+                imageUrl: "../image/yuzu/yuzu_grenade_icon.png",
+                category: "other",
+                link: "#",
+                tags:["creatable"]
+            },
+            { 
+                name: "储物柜", 
+                imageUrl: "../image/yuzu/yuzu_wardrobe.png",
+                category: "building",
+                link: "#",
+                tags:["柜子","creatable"]
+            },
+            { 
+                name: "纸箱", 
+                imageUrl: "../image/yuzu/yuzu_paperbox.png",
+                category: "body",
+                link: "#",
+                tags:["箱子","潜行纸箱","creatable"]
+            },
+            { 
+                name: "无敌炫酷双色鸡毛掸子", 
+                imageUrl: "../image/yuzu/yuzu_duster.png",
+                category: "weapon",
+                link: "#",
+                tags:["creatable"]
+            },
+            { 
+                name: "全自动灌溉水桶", 
+                imageUrl: "../image/yuzu/yuzu_wateringcan.png",
+                category: "tools",
+                link: "#",
+                tags:["小桃","浇水","creatable"]
+            },
+            { 
+                name: "女仆装", 
+                imageUrl: "../image/yuzu/yuzu_maidsuit.png",
+                category: "body",
+                link: "#",
+                tags:["creatable","月亮阵营"]
+            }
+        ];
+        
+        // 渲染图标网格
+        function renderIcons(iconsArray) {
+            const grid = document.getElementById('iconGrid');
+            grid.innerHTML = '';
+            
+            if (iconsArray.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>未找到匹配的物品</h3>
+                        <p>请尝试其他搜索词或选择其他分类</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            iconsArray.forEach(item => {
+                const card = document.createElement('a');
+                card.href = item.link;
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="icon-container">
+                        <img src="${item.imageUrl}" alt="${item.name}" class="icon-img">
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        // 初始渲染
+        renderIcons(icons);
+        
+        function loadIcons() {
+            return fetch("./yuzu_data/item.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应不正常');
+                    }
+                    return response.json();
+                })
+                .then(data => data.icons);
+        }
+        async function initPage() {
+            try {
+                // 加载图标数据
+                const icons = await loadIcons();
+                
+                // 初始渲染
+                renderIcons(icons);
+                
+                //搜索功能
+                const searchInput = document.getElementById('searchInput');
+                searchInput.addEventListener('input', () => {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const filteredIcons = icons.filter(item => 
+                        item.name.toLowerCase().includes(searchTerm) || 
+                        item.category.toLowerCase().includes(searchTerm)||
+                        item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                    );
+                    renderIcons(filteredIcons);
+                });
+                
+                // 分类过滤
+                const categoryButtons = document.querySelectorAll('.category-btn');
+                categoryButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // 更新活动按钮
+                        categoryButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        // 过滤图标
+                        const category = button.dataset.category;
+                        if (category === 'all') {
+                            renderIcons(icons);
+                        } else {
+                            const filteredIcons = icons.filter(item => 
+                            item.category === category||
+                            item.tags.some(tag => tag.toLowerCase().includes(category))
+                        );
+                            renderIcons(filteredIcons);
+                        }
+                    });
+                });
+                
+            } catch (error) {
+                console.error('加载图标数据失败:', error);
+                const grid = document.getElementById('iconGrid');
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>无法加载图标数据</h3>
+                        <p>请检查网络连接或稍后再试</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html>
