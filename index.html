@@ -135,7 +135,7 @@
         
         
         .item:nth-child(1) .item-content {
-            background-image: url(./image/hina/hina_none.png);
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/hina/hina_none.png);
         }
         
         .item:nth-child(2) .item-content {
@@ -143,19 +143,19 @@
         }
         
         .item:nth-child(3) .item-content {
-            background-image: url(./image/hoshino_leaf/hoshino2_none.png);
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/hoshino_leaf/hoshino2_none.png);
         }
         
         .item:nth-child(4) .item-content {
-            background-image: url(./image/hoshino_whale/whale_hoshino_none.png);
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/hoshino_whale/whale_hoshino_none.png);
         }
         
         .item:nth-child(5) .item-content {
-            background-image: url(./image/AL1S/alice.png);
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/AL1S/alice.png);
         }
 
         .item:nth-child(6) .item-content {
-            background-image: url(./image/nagisa/nagisa_none.png);
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/nagisa/nagisa_none.png);
         }
         
         @media (max-width: 1200px) {
@@ -294,6 +294,7 @@
                 <a href="#" class="item" data-index="1">
                     <div class="item-content">
                         <h3 class="item-title">空崎日奈</h3>
+                        <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
                     </div>
                 </a>
                 
@@ -306,24 +307,28 @@
                 <a href="./childweb/hoshino_leaf.html" class="item" data-index="3">
                     <div class="item-content">
                         <h3 class="item-title">小鸟游星野（葉）</h3>
+                        <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
                     </div>
                 </a>
                 
                 <a href="#" class="item" data-index="4">
                     <div class="item-content">
                         <h3 class="item-title">小鸟游星野（鲸）</h3>
+                        <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
                     </div>
                 </a>
                 
                 <a href="#" class="item" data-index="5">
                     <div class="item-content">
                         <h3 class="item-title">天童爱丽丝</h3>
+                        <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
                     </div>
                 </a>
 
                 <a href="#" class="item" data-index="6">
                     <div class="item-content">
                         <h3 class="item-title">桐藤渚</h3>
+                        <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
                     </div>
                 </a>
             </div>
@@ -350,7 +355,7 @@
             // 图片总数
             const totalItems = items.length;
             // 当前中心位置
-            let currentCenter = 3;
+            let currentCenter = 2;
             
             // 更新轮播位置
             function updateCarousel() {
