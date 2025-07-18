@@ -46,14 +46,14 @@
                     "name": "全自动灌溉水桶", 
                     "imageUrl": "../image/yuzu/yuzu_wateringcan.png",
                     "category": "tools",
-                    "link": "#",
+                    "link": "./yuzu_item_momoi.html",
                     "tags":["小桃","浇水","creatable"]
                 },
                 { 
                     "name": "女仆装", 
                     "imageUrl": "../image/yuzu/yuzu_maidsuit.png",
                     "category": "body",
-                    "link": "#",
+                    "link": "./yuzu_item_maidsuit.html",
                     "tags":["creatable","月亮阵营"]
                 }
             ]
