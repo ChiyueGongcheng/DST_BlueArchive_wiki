@@ -157,6 +157,10 @@
         .item:nth-child(6) .item-content {
             background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/nagisa/nagisa_none.png);
         }
+
+        .item:nth-child(7) .item-content {
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(./image/CCC_Tachibana/CCC_Tachibana.jpg);
+        }
         
         @media (max-width: 1200px) {
             .item {
@@ -331,6 +335,13 @@
                         <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
                     </div>
                 </a>
+
+                <a href="#" class="item" data-index="7">
+                    <div class="item-content">
+                        <h3 class="item-title">铁道双子</h3>
+                        <img style="width: 150px;height: 150px;align-self: center;" src="./image/NOT_DONE.png">
+                    </div>
+                </a>
             </div>
         </div>
         
@@ -341,6 +352,7 @@
             <div class="dot" data-position="4"></div>
             <div class="dot" data-position="5"></div>
             <div class="dot" data-position="6"></div>
+            <div class="dot" data-position="7"></div>
         </div>
   
     </div>
@@ -355,7 +367,7 @@
             // 图片总数
             const totalItems = items.length;
             // 当前中心位置
-            let currentCenter = 2;
+            let currentCenter = 4;
             
             // 更新轮播位置
             function updateCarousel() {
