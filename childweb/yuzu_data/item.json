@@ -55,6 +55,13 @@
                     "category": "body",
                     "link": "./yuzu_item_maidsuit.html",
                     "tags":["creatable","月亮阵营"]
+                },
+                { 
+                    "name": "卡比帽子", 
+                    "imageUrl": "../image/hoshino_leaf/hat_kirby.png",
+                    "category": "hat",
+                    "link": "./hoshino_item_kirbyhat.html",
+                    "tags":["帽子","creatable","联动","彩蛋"]
                 }
             ]
 }
