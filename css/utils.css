@@ -1,0 +1,149 @@
+/* 全局工具类：由各页面重复的内联样式抽取而来。
+   声明统一带 !important，与原内联样式优先级一致，因此页面外观保持不变。 */
+
+.u-blur {
+    backdrop-filter: blur(50px) !important;
+    box-shadow: 0 2px 10px #1a2a6c !important;
+}
+
+.u-c-primary {
+    color: #1a2a6c !important;
+}
+
+.u-c-red {
+    color: red !important;
+}
+
+.u-drop {
+    filter: drop-shadow(0 1px 1px #1a2a6c62) !important;
+}
+
+.u-flex {
+    display: flex !important;
+}
+
+.u-flex-ini {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: initial !important;
+}
+
+.u-fs15 {
+    font-size: 15px !important;
+}
+
+.u-glass {
+    backdrop-filter: blur(50px) !important;
+    border-radius: 10px !important;
+    padding: 30px !important;
+    box-shadow: 0 2px 10px #1a2a6c !important;
+}
+
+.u-glass-top {
+    margin-top: 70px !important;
+    backdrop-filter: blur(50px) !important;
+    border-radius: 10px !important;
+    padding: 30px !important;
+    box-shadow: 0 2px 10px #1a2a6c !important;
+}
+
+.u-grid2 {
+    display: grid !important;
+    grid-template-rows: 2fr !important;
+    text-align: center !important;
+    align-items: center !important;
+    justify-items: center !important;
+    margin: 10px !important;
+}
+
+.u-ic32 {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.u-img20m {
+    width: 20px !important;
+    height: auto !important;
+    margin: -10px 0px !important;
+}
+
+.u-img24m {
+    width: 24px !important;
+    height: auto !important;
+    margin: -10px 0px !important;
+}
+
+.u-lh30 {
+    line-height: 30px !important;
+}
+
+.u-m20 {
+    margin: 20px !important;
+}
+
+.u-mb1 {
+    margin-bottom: 1px !important;
+}
+
+.u-mb10 {
+    margin-bottom: 10px !important;
+}
+
+.u-mb50 {
+    margin-bottom: 50px !important;
+}
+
+.u-mt10 {
+    margin-top: 10px !important;
+}
+
+.u-pill {
+    border-radius: 10px !important;
+    background-color: #bec6e5 !important;
+    padding: 10px !important;
+    height: 40px !important;
+}
+
+.u-pl20 {
+    padding-left: 20px !important;
+}
+
+.u-shot350 {
+    border-radius: 10px !important;
+    width: 350px !important;
+}
+
+.u-thumb150 {
+    width: 150px !important;
+    height: 150px !important;
+    align-self: center !important;
+}
+
+.u-tint {
+    background-color: #a2c8dd !important;
+    box-shadow: 0 2px 10px #1a2a6c !important;
+}
+
+.u-top3 {
+    top: 3px !important;
+}
+
+.u-w100 {
+    width: 100px !important;
+}
+
+.u-w120 {
+    width: 120% !important;
+    height: auto !important;
+    position: relative !important;
+    top: -11px !important;
+}
+
+.u-w20 {
+    width: 20px !important;
+}
+
+.u-w25 {
+    width: 25px !important;
+}

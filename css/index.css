@@ -1,0 +1,268 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            background-image: url(../image/main_bg.jpg);
+            backdrop-filter: blur(5px);
+            background-repeat: no-repeat;
+            background-size:auto;
+            background-position: center center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff9a9e, #a1c4fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #e0e0ff;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            perspective: 1500px;
+            margin: 0 auto 30px;
+            overflow: visible;
+        }
+        
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            --current: 3; /* 当前中心位置 */
+        }
+        
+        .item {
+            position: absolute;
+            width: 350px;
+            height: 500px;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 12px;
+            overflow: hidden;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
+            cursor: pointer;
+            backface-visibility: hidden;
+        }
+        
+        .item-content {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .item:hover .item-content {
+            transform: scale(1.05);
+        }
+        
+        .item-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        
+        .nav-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        
+        .item:nth-child(1) .item-content {
+            background-image: url(../image/hina/hina_none.png);
+        }
+        
+        .item:nth-child(2) .item-content {
+            background-image: url(../image/yuzu/yuzu_none.png);
+        }
+        
+        .item:nth-child(3) .item-content {
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/hoshino_leaf/hoshino2_none.png);
+        }
+        
+        .item:nth-child(4) .item-content {
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/hoshino_whale/whale_hoshino_none.png);
+        }
+        
+        .item:nth-child(5) .item-content {
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/AL1S/alice.png);
+        }
+
+        .item:nth-child(6) .item-content {
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/CCC_Tachibana/CCC_Tachibana.jpg);
+        }
+
+        @media (max-width: 1200px) {
+            .item {
+                width: 300px;
+                height: 430px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .item {
+                width: 250px;
+                height: 360px;
+            }
+            
+            .item-title {
+                font-size: 1.4rem;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+          #image-popup-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        /* 图标按钮样式 */
+        #icon-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        #icon-btn:hover {
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, #fad0c4 0%, #ff9a9e 100%);
+        }
+        
+        #icon-btn i {
+            font-size: 28px;
+            color: #fff;
+        }
+        
+
+        #icon-btn:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: -30px;
+        }
+        
+        /* 图片容器 - 默认隐藏 */
+        #image-popup {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            width: 300px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+        
+        /* 鼠标悬停时显示图片 */
+        #image-popup-container:hover #image-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* 图片样式 */
+        #popup-image {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        #popup-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-title {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #2c3e50;
+        }
+        
+        /* 小三角形指示器 */
+        #image-popup::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 20px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+    

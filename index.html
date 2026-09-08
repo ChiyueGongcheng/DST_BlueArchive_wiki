@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>饥沃托斯wiki</title>
+    <link rel="icon" type="image/png" href="./image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/utils.css">
+</head>
+<body>
+     <div id="image-popup-container">
+        <button id="icon-btn">
+            <i class="fa fa-qrcode"></i>
+        </button>
+        <div id="image-popup">
+            <img id="popup-image" 
+                 src="./image/main_qrcode.jpg" 
+                 alt="加群二维码">
+            <p class="image-title">欢迎加群讨论噢！</p>
+        </div>
+    </div>
+    <div class="container">
+        
+        <div class="carousel-container" id="carouselContainer">
+            <div class="carousel" id="carousel">
+                <a href="./childweb/hina.html" class="item" data-index="1">
+                    <div class="item-content">
+                        <h3 class="item-title">空崎日奈</h3>
+                    </div>
+                </a>
+                
+                <a href="./childweb/yuzu.html" class="item" data-index="2">
+                    <div class="item-content">
+                        <h3 class="item-title">花冈柚子</h3>
+                    </div>
+                </a>
+                
+                <a href=".#" class="item" data-index="3">
+                    <div class="item-content">
+                        <h3 class="item-title">小鸟游星野（葉）</h3>
+                        <img src="./image/NOT_DONE.png" class="u-thumb150">
+                    </div>
+                </a>
+                
+                <a href="#" class="item" data-index="4">
+                    <div class="item-content">
+                        <h3 class="item-title">小鸟游星野（鲸）</h3>
+                        <img src="./image/NOT_DONE.png" class="u-thumb150">
+                    </div>
+                </a>
+                
+                <a href="#" class="item" data-index="5">
+                    <div class="item-content">
+                        <h3 class="item-title">天童爱丽丝</h3>
+                        <img src="./image/NOT_DONE.png" class="u-thumb150">
+                    </div>
+                </a>
+
+
+                <a href="#" class="item" data-index="6">
+                    <div class="item-content">
+                        <h3 class="item-title">铁道双子</h3>
+                        <img src="./image/NOT_DONE.png" class="u-thumb150">
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="nav-dots" id="navDots">
+            <div class="dot active" data-position="1"></div>
+            <div class="dot" data-position="2"></div>
+            <div class="dot" data-position="3"></div>
+            <div class="dot" data-position="4"></div>
+            <div class="dot" data-position="5"></div>
+            <div class="dot" data-position="6"></div>
+        </div>
+  
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselContainer = document.getElementById('carouselContainer');
+            const carousel = document.getElementById('carousel');
+            const dots = document.querySelectorAll('.dot');
+            const items = document.querySelectorAll('.item');
+            
+            // 图片总数
+            const totalItems = items.length;
+            // 当前中心位置
+            let currentCenter = 4;
+            
+            // 更新轮播位置
+            function updateCarousel() {
+                // 更新CSS变量
+                carousel.style.setProperty('--current', currentCenter);
+                
+                // 更新每个项目的位置
+                items.forEach(item => {
+                    const index = parseInt(item.getAttribute('data-index'));
+                    // 计算相对于中心位置的偏移量
+                    const offset = index - currentCenter;
+                    
+                    // 计算旋转角度和位移
+                    const translateX = offset * 350;
+                    const rotateY = offset * -15;
+                    const scale = 1 - Math.abs(offset) * 0.1;
+                    const zIndex = 10 - Math.abs(offset);
+                    
+                    // 应用变换
+                    item.style.transform = `translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`;
+                    item.style.zIndex = zIndex;
+                });
+                
+                // 更新导航点
+                updateDots();
+            }
+            
+            // 更新导航点
+            function updateDots() {
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (parseInt(dot.dataset.position) === currentCenter) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+            
+            // 切换到特定位置
+            function goToPosition(position) {
+                // 确保位置在有效范围内
+                if (position < 1) position = 1;
+                if (position > totalItems) position = totalItems;
+                
+                currentCenter = position;
+                updateCarousel();
+            }
+            
+            // 切换到下一张
+            function nextSlide() {
+                let nextPos = currentCenter + 1;
+                if (nextPos > totalItems) nextPos = 1;
+                goToPosition(nextPos);
+            }
+            
+            // 切换到上一张
+            function prevSlide() {
+                let prevPos = currentCenter - 1;
+                if (prevPos < 1) prevPos = totalItems;
+                goToPosition(prevPos);
+            }
+            
+            // 鼠标滚轮事件处理
+            carouselContainer.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                
+                if (e.deltaY > 0) {
+                    // 向下滚动 - 下一张
+                    nextSlide();
+                } else {
+                    // 向上滚动 - 上一张
+                    prevSlide();
+                }
+            });
+            
+            // 导航点点击事件
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const position = parseInt(this.dataset.position);
+                    goToPosition(position);
+                });
+            });
+            
+            // 初始更新轮播位置
+            updateCarousel();
+            
+            // 添加键盘支持
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
