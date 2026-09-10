@@ -22,4 +22,14 @@ jobs:
 
       - name: Sync site to OSS
         run: |
-          ossutil cp ./ oss://dst-ba-wiki/ --recursive --force 
+          ossutil cp ./ oss://dst-ba-wiki/ --recursive --force \
+            --include "*.html" \
+            --include "*.css" \
+            --include "*.js" \
+            --include "*.png" \
+            --include "*.jpg" \
+            --include "*.jpeg" \
+            --include "*.gif" \
+            --include "*.svg" \
+            --include "*.ico" \
+            --include "*.webp"
