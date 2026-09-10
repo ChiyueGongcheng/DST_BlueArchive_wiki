@@ -22,7 +22,4 @@ jobs:
 
       - name: Sync site to OSS
         run: |
-          ossutil cp ./ oss://dst-ba-wiki/ --recursive --force \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "README.md"
+          ossutil cp ./ oss://dst-ba-wiki/ --recursive --force 
