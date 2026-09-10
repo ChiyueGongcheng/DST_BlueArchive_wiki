@@ -2,29 +2,24 @@ name: Deploy to Aliyun OSS
 
 on:
   push:
-    branches: [ "main" ]      # 如果你默认分支是 master，改成 master
-  workflow_dispatch:           # 允许在 Actions 页面手动触发
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 拉取仓库代码
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 5. 安装并配置 ossutil
       - name: Setup ossutil
         uses: manyuanrong/setup-ossutil@v3.0
         with:
-          endpoint: "oss-cn-hongkong.aliyuncs.com"   # 替换为你的 Bucket 所在地域节点
+          endpoint: "oss-cn-hongkong.aliyuncs.com"
           access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
           access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
 
-      # 6. 同步构建产物到 OSS
-      - name: Sync dist to OSS
+      - name: Sync site to OSS
         run: |
-          # 假设构建输出目录是 dist/，如果是 public/ 或 _site/ 请相应修改
-          ossutil cp dist/ oss://dst-ba-wiki/ --recursive --force
-          # 如果希望删除 OSS 上多余的文件，可以加上 --delete 参数，但初次使用建议先不加
+          ossutil cp site/ oss://dst-ba-wiki/ --recursive --force
