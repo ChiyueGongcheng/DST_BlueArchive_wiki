@@ -206,20 +206,40 @@
             let touchStartX = 0;
             let touchStartY = 0;
             let touchStartTime = 0;
+            let touchSwiping = false;
             
             carouselContainer.addEventListener('touchstart', function(e) {
                 const touch = e.changedTouches[0];
                 touchStartX = touch.clientX;
                 touchStartY = touch.clientY;
                 touchStartTime = Date.now();
+                touchSwiping = false;
             }, { passive: true });
+            
+            // 判定为横向滑动后阻止默认行为，避免手势被页面拖动抢占
+            carouselContainer.addEventListener('touchmove', function(e) {
+                const touch = e.changedTouches[0];
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+                
+                if (!touchSwiping && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                    touchSwiping = true;
+                }
+                
+                if (touchSwiping) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
             
             carouselContainer.addEventListener('touchend', function(e) {
                 const touch = e.changedTouches[0];
                 const deltaX = touch.clientX - touchStartX;
                 const deltaY = touch.clientY - touchStartY;
+                const wasSwiping = touchSwiping;
+                touchSwiping = false;
                 
                 // 仅在横向滑动占主导、位移足够且动作足够快时切换
+                if (!wasSwiping) return;
                 if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
                 if (Date.now() - touchStartTime > 800) return;
                 
@@ -228,6 +248,10 @@
                 } else {
                     prevSlide();
                 }
+            }, { passive: true });
+            
+            carouselContainer.addEventListener('touchcancel', function() {
+                touchSwiping = false;
             }, { passive: true });
             
             // 添加键盘支持

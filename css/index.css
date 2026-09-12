@@ -12,14 +12,16 @@
             --ratio: 1.4286;
             /* 为导航点、外边距与 body 内边距预留的垂直空间 */
             --vertical-reserve: 150px;
-            --item-h: min(var(--base-h), calc(100vh - var(--vertical-reserve)));
+            /* 视口全高，移动端改用动态视口高度 */
+            --vh100: 100vh;
+            --item-h: min(var(--base-h), calc(var(--vh100) - var(--vertical-reserve)));
             --item-w: min(var(--base-w), calc(var(--item-h) / var(--ratio)));
         }
 
-        /* 移动端地址栏伸缩时改用动态视口高度，避免卡片被裁切 */
+        /* 地址栏伸缩时以动态视口高度为准，避免内容被裁切或页面高度错位 */
         @supports (height: 100dvh) {
             :root {
-                --item-h: min(var(--base-h), calc(100dvh - var(--vertical-reserve)));
+                --vh100: 100dvh;
             }
         }
 
@@ -29,10 +31,18 @@
             box-sizing: border-box;
         }
 
+        /* 页面尺寸锁定为视口，禁止产生可滚动区域 */
+        html {
+            height: 100%;
+            overflow: hidden;
+            overscroll-behavior: none;
+        }
+
         body {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100%;
             min-height: 100vh;
             min-height: 100dvh;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -44,7 +54,11 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #fff;
             padding: 20px;
+            /* 轮播卡片会被平移出视口，hidden 仍会撑出可拖动的滚动区域，
+               clip 直接裁剪且不产生滚动容器，移动端就不会再把页面当成可滑动页面 */
             overflow: hidden;
+            overflow: clip;
+            overscroll-behavior: none;
         }
         
         .container {
@@ -81,6 +95,8 @@
             perspective: 1500px;
             margin: 0 auto 30px;
             overflow: visible;
+            /* 横向手势交给轮播处理，纵向滚动与缩放仍交还浏览器 */
+            touch-action: pan-y pinch-zoom;
         }
         
         .carousel {
@@ -188,12 +204,12 @@
             }
         }
         
-        /* 手机与窄窗口：卡片随视口宽度连续缩放，并保持原有 250:360 比例 */
+        /* 手机与窄窗口：肖像高度占视口 65%，宽度最多占 92vw */
         @media (max-width: 900px) {
             :root {
-                --base-w: min(250px, 62vw);
+                --base-w: 92vw;
+                --base-h: calc(var(--vh100) * 0.65);
                 --ratio: 1.44;
-                --base-h: calc(var(--base-w) * var(--ratio));
             }
             
             .item-title {
