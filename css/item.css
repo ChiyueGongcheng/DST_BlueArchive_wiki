@@ -837,7 +837,9 @@
         }
         .search-box {
             display: flex;
-            width: 1000px;
+            /* 多分辨率适配：固定 1000px 会撑破窄屏，改为自适应并保留原有上限 */
+            width: 100%;
+            max-width: 1000px;
             margin: 30px auto;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             border-radius: 20px;
@@ -990,4 +992,85 @@
             }
         }
 
-    
+/* ---------- 多分辨率适配 ---------- */
+/* body 是 flex 容器，.main-content 作为 flex 子项在 min-width: auto 时
+   无法收缩到内容宽度以下，会被内部固定宽度内容撑破视口 */
+.main-content {
+    min-width: 0;
+}
+
+/* ---------- 多分辨率适配：窄屏布局 ---------- */
+@media (max-width: 768px) {
+    /* 物品卡片由横向排列改为纵向，避免内容被裁掉 */
+    .charitem {
+        flex-wrap: wrap;
+    }
+
+    /* 文字区允许收缩，否则会被内部固定宽度内容撑开 */
+    .item_text {
+        min-width: 0;
+        flex: 1 1 100%;
+        padding: 25px 20px;
+    }
+
+    /* 信息栏在窄屏下独占整行 */
+    .item_info {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* 内容区图片不超出视口 */
+    .content-container img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* 玻璃卡片内边距收窄 */
+    .u-glass,
+    .u-glass-top {
+        padding: 18px !important;
+    }
+
+    .u-glass-top {
+        margin-top: 20px !important;
+    }
+}
+
+/* ---------- 多分辨率适配：轮播按钮 ---------- */
+@media (max-width: 768px) {
+    /* .prev-btn/.next-btn 的负外边距（-70px）会把按钮推到视口之外，
+       窄屏下取消，桌面布局保持不变 */
+    .prev-btn {
+        margin-left: 0;
+    }
+
+    .next-btn {
+        margin-right: 0;
+    }
+}
+
+/* ---------- 多分辨率适配：内容自适应 ---------- */
+/* 文字区允许收缩：flex 子项默认 min-width:auto，会被内部固定宽度内容撑开 */
+.item_text {
+    min-width: 0;
+}
+
+/* 输入框默认 min-width:auto，会把搜索按钮挤出搜索框 */
+.search-box input {
+    min-width: 0;
+}
+
+/* 内容区图片不超出容器 */
+.content-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    /* 数据表格在窄屏下可横向滚动，避免右侧内容被裁掉 */
+    .wiki-table {
+        display: block;
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}

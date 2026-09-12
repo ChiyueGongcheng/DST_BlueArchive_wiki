@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>花冈柚子-喵冲</title>
     <link rel="icon" type="image/png" href="../image/main_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -444,10 +445,11 @@
                 const searchInput = document.getElementById('searchInput');
                 searchInput.addEventListener('input', () => {
                     const searchTerm = searchInput.value.toLowerCase();
+                    // 名称保留模糊匹配；分类与标签要求完全相等（精确匹配）
                     const filteredIcons = icons.filter(item => 
                         item.name.toLowerCase().includes(searchTerm) || 
-                        item.category.toLowerCase().includes(searchTerm)||
-                        item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                        item.category.toLowerCase() === searchTerm||
+                        item.tags.some(tag => tag.toLowerCase() === searchTerm)
                     );
                     renderIcons(filteredIcons);
                 });
