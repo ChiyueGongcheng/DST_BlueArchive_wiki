@@ -1,4 +1,28 @@
 
+        /* ============================================================
+           多分辨率适配：卡片尺寸统一由变量驱动
+           --base-w / --base-h 由宽度断点给出基准尺寸；
+           --item-h 再与视口可用高度取小值，--item-w 按 --ratio 派生。
+           宽屏下最终结果为 350px × 500px，与原样式完全一致。
+           ============================================================ */
+        :root {
+            --base-w: 350px;
+            --base-h: 500px;
+            /* 卡片高宽比，与各断点的原始尺寸保持一致 */
+            --ratio: 1.4286;
+            /* 为导航点、外边距与 body 内边距预留的垂直空间 */
+            --vertical-reserve: 150px;
+            --item-h: min(var(--base-h), calc(100vh - var(--vertical-reserve)));
+            --item-w: min(var(--base-w), calc(var(--item-h) / var(--ratio)));
+        }
+
+        /* 移动端地址栏伸缩时改用动态视口高度，避免卡片被裁切 */
+        @supports (height: 100dvh) {
+            :root {
+                --item-h: min(var(--base-h), calc(100dvh - var(--vertical-reserve)));
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -10,6 +34,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            min-height: 100dvh;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             background-image: url(../image/main_bg.jpg);
             backdrop-filter: blur(5px);
@@ -50,7 +75,9 @@
         .carousel-container {
             position: relative;
             width: 100%;
+            /* 兜底尺寸，再交给变量驱动，使容器高度始终等于卡片高度 */
             height: 500px;
+            height: var(--item-h, 500px);
             perspective: 1500px;
             margin: 0 auto 30px;
             overflow: visible;
@@ -69,8 +96,11 @@
         
         .item {
             position: absolute;
+            /* 兜底尺寸：不支持 min() / 自定义属性时保持原始外观 */
             width: 350px;
             height: 500px;
+            width: var(--item-w, 350px);
+            height: var(--item-h, 500px);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-radius: 12px;
             overflow: hidden;
@@ -150,17 +180,20 @@
             background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/CCC_Tachibana/CCC_Tachibana.jpg);
         }
 
+        /* 平板与小尺寸桌面 */
         @media (max-width: 1200px) {
-            .item {
-                width: 300px;
-                height: 430px;
+            :root {
+                --base-w: 300px;
+                --base-h: 430px;
             }
         }
         
+        /* 手机与窄窗口：卡片随视口宽度连续缩放，并保持原有 250:360 比例 */
         @media (max-width: 900px) {
-            .item {
-                width: 250px;
-                height: 360px;
+            :root {
+                --base-w: min(250px, 62vw);
+                --ratio: 1.44;
+                --base-h: calc(var(--base-w) * var(--ratio));
             }
             
             .item-title {
@@ -217,7 +250,8 @@
             position: absolute;
             top: calc(100% + 15px);
             right: 0;
-            width: 300px;
+            /* 窄屏下不超出视口，宽屏仍为 300px */
+            width: min(300px, calc(100vw - 40px));
             padding: 15px;
             background: white;
             border-radius: 12px;
@@ -264,5 +298,14 @@
             border-width: 10px;
             border-style: solid;
             border-color: transparent transparent white transparent;
+        }
+        
+        /* 尊重系统的“减少动态效果”偏好，不影响默认外观 */
+        @media (prefers-reduced-motion: reduce) {
+            .item,
+            .item-content,
+            .dot {
+                transition-duration: 0.01ms;
+            }
         }
     

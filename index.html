@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>饥沃托斯wiki</title>
     <link rel="icon" type="image/png" href="./image/main_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -89,9 +90,24 @@
             const totalItems = items.length;
             // 当前中心位置
             let currentCenter = 4;
+            // 相邻卡片的水平间距，跟随卡片当前实际宽度（多分辨率适配）
+            let itemStep = 350;
+            
+            // 读取当前分辨率下卡片的实际宽度作为间距
+            // offsetWidth 取的是 CSS 计算后的布局宽度，不受 transform 影响
+            function measureItemStep() {
+                if (!items.length) return;
+                const width = items[0].offsetWidth;
+                if (width > 0) {
+                    itemStep = width;
+                }
+            }
             
             // 更新轮播位置
             function updateCarousel() {
+                // 先按当前分辨率重新测量间距
+                measureItemStep();
+                
                 // 更新CSS变量
                 carousel.style.setProperty('--current', currentCenter);
                 
@@ -102,7 +118,7 @@
                     const offset = index - currentCenter;
                     
                     // 计算旋转角度和位移
-                    const translateX = offset * 350;
+                    const translateX = offset * itemStep;
                     const rotateY = offset * -15;
                     const scale = 1 - Math.abs(offset) * 0.1;
                     const zIndex = 10 - Math.abs(offset);
@@ -173,6 +189,46 @@
             
             // 初始更新轮播位置
             updateCarousel();
+            
+            // 窗口缩放、旋屏时重新测量尺寸并适配
+            let resizeFrame = null;
+            function handleViewportChange() {
+                if (resizeFrame) return;
+                resizeFrame = requestAnimationFrame(function() {
+                    resizeFrame = null;
+                    updateCarousel();
+                });
+            }
+            window.addEventListener('resize', handleViewportChange);
+            window.addEventListener('orientationchange', handleViewportChange);
+            
+            // 触摸滑动支持（移动端没有滚轮事件）
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchStartTime = 0;
+            
+            carouselContainer.addEventListener('touchstart', function(e) {
+                const touch = e.changedTouches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchStartTime = Date.now();
+            }, { passive: true });
+            
+            carouselContainer.addEventListener('touchend', function(e) {
+                const touch = e.changedTouches[0];
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+                
+                // 仅在横向滑动占主导、位移足够且动作足够快时切换
+                if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+                if (Date.now() - touchStartTime > 800) return;
+                
+                if (deltaX < 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }, { passive: true });
             
             // 添加键盘支持
             document.addEventListener('keydown', function(e) {
