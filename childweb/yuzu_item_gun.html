@@ -438,41 +438,50 @@
                 // 加载图标数据
                 const icons = await loadIcons();
                 
+                const searchInput = document.getElementById('searchInput');
+                const categoryButtons = document.querySelectorAll('.category-btn');
+                // 当前选中的分类，'all' 表示不筛选
+                let activeCategory = 'all';
+                
+                // 先按分类筛选（精确匹配），再在筛选结果中做文字搜索（模糊匹配）
+                function applyFilters() {
+                    // 1. 分类筛选
+                    let list = icons;
+                    if (activeCategory !== 'all') {
+                        list = list.filter(item =>
+                            item.category.toLowerCase() === activeCategory.toLowerCase() ||
+                            item.tags.some(tag => tag.toLowerCase() === activeCategory.toLowerCase())
+                        );
+                    }
+                
+                    // 2. 在筛选结果中搜索文字
+                    const searchTerm = searchInput.value.trim().toLowerCase();
+                    if (searchTerm) {
+                        list = list.filter(item =>
+                            item.name.toLowerCase().includes(searchTerm) ||
+                            item.category.toLowerCase().includes(searchTerm) ||
+                            item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                        );
+                    }
+                
+                    renderIcons(list);
+                }
+                
                 // 初始渲染
                 renderIcons(icons);
                 
-                //搜索功能
-                const searchInput = document.getElementById('searchInput');
-                searchInput.addEventListener('input', () => {
-                    const searchTerm = searchInput.value.toLowerCase();
-                    // 名称、分类与标签均为模糊匹配（分类按钮筛选才是精确匹配）
-                    const filteredIcons = icons.filter(item => 
-                        item.name.toLowerCase().includes(searchTerm) || 
-                        item.category.toLowerCase().includes(searchTerm)||
-                        item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-                    );
-                    renderIcons(filteredIcons);
-                });
+                // 搜索：只作用于当前分类筛选后的结果
+                searchInput.addEventListener('input', applyFilters);
                 
-                // 分类过滤（精确匹配）
-                const categoryButtons = document.querySelectorAll('.category-btn');
+                // 分类过滤（精确匹配）：结果作为搜索的范围
                 categoryButtons.forEach(button => {
                     button.addEventListener('click', () => {
                         // 更新活动按钮
                         categoryButtons.forEach(btn => btn.classList.remove('active'));
                         button.classList.add('active');
-
-                        const category = button.dataset.category;
-                        if (category === 'all') {
-                            renderIcons(icons);
-                        } else {
-                            // 精确匹配：category 完全等于 category，或 tags 中有一个标签完全等于 category（忽略大小写）
-                            const filteredIcons = icons.filter(item =>
-                                item.category.toLowerCase() === category.toLowerCase() ||
-                                item.tags.some(tag => tag.toLowerCase() === category.toLowerCase())
-                            );
-                            renderIcons(filteredIcons);
-                        }
+                
+                        activeCategory = button.dataset.category || 'all';
+                        applyFilters();
                     });
                 });
             } catch (error) {
