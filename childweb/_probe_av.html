@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>花冈柚子-物品</title>
+    <title>花冈柚子</title>
     <link rel="icon" type="image/png" href="../image/main_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/character.css">
+    <link rel="stylesheet" href="../css/developer.css">
     <link rel="stylesheet" href="../css/utils.css">
 </head>
 <body>
@@ -18,31 +18,28 @@
         </div>
         
         <div class="menu">
+
             <a href="./yuzu.html">
                 <div class="menu-category">
-                <div class="menu-item u-top3">
-                    <i class="fas fa-user"></i>
-                    <span>人物详情</span>
+                    <div class="menu-item u-top3">
+                        <i class="fas fa-user"></i>
+                        <span>人物详情</span>
+                    </div>
+
                 </div>
-                <div class="submenu">
-                    <a href="./yuzu.html"><div class="submenu-item">面板数据</div></a>
-                    <a href="./yuzu.html"><div class="submenu-item">角色被动</div></a>
-                    <a href="./yuzu.html"><div class="submenu-item">信息</div></a>
-                    <a href="./yuzu.html"><div class="submenu-item">物品总览</div></a>
-                    <a href="./yuzu.html"><div class="submenu-item">易冲突模组</div></a>
-                </div>
-            </div>
             </a>
             
-            <div class="menu-category active-category">
-                <div class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <span>物品详情</span>
-                </div>
+            <a href="./yuzu_item.html">
+                <div class="menu-category">
+                    <div class="menu-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>物品详情</span>
+                    </div>
                 <div class="submenu">
 
                 </div>
             </div>
+            </a>
             
             <!--
             <div class="menu-category">
@@ -69,16 +66,14 @@
                 </div>
             </div>
             -->
-            
             <a href="./yuzu_developer.html">
-                <div class="menu-category">
+                <div class="menu-category active-category">
                     <div class="menu-item">
                         <i class="fas fa-coffee"></i>
                         <span>关于作者</span>
                     </div>
                     <div class="submenu">
             </a>
-                </div>
             </div>
         </div>
     </aside>
@@ -89,7 +84,7 @@
     <main class="main-content">
         <div class="content-container">
             <div class="content-header">
-                <h1>物品总览</h1>
+                <h1>关于作者</h1>
                 <a href="../index.html">
                     <button id="icon-btn">
                         <i class="fas fa-home"></i>
@@ -97,34 +92,34 @@
                 </a>
 
             </div>
-                
+               
+
             
             <div class="wiki-content">
-                <div id="item">
-                    <ul>
-                        <div class="search-box">
-                            <input type="text" id="searchInput" placeholder="搜索物品...">
-                            <button><i class="fas fa-search"></i></button>
-                        </div>
-            
-                        <div class="categories">
-                            <button class="category-btn active" data-category="all">全部</button>
-                            <button class="category-btn" data-category="creatable">可制作</button>
-                            <button class="category-btn" data-category="uncreatable">不可制作</button>
-                            <button class="category-btn" data-category="weapon">武器</button>
-                            <button class="category-btn" data-category="tools">工具</button>
-                            <button class="category-btn" data-category="hat">头部装备</button>
-                            <button class="category-btn" data-category="body">身体装备</button>
-                            <button class="category-btn" data-category="building">建筑</button>
-                            <button class="category-btn" data-category="other">杂项</button>
-                        </div>
-
-                        
-                        <div class="grid" id="iconGrid">
-                            <!-- 图标卡片将通过JavaScript动态生成 -->
-                        </div>
-                    </ul>
+                <h2>开发者一览</h2>
+                
+                <div style="display: flex;flex: 1;justify-content: center;">
+                    <div class="u-grid2">
+                        <div class="dev-avatar" style="background-image: url(../image/yuzu/developer/toon.jpg);width: 100px;height: 100px;background-size: cover;border-radius: 5px;box-shadow: 0 8px 10px rgb(230, 190, 228);"><div class="u-flex-ini"><img src="https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/1263950/175875a819256fdeb4a2f4bf1b124afba6c3e2e3.png" class="u-w120"></div></div>
+                        <div class="u-mt10"><p><b><abbr title="CN：卡通"><u>老师，和小桃一起玩原！</u></abbr></b></p></div>
+                        <div class="u-pill"><p><b>码师</b></p></div>
+                    </div>
+                    <div class="u-grid2">
+                        <div class="dev-avatar" style="background-image: url(../image/yuzu/developer/yue.jpg);width: 100px;height: 100px;background-size: cover;border-radius: 5px;box-shadow: 0 8px 10px rgb(42, 46, 71);"><div class="u-flex-ini"><img src="https://cdn.fastly.steamstatic.com/steamcommunity/public/images/items/322330/61f2f2c6f2c409c0ca2814f24c00efe5d23076b2.png" class="u-w120"></div></div>
+                        <div class="u-mt10"><p><b><abbr title="CN：阿月"><u>老师，爱丽丝想玩滋崩！</u></abbr></b></p></div>
+                        <div class="u-pill"><p><b>美术</b></p></div>
+                    </div>
                 </div>
+
+                <div class="info-box">
+                    <p><strong>？？？：</strong>订阅便便冬帽mod谢谢喵。</p>
+                </div>
+                
+                <h2>赞助方式</h2>
+              
+                    <div style="display: flex;flex: 1;justify-content: center;margin-bottom: 30px;">
+                        <img style="border-radius: 10px;margin-top: 10px;box-shadow: 0 10px 10px rgba(42, 46, 71, 0.397);" src="../image/yuzu/developer/赞助二维码.png">
+                    </div>
                 
                 <!--
                 <div class="content-footer">
@@ -143,6 +138,8 @@
     </main>
 
     <script>
+
+
         // 目录交互功能
         document.addEventListener('DOMContentLoaded', function() {
             const categories = document.querySelectorAll('.menu-category');
@@ -349,6 +346,7 @@
             });
         }
         
+        //读取json
         function loadIcons() {
             return fetch("./yuzu_data/item.json")
                 .then(response => {
@@ -359,6 +357,7 @@
                 })
                 .then(data => data.icons);
         }
+        // 初始化页面
         async function initPage() {
             try {
                 // 加载图标数据
@@ -401,7 +400,6 @@
                         }
                     });
                 });
-                
             } catch (error) {
                 console.error('加载图标数据失败:', error);
                 const grid = document.getElementById('iconGrid');
@@ -417,7 +415,40 @@
         
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', initPage);
+
     </script>
     <script src="./nav.js"></script>
+<script>
+window.addEventListener("load", function () {
+  var boxes = document.querySelectorAll(".dev-avatar");
+  if (!boxes.length) { document.title = "AV no-dev-avatar"; return; }
+  var out = [];
+  function measure(label) {
+    var parts = [];
+    for (var i = 0; i < boxes.length; i++) {
+      var b = boxes[i].getBoundingClientRect();
+      var img = boxes[i].querySelector("img");
+      var r = img.getBoundingClientRect();
+      var dx = Math.round((r.left + r.width / 2) - (b.left + b.width / 2));
+      var dy = Math.round((r.top + r.height / 2) - (b.top + b.height / 2));
+      var ratio = (r.width / b.width).toFixed(2);
+      parts.push("box" + Math.round(b.width) + " img" + Math.round(r.width) + "x" + Math.round(r.height) + " r=" + ratio + " off=(" + dx + "," + dy + ")");
+    }
+    out.push(label + "[" + parts.join(" ; ") + "]");
+  }
+  measure("default");
+  function resize(w) { for (var i = 0; i < boxes.length; i++) { boxes[i].style.width = w + "px"; boxes[i].style.height = w + "px"; } }
+  resize(150);
+  setTimeout(function () {
+    measure("w150");
+    resize(70);
+    setTimeout(function () {
+      measure("w70");
+      var cd = document.querySelector(".content-container");
+      document.title = "AV " + out.join(" || ") + " || pageHs=" + (document.documentElement.scrollWidth - innerWidth);
+    }, 250);
+  }, 250);
+});
+</script>
 </body>
 </html>
