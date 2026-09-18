@@ -575,6 +575,8 @@
             background-color: white;
             box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
             border-radius: 16px;
+            /* 卡片自带上下间距：两张卡之间、卡片和正文之间都不用再手写 <br> */
+            margin: 30px 0;
         }
 
         
@@ -802,7 +804,18 @@
             border-top-color: #2c3e50;
         }
 
-        /* 经典下划线样式 */
+        /* 经典下划线样式。
+           两种写法都能生效：
+             · <abbr class="underline">…</abbr>                  ← 类写在 abbr 自己身上（编辑器「虚线样式」开关用这个）
+             · <span class="underline"><abbr …>…</abbr></span>   ← 类写在外面一层
+           （编辑器右栏「🏷 悬停说明」的虚线开关就是给 abbr 加 .underline） */
+        abbr.underline {
+        border-bottom: 2px dashed #3498db;
+        }
+        abbr.underline:hover {
+        background-color: #e1f0fa;
+        border-bottom: 2px solid #2980b9;
+        }
         .underline abbr {
         border-bottom: 2px dashed #3498db;
         }
@@ -1266,4 +1279,127 @@
         height: auto;
         flex-shrink: 0;
     }
+}
+
+/* =====================================================================
+   皮肤展示：立绘 / 实际皮肤动图 一键切换
+   ---------------------------------------------------------------------
+   用法：在 .image-carousel-container 里放一个 checkbox + label（开关），
+   每个 .carousel-slide 里可以同时放「立绘」和「动图」：
+
+     <div class="image-carousel-container">
+         <input type="checkbox" id="skin-gif-xxx" class="skin-toggle-input">
+         <label class="skin-toggle" for="skin-gif-xxx">
+             <span class="txt-png">🖼 看立绘</span>
+             <span class="txt-gif">🎞 看动图</span>
+         </label>
+         <div class="image-carousel">
+             <div class="carousel-slide active">
+                 <img src="../image/xxx/xxx_none.png">            <!-- 立绘 -->
+                 <img class="skin-gif" src="../image/xxx/xxx.gif"> <!-- 动图（可选） -->
+                 <div class="slide-caption">默认皮肤</div>
+             </div>
+         </div>
+     </div>
+
+   规则：打开开关后，**只有同时具备立绘和动图的皮肤**才会切成动图；
+   缺任意一个就保持原样 —— 判断是逐个皮肤独立进行的。
+   ===================================================================== */
+
+.skin-toggle-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.skin-toggle {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    line-height: 1;
+    color: #fff;
+    background: rgba(26, 42, 108, .68);
+    border: 1px solid rgba(255, 255, 255, .3);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+    cursor: pointer;
+    user-select: none;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: background .18s, transform .18s;
+    white-space: nowrap;
+}
+.skin-toggle:hover {
+    background: rgba(26, 42, 108, .9);
+    transform: translateY(-1px);
+}
+
+/* 开关上的文字随状态切换 */
+.skin-toggle .txt-gif { display: none; }
+.skin-toggle-input:checked ~ .skin-toggle .txt-png { display: none; }
+.skin-toggle-input:checked ~ .skin-toggle .txt-gif { display: inline; }
+
+/* 默认：动图藏起来，只显示立绘 */
+.carousel-slide .skin-gif { display: none !important; }
+
+/* 打开开关：只对「立绘 + 动图都齐全」的皮肤生效 */
+.skin-toggle-input:checked ~ .image-carousel .carousel-slide:has(.skin-gif) .skin-gif {
+    display: block !important;
+}
+.skin-toggle-input:checked ~ .image-carousel .carousel-slide:has(.skin-gif) img:not(.skin-gif) {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .skin-toggle {
+        right: 10px;
+        bottom: 10px;
+        padding: 6px 11px;
+        font-size: 12px;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   统一皮肤预览高度
+   立绘和动图都装进同样高度的框里，所以来回切换时页面长度不会大幅跳动。
+   图片按原比例缩放：既不会变形，也不会被裁掉。
+   想调高度，只要改 .image-carousel-container 上的 --skin-preview-height 即可。
+   --------------------------------------------------------------------- */
+.image-carousel-container {
+    --skin-preview-height: 460px;
+}
+
+.carousel-slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--skin-preview-height, 460px);
+}
+
+.carousel-slide img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 16px;
+}
+
+@media (max-width: 1200px) {
+    .image-carousel-container { --skin-preview-height: 400px; }
+}
+@media (max-width: 900px) {
+    .image-carousel-container { --skin-preview-height: 340px; }
+}
+@media (max-width: 576px) {
+    .image-carousel-container { --skin-preview-height: 280px; }
 }

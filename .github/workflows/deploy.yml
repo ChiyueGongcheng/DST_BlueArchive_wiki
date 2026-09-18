@@ -33,4 +33,5 @@ jobs:
             --include "*.svg" \
             --include "*.ico" \
             --include "*.webp"\
-            --include "*.json"
+            --include "*.json" \
+            --exclude "_*"

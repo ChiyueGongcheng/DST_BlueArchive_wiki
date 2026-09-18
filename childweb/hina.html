@@ -12,77 +12,47 @@
 <body>
     <!-- 侧边导航栏 - 保持不变 -->
     <aside class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-book-open"></i>
-            <h2>知识库导航</h2>
-        </div>
-        
-        <div class="menu">
-
-                <div class="menu-category active-category">
-                    <div class="menu-item u-top3">
-                        <i class="fas fa-user"></i>
-                        <span>人物详情</span>
-                    </div>
-                    <div class="submenu active">
-                        <a href="#data"><div class="submenu-item active-page">面板数据</div></a>
-                        <a href="#ability"><div class="submenu-item">角色被动</div></a>
-                        <a href="#info"><div class="submenu-item">信息</div></a>
-                        <a href="#item"><div class="submenu-item">物品总览</div></a>
-                        <a href="#issue"><div class="submenu-item">易冲突模组</div></a>
-                    </div>
-                </div>
-
-            
-            <a href="./hina.html">
-                <div class="menu-category">
-                    <div class="menu-item">
-                        <i class="fas fa-briefcase"></i>
-                        <span>物品详情</span>
-                    </div>
-                <div class="submenu">
-
-                </div>
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-user"></i>
+                <span>人物详情</span>
             </div>
-            </a>
-            
-            <!--
-            <div class="menu-category">
-                <div class="menu-item">
-                    <i class="fas fa-cutlery"></i>
-                    <span>食物</span>
-                </div>
-                <div class="submenu">
-                    <div class="submenu-item">食材</div>
-                    <div class="submenu-item">农作物</div>
-                    <div class="submenu-item">料理</div>
-                </div>
-            </div>
-            
-            <div class="menu-category">
-                <div class="menu-item">
-                    <i class="fas fa-bug"></i>
-                    <span>生物</span>
-                </div>
-                <div class="submenu">
-                    <div class="submenu-item">中立生物</div>
-                    <div class="submenu-item">敌对生物</div>
-                    <div class="submenu-item">BOSS</div>
-                </div>
-            </div>
-            -->
-            <a href="./hina.html">
-                <div class="menu-category">
-                    <div class="menu-item">
-                        <i class="fas fa-coffee"></i>
-                        <span>关于作者</span>
-                    </div>
-                    <div class="submenu">
-            </a>
-                </div>
+            <div class="submenu">
+                <a href="#data"><div class="submenu-item">面板数据</div></a>
+                <a href="#ability"><div class="submenu-item">角色被动</div></a>
+                <a href="#info"><div class="submenu-item">信息</div></a>
+                <a href="#item"><div class="submenu-item">物品总览</div></a>
+                <a href="#issue"><div class="submenu-item">易冲突模组</div></a>
             </div>
         </div>
-    </aside>
+
+        <a href="./hina_item.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-briefcase"></i>
+            <span>物品详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-coffee"></i>
+                <span>关于作者</span>
+            </div>
+            <div class="submenu">
+            </div>
+        </div>
+
+    </div>
+</aside>
     
     
 
@@ -99,12 +69,16 @@
 
             </div>
                 <div class="image-carousel-container">
+                    <input type="checkbox" id="skin-gif-hina" class="skin-toggle-input">
+                    <label class="skin-toggle" for="skin-gif-hina">
+                        <span class="txt-png"><img src="../image/50px-skinswitch.png"></span>
+                        <span class="txt-gif"><img src="../image/50px-skinswitch.png"></span>
+                    </label>
                     <div class="image-carousel">
                         <div class="carousel-container">
-                            <div class="carousel-slide active">
-                                <img src="../image/hina/hina_none.png">
-                                <div class="slide-caption">默认皮肤</div>
-                            </div>
+                            <div class="carousel-slide active"><img src="../image/hina/hina_none.png">
+<img class="skin-gif" src="../image/hina/default_preview.gif">
+<div class="slide-caption">默认皮肤</div></div>
                             <!--
                             <div class="carousel-slide">
                                 <img src="../image/yuzu/yuzu_none.png">
@@ -119,7 +93,8 @@
                                 <div class="slide-caption">默认皮肤</div>
                             </div>
                             -->
-                        </div>
+                        <div class="carousel-slide"><img src="../image/hina/overcoat_preview.gif">
+<div class="slide-caption">风纪委员长大衣</div></div></div>
                     </div>
                 <div class="carousel-nav">
                     <button class="carousel-btn prev-btn">
@@ -137,7 +112,7 @@
                     <div class="indicator" data-index="2"></div>
                     <div class="indicator" data-index="3"></div>
                     -->
-                </div>
+                <div class="indicator" data-index="1"></div></div>
             </div>
             
             <div class="wiki-content">
@@ -162,7 +137,7 @@
                     <span><b>角色TAG：</b></span>
                     <span class="category-tag">强度略高</span>
                     <span class="category-tag">输出</span>
-                    <span class="category-tag"><abbr class="underline" title="会被猪人、兔人和浣猫主动仇恨。">怪物</abbr></span>
+                    <span class="category-tag"><abbr title="会被猪人、兔人和浣猫主动仇恨。">怪物</abbr></span>
                     <!-- <span class="category-tag">MOD生物：有</span>-->
                     <span class="category-tag">日奈占领世界</span>
                 </div>
@@ -176,43 +151,43 @@
                     <p>日奈初始携带以下效果：</p>
                     
                     <ul>
-                        <li><strong>基沃托斯光环：</strong> 自身清醒时<b>发出<abbr class="underline" title="最大半径为2单位距离。"><u>微光</u></abbr></b>，光照范围<b>随着理智值的降低而减小。</b></li>
-                        <li><strong>很酷不暴击：</strong> 每次造成伤害时，有<b>20%</b>的概率使本次伤害变为<b>200%</b>（不影响位面伤害）。</li>
-                        <li><strong>高效工作法I：</strong>在<b>砍树/挖矿时35%概率消耗5<img src="../image/40px-Sanity_Meter.png" class="u-w20">使动作立即完成。</b></li>
+                        <li><strong>基沃托斯光环：</strong> 自身清醒时<b>发出<abbr title="最大半径为2单位距离。"><u>微光</u></abbr></b>，光照范围<b>随着理智值的降低而减小。（穿戴<a href="https://dontstarve.huijiwiki.com/wiki/%E6%A2%A6%E9%AD%87%E6%8A%A4%E7%AC%A6" target="_blank"><u>梦魇护符</u></a>/<a href="https://dontstarve.huijiwiki.com/wiki/%E9%AA%A8%E5%A4%B4%E5%A4%B4%E7%9B%94" target="_blank"><u>骨头头盔</u></a>时根据<img src="../image/40px-Sanity_Meter.png" class="u-img24m u-w20">的实际值计算发光范围）</b></li>
+                        <li><strong>很酷不暴击：</strong> 每次造成伤害时，有<b>20%</b>的概率使本次伤害变为<b>200%</b>（不影响位面伤害）</li>
+                        <li><strong>高效工作法I：</strong>在<b>砍树/挖矿/锤击/挖掘时35%概率消耗5<img src="../image/40px-Sanity_Meter.png" class="u-w20">使动作立即完成</b></li>
                         <li><strong>高效工作法II：</strong>在<b>搬运重物/携带重型装备时不会减速，但是会根据移动量消耗<img src="../image/40px-Sanity_Meter.png" class="u-w20">，1单位距离消耗0.2<img src="../image/40px-Sanity_Meter.png" class="u-w20"></b></li>
                         <li><strong>这是我必须要去做的：</strong>拥有<b>额外的属性——责任心</b><img src="../image/hina/24px_responsibility.png" class="u-w25"></li>
-                        <li><strong>精疲力尽：</strong>理智归零时且责任心<img src="../image/hina/24px_responsibility.png" class="u-w25">归零时，<b>会感到疲劳（催眠值+2），每10秒陷入一次强制睡眠10秒，因该能力进入睡眠状态时获得+5<img src="../image/40px-Sanity_Meter.png" class="u-w20">/分钟的恢复效果；大于0时立即解除该状态。</b></li>
+                        <li><strong>精疲力尽：</strong>理智归零时且责任心<img src="../image/hina/24px_responsibility.png" class="u-w25">归零时，<b>会感到疲劳（催眠值+2），每10秒陷入一次强制睡眠10秒，因该能力进入睡眠状态时获得+5<img src="../image/40px-Sanity_Meter.png" class="u-w20">/分钟的恢复效果；大于0时立即解除该状态</b></li><li><strong>忘食：</strong><b>饥饿速率为正常角色的一半<br></b></li>
                     </ul>
                 </div>
                 <h2>信息</h2>
                 <div id="info">
                     <p class="u-lh30"><i>-受到指示前来调查永恒大陆的风纪委员长<br>-这是一次试炼...还是一次假期？</i></p>
-                    <p>日奈拥有一项特殊属性——责任心<img src="../image/hina/24px_responsibility.png" class="u-w25"></p>
+                    <p>来到永恒大陆之后，委员长似乎很喜欢 <b><u><abbr title="能从中额外获得15饱食度">冰淇淋</abbr><img src="../image/hina/icecream.png" class="u-w20"></u></b></p><p>日奈拥有一项特殊属性——责任心<img src="../image/hina/24px_responsibility.png" class="u-w25"></p>
                     <div class="charitem">
                         <div class="item_text">
                             <h3>责任心</h3>
                             <p></p>
                             <p>上限：100</p>
-                            <p><b>理智/启迪值</b> 超过上限时继续增加 <b>理智/启迪值</b> 则增加等量的 <b>责任心</b>。</p>
-                            <p>任何减少 <b>理智/启迪值</b> 的行为优先消耗等量责任心，责任心大于0时，<b>自身暴击率+10%/暴击伤害+20%。</b></p>
-                            <p>若因任意情况（梦魇护符/骨盔/天体冠穿脱）导致理智/启迪值突变为小于上限时，责任心数值不受影响</p>
+                            <p><b>理智/启迪值</b> 超过上限时继续增加 <b>理智/启迪值</b> 则增加等量的 <b>责任心</b></p><p>责任心 &gt; 0 时，理智/启迪的恢复会优先补责任心，责任心满溢后才回到理智</p>
+                            <p>任何减少 <b>理智/启迪值</b> 的行为优先消耗等量责任心，责任心大于0时，<b>自身暴击率+10%/暴击伤害+20%</b></p>
+                            <p>若因任意情况（梦魇护符/骨盔/天体冠穿脱）导致理智/启迪值突变为小于上限时，责任心数值不受影响</p><p><span style="white-space: normal;"><b>责任心 &gt; 0 时，责任心替代理智显示</b></span></p>
                         </div>
                         <div class="item_img">
                             <img src="../image/hina/responsibility_preview.gif" class="u-w100">
                         </div>
                     </div>
-                    <br><p>日奈出生时携带 <b>终幕：毁灭者</b> 。</p>
+                    <p>日奈出生时携带 <b>终幕：毁灭者</b> 。</p>
                     <div class="charitem">
                         <div class="item_text">
                             <h3>终幕：毁灭者</h3>
                             <p></p>
                             <p>耐久度：无</p>
-                            <p>仅限日奈使用，装备时占据手部栏，不会脱手</p>
+                            <p><b>免疫<u><abbr title="青蛙、猴子、水獭的偷窃行为">偷窃</abbr></u>与<u><abbr title="熊獾、麋鹿鹅击落手中的武器的行为">缴械</abbr></u></b></p>
                             <p>其他角色无法拾起</p>
                             <p>攻击距离10单位距离</p>
                             <p>攻击时消耗1<img src="../image/40px-Sanity_Meter.png" class="u-w20">向目标倾泻子弹，造成伤害</p>
-                            <p>攻击携带一定的后坐力，会使角色以每秒0.5单位距离的速度缓慢向后移动。</p>
-                            <p>攻速与攻击力能够给本物品喂食 <b><abbr class="underline" title="1经验值">噩梦燃料</abbr></b>/<b><abbr class="underline" title="10经验值">纯粹恐惧</abbr></b>/<b><abbr class="underline" title="15经验值">绝望石</abbr></b>/<b><abbr class="underline" title="25经验值">暗影碎布</abbr></b> 进行升级</p>
+                            <p>攻击携带一定的后坐力，会使角色以每秒0.5单位距离的速度缓慢向后移动</p>
+                            <p>可以给本物品喂食 <b><abbr title="1经验值">噩梦燃料</abbr></b>/<b><abbr title="10经验值">纯粹恐惧</abbr></b>/<b><abbr title="15经验值">绝望石</abbr></b>/<b><abbr title="25经验值">暗影碎布</abbr></b> 来提升攻速与攻击力<b>（满溢出的材料将会返还）</b></p>
                             
                             <table class="wiki-table">
                                 <thead>
@@ -311,9 +286,7 @@
                         </div>
 
                         
-                        <div class="grid" id="iconGrid">
-                            <!-- 图标卡片将通过JavaScript动态生成 -->
-                        </div>
+                        <div class="grid" id="iconGrid"><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_destoryer.png" alt="终幕：毁灭者" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_swimring.png" alt="日奈的假日游泳圈" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_sleepdress.png" alt="安心睡衣" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_coffee_fruit.png" alt="咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_coffee.png" alt="美式咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_milkcoffee.png" alt="拿铁咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_buttercoffee.png" alt="黄油咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_shears.png" alt="精巧剪刀" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_overcoat.png" alt="风纪委员长大衣" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_mark.png" alt="风纪委员会肩章" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_swimsuit.png" alt="迷你学校泳衣" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_bear.png" alt="棕色小熊玩偶" class="icon-img"></div></a></div>
                     </ul>
                 </div>
 
@@ -322,9 +295,9 @@
                     
                         <ul>
                             <p>
-                                <li>部分多格装备栏MOD</li>
+                                </p><li>部分多格装备栏MOD</li>
                                 <span>解决办法：推荐使用<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3104797181" class="u-c-primary"><abbr title="点击转跳"><span>额外装备栏（持续更新版本）</span></abbr></a>或<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3173431824" class="u-c-primary"><abbr title="点击转跳"><span>四五六格装备栏（全模组兼容）（自用）（可搜索：璇儿，海洋传说，悠）</span></abbr></a> </span>
-                            </p>
+                            <p></p>
                         </ul>
                 </div>
                 
@@ -374,6 +347,9 @@
                 });
             });
             
+            // 内容区域，子菜单跳转时用于淡入动画
+            const content = document.querySelector('.wiki-content');
+
             // 子菜单项点击事件
             submenuItems.forEach(item => {
                 item.addEventListener('click', function() {
@@ -383,13 +359,15 @@
                     this.classList.add('active-page');
                     
                     // 添加动画效果
-                    content.style.opacity = 0;
-                    content.style.transform = "translateY(20px)";
-                    setTimeout(() => {
-                        content.style.transition = "opacity 0.5s, transform 0.5s";
-                        content.style.opacity = 1;
-                        content.style.transform = "translateY(0)";
-                    }, 50);
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = "translateY(20px)";
+                        setTimeout(() => {
+                            content.style.transition = "opacity 0.5s, transform 0.5s";
+                            content.style.opacity = 1;
+                            content.style.transform = "translateY(0)";
+                        }, 50);
+                    }
                 });
             });
 
