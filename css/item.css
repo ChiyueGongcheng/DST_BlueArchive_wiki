@@ -246,8 +246,8 @@
         }
         
         .wiki-content p {
-            line-height: 1.0;
-            margin-bottom: 22px;
+            line-height: 1.6;
+            margin-bottom: 10px;
             color: #444;
             font-size: 17px;
         }
@@ -1305,4 +1305,85 @@
 
 .wiki-table tbody tr:last-child td {
     border-bottom: none;
+}
+
+/* ---------- 多分辨率适配：窄屏物品卡上下排列 ---------- */
+@media (max-width: 768px) {
+    /* 由左右分栏改为上下排列；内边距收窄，给内容留出更多宽度 */
+    .charitem {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+    }
+
+    /* 贴图 / 信息栏提到最前，让读者先看到物品外观再读机制 */
+    .item_info,
+    .item_img {
+        order: -1;
+    }
+
+    .item_info {
+        width: 100%;
+        margin: 0 0 12px;
+    }
+
+    /* 贴图保持正方形，并随内容区宽度收缩，避免撑破卡片 */
+    .item_img {
+        width: 200px;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        margin: 0 auto 12px;
+    }
+
+    /* 机制说明排在下方，原右侧分隔线改为底部 */
+    .item_text {
+        order: 0;
+        width: 100%;
+        flex: 0 0 auto;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px dashed #999;
+    }
+}
+
+/* ---------- 默认行距 ---------- */
+/* 页面此前没有全局行高，正文沿用浏览器默认值（约 1.2），中文正文偏挤。
+   这里给出全局默认行距；已显式设置 line-height 的元素不受影响。 */
+body {
+    line-height: 1.6;
+}
+
+/* 标题保持紧凑，避免继承正文行距后过于松散 */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.35;
+}
+
+/* ---------- u-blur 区块的段距 ---------- */
+/* .item_content.u-blur 内是逐行属性（伤害 / 耐久 / 堆叠上限 等），
+   正文统一的 10px 段距对这类密集数据行偏挤，单独放宽。
+   末行带 .u-mb1（!important）不受影响，仍保持 1px 收尾。 */
+.item_content.u-blur p {
+    margin-bottom: 14px;
+}
+
+/* ---------- 桌面端 u-blur 保持改动前取值 ---------- */
+/* 全局行距改动前该块为 行高 1.0 / 段距 22px，桌面端维持原状；
+   窄屏（≤768px）不受影响，仍用放宽后的 1.6 / 14px */
+@media (min-width: 769px) {
+    .item_content.u-blur p {
+        line-height: 1.0;
+        margin-bottom: 22px;
+    }
+}
+
+/* ---------- 窄屏 u-blur 行高 ---------- */
+/* 该块嵌在 .item_info 内，会命中 .item_info p 的 line-height: 10px；
+   17px 字号下窄屏长句换行时行与行会重叠，这里补一个正常行高。
+   单行短文本不受影响，桌面端仍由上方 min-width: 769px 的规则接管。 */
+@media (max-width: 768px) {
+    .item_content.u-blur p {
+        line-height: 1.5;
+    }
 }

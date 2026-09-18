@@ -377,4 +377,15 @@
 .wiki-table tbody tr:last-child td {
     border-bottom: none;
 }
-    
+
+/* ---------- 默认行距 ---------- */
+/* 页面此前没有全局行高，正文沿用浏览器默认值（约 1.2），中文正文偏挤。
+   这里给出全局默认行距；已显式设置 line-height 的元素不受影响。 */
+body {
+    line-height: 1.6;
+}
+
+/* 标题保持紧凑，避免继承正文行距后过于松散 */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.35;
+}
