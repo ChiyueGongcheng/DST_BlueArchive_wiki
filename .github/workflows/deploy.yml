@@ -25,6 +25,11 @@ jobs:
           # 下面是白名单：只有列出来的扩展名会被同步上去。
           # 加了新组件（比如「音频播放器」）之后，一定要把用到的文件类型补在这里，
           # 否则本地好好的、线上一打开就是 404。
+          #
+          # 注意：ossutil 的 --include / --exclude 模式里**不能带目录分隔符**，
+          # 写成 "*/_*" 这种会直接报
+          #   Error: --include or --exclude does not support format containing dir info
+          # 模式是拿来匹配文件名的，所以 "_*" 本身就管所有层级下的下划线文件。
           ossutil cp ./ oss://dst-ba-wiki/ --recursive --force \
             --include "*.html" \
             --include "*.css" \
@@ -46,5 +51,4 @@ jobs:
             --include "*.flac" \
             --include "*.opus" \
             --include "*.weba" \
-            --exclude "_*" \
-            --exclude "*/_*"
+            --exclude "_*"
