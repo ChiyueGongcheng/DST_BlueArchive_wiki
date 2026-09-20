@@ -22,6 +22,9 @@ jobs:
 
       - name: Sync site to OSS
         run: |
+          # 下面是白名单：只有列出来的扩展名会被同步上去。
+          # 加了新组件（比如「音频播放器」）之后，一定要把用到的文件类型补在这里，
+          # 否则本地好好的、线上一打开就是 404。
           ossutil cp ./ oss://dst-ba-wiki/ --recursive --force \
             --include "*.html" \
             --include "*.css" \
@@ -32,6 +35,16 @@ jobs:
             --include "*.gif" \
             --include "*.svg" \
             --include "*.ico" \
-            --include "*.webp"\
+            --include "*.webp" \
             --include "*.json" \
-            --exclude "_*"
+            --include "*.mp3" \
+            --include "*.ogg" \
+            --include "*.oga" \
+            --include "*.wav" \
+            --include "*.m4a" \
+            --include "*.aac" \
+            --include "*.flac" \
+            --include "*.opus" \
+            --include "*.weba" \
+            --exclude "_*" \
+            --exclude "*/_*"
