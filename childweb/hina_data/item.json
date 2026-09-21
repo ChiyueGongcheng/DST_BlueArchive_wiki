@@ -25,28 +25,28 @@
                     "name": "咖啡", 
                     "imageUrl": "../image/hina/hina_coffee_fruit.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffees.html",
                     "tags":["咖啡作物","食材","uncreatable"]
                 },
                 { 
                     "name": "美式咖啡", 
                     "imageUrl": "../image/hina/hina_coffee.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffeesfoods.html#hina_coffee",
                     "tags":["咖啡","creatable"]
                 },
                 { 
                     "name": "拿铁咖啡", 
                     "imageUrl": "../image/hina/hina_milkcoffee.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffeesfoods.html#hina_milkcoffee",
                     "tags":["咖啡","creatable"]
                 },
                 { 
                     "name": "黄油咖啡", 
                     "imageUrl": "../image/hina/hina_buttercoffee.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffeesfoods.html#hina_buttercoffee",
                     "tags":["咖啡","creatable"]
                 },
                 { 
@@ -67,7 +67,7 @@
                     "name": "风纪委员会肩章", 
                     "imageUrl": "../image/hina/hina_mark.png",
                     "category": "other",
-                    "link": "./hina_item_overcoat.html",
+                    "link": "./hina_item_overcoat.html#mark",
                     "tags":["升级","creatable","原皮","风纪委员长大衣","常服"]
                 },
                 { 

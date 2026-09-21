@@ -14,6 +14,25 @@
     color: red !important;
 }
 
+/* 烹饪示例里的图标：画布统一成 66×66，与 image/hina/hina_coffee_fruit.png 一致，
+   背景与圆角沿用原先的 .u-tint + 内联 border-radius 效果。 */
+.u-cookicon {
+    width: 66px !important;
+    height: 66px !important;
+    border-radius: 10px !important;
+    background-color: #a2c8dd !important;
+    box-shadow: 0 2px 10px #1a2a6c !important;
+    vertical-align: middle !important;
+}
+
+/* 烹饪示例标题前的小锅图标：固定 32×32，不带边框、底色和阴影，
+   作为行内标记跟在「烹饪示例」四个字左边。 */
+.u-cookpot {
+    width: 32px !important;
+    height: 32px !important;
+    vertical-align: middle !important;
+}
+
 .u-drop {
     filter: drop-shadow(0 1px 1px #1a2a6c62) !important;
 }
