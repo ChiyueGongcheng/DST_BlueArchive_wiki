@@ -246,8 +246,8 @@
         }
         
         .wiki-content p {
-            line-height: 1.0;
-            margin-bottom: 22px;
+            line-height: 1.6;
+            margin-bottom: 10px;
             color: #444;
             font-size: 17px;
         }
@@ -595,7 +595,9 @@
         background-image: url(../image/item_card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;}
+        background-size: cover;
+        /* 卡片自带上下间距：两张卡之间、卡片和正文之间都不用再手写 <br> */
+        margin: 30px 0;}
 
         
         .image-carousel-container {
@@ -822,7 +824,18 @@
             border-top-color: #2c3e50;
         }
 
-        /* 经典下划线样式 */
+        /* 经典下划线样式。
+           两种写法都能生效：
+             · <abbr class="underline">…</abbr>                  ← 类写在 abbr 自己身上（编辑器「虚线样式」开关用这个）
+             · <span class="underline"><abbr …>…</abbr></span>   ← 类写在外面一层
+           （编辑器右栏「🏷 悬停说明」的虚线开关就是给 abbr 加 .underline） */
+        abbr.underline {
+        border-bottom: 2px dashed #3498db;
+        }
+        abbr.underline:hover {
+        background-color: #e1f0fa;
+        border-bottom: 2px solid #2980b9;
+        }
         .underline abbr {
         border-bottom: 2px dashed #3498db;
         }
@@ -1238,5 +1251,139 @@
         max-width: min(28px, 8vw);
         height: auto;
         flex-shrink: 0;
+    }
+}
+
+/* =====================================================================
+   数据表格（.wiki-table）
+   —— 与人物页 css/character.css 保持一致，各页面的表格长得一样
+   ===================================================================== */
+
+.wiki-table {
+    width: 100%;
+    max-width: 760px;
+    margin: 25px 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e0e8f0;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(26, 42, 108, 0.08);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.wiki-table thead th {
+    padding: 12px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #ff9a9e, #ff9a9e);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wiki-table tbody td {
+    padding: 11px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eef2f7;
+    color: #444;
+}
+
+.wiki-table tbody tr:nth-child(even) td {
+    background: #f6f9fd;
+}
+
+/*
+.wiki-table tbody tr:hover td {
+    background: #ecf3fb;
+}
+*/
+
+.wiki-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ---------- 多分辨率适配：窄屏物品卡上下排列 ---------- */
+@media (max-width: 768px) {
+    /* 由左右分栏改为上下排列；内边距收窄，给内容留出更多宽度 */
+    .charitem {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+    }
+
+    /* 贴图 / 信息栏提到最前，让读者先看到物品外观再读机制 */
+    .item_info,
+    .item_img {
+        order: -1;
+    }
+
+    .item_info {
+        width: 100%;
+        margin: 0 0 12px;
+    }
+
+    /* 贴图保持正方形，并随内容区宽度收缩，避免撑破卡片 */
+    .item_img {
+        width: 200px;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        margin: 0 auto 12px;
+    }
+
+    /* 机制说明排在下方，原右侧分隔线改为底部 */
+    .item_text {
+        order: 0;
+        width: 100%;
+        flex: 0 0 auto;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px dashed #999;
+    }
+}
+
+/* ---------- 默认行距 ---------- */
+/* 页面此前没有全局行高，正文沿用浏览器默认值（约 1.2），中文正文偏挤。
+   这里给出全局默认行距；已显式设置 line-height 的元素不受影响。 */
+body {
+    line-height: 1.6;
+}
+
+/* 标题保持紧凑，避免继承正文行距后过于松散 */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.35;
+}
+
+/* ---------- u-blur 区块的段距 ---------- */
+/* .item_content.u-blur 内是逐行属性（伤害 / 耐久 / 堆叠上限 等），
+   正文统一的 10px 段距对这类密集数据行偏挤，单独放宽。
+   末行带 .u-mb1（!important）不受影响，仍保持 1px 收尾。 */
+.item_content.u-blur p {
+    margin-bottom: 14px;
+}
+
+/* ---------- 桌面端 u-blur 保持改动前取值 ---------- */
+/* 全局行距改动前该块为 行高 1.0 / 段距 22px，桌面端维持原状；
+   窄屏（≤768px）不受影响，仍用放宽后的 1.6 / 14px */
+@media (min-width: 769px) {
+    .item_content.u-blur p {
+        line-height: 1.0;
+        margin-bottom: 22px;
+    }
+}
+
+/* ---------- 窄屏 u-blur 行高 ---------- */
+/* 该块嵌在 .item_info 内，会命中 .item_info p 的 line-height: 10px；
+   17px 字号下窄屏长句换行时行与行会重叠，这里补一个正常行高。
+   单行短文本不受影响，桌面端仍由上方 min-width: 769px 的规则接管。 */
+@media (max-width: 768px) {
+    .item_content.u-blur p {
+        line-height: 1.5;
     }
 }

@@ -4,7 +4,7 @@
                     "name": "终幕：毁灭者", 
                     "imageUrl": "../image/hina/hina_destoryer.png",
                     "category": "weapon",
-                    "link": "#",
+                    "link": "./hina_item_destoryer.html",
                     "tags":["专武","毁灭者","机枪","creatable"]
                 },
                 { 
@@ -30,7 +30,7 @@
                 },
                 { 
                     "name": "美式咖啡", 
-                    "imageUrl":"../image/hina/hina_coffee.png",
+                    "imageUrl": "../image/hina/hina_coffee.png",
                     "category": "food",
                     "link": "#",
                     "tags":["咖啡","creatable"]

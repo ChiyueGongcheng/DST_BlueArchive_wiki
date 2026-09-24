@@ -14,6 +14,25 @@
     color: red !important;
 }
 
+/* 烹饪示例里的图标：画布统一成 66×66，与 image/hina/hina_coffee_fruit.png 一致，
+   背景与圆角沿用原先的 .u-tint + 内联 border-radius 效果。 */
+.u-cookicon {
+    width: 66px !important;
+    height: 66px !important;
+    border-radius: 10px !important;
+    background-color: #a2c8dd !important;
+    box-shadow: 0 2px 10px #1a2a6c !important;
+    vertical-align: middle !important;
+}
+
+/* 烹饪示例标题前的小锅图标：固定 32×32，不带边框、底色和阴影，
+   作为行内标记跟在「烹饪示例」四个字左边。 */
+.u-cookpot {
+    width: 32px !important;
+    height: 32px !important;
+    vertical-align: middle !important;
+}
+
 .u-drop {
     filter: drop-shadow(0 1px 1px #1a2a6c62) !important;
 }
@@ -146,4 +165,107 @@
 
 .u-w25 {
     width: 25px !important;
+}
+
+/* ============================================================
+   音频播放器：一个小圆按钮，点一下播放，再点暂停
+   ------------------------------------------------------------
+   结构（编辑器里拖「音频播放器」积木就会生成这个）：
+     <span class="audio-player">
+         <button type="button" class="audio-btn" title="播放 / 暂停" onclick="…"></button>
+         <audio src="../audio/xxx.mp3" preload="none" onplay="…" onpause="…" onended="…"></audio>
+     </span>
+   播放 / 暂停的状态是由 <audio> 的 onplay / onpause 事件同步到按钮上的，
+   所以就算用浏览器自带的播放控件去控制，按钮图标也不会对不上。
+   ============================================================ */
+
+.audio-player {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* 原生播放控件藏起来，只留我们自己的小按钮 */
+.audio-player > audio {
+    display: none;
+}
+
+.audio-btn {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    margin: 0 4px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #7ea6ff, #4a6fdc);
+    box-shadow: 0 2px 8px rgba(26, 42, 108, .35);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .16s ease, box-shadow .16s ease, background .2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.audio-btn:hover {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 5px 16px rgba(26, 42, 108, .45);
+}
+
+.audio-btn:active {
+    transform: scale(.94);
+}
+
+/* 播放图标用 CSS 画，不依赖 emoji，各系统长得都一样 */
+.audio-btn::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0 7px 12px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 3px;
+}
+
+/* 播放中：按钮转暖色，图标变成两条暂停竖线 */
+.audio-btn.playing {
+    background: linear-gradient(145deg, #ffa477, #e2601f);
+}
+
+.audio-btn.playing::before {
+    width: 12px;
+    height: 14px;
+    margin-left: 0;
+    border: none;
+    background: linear-gradient(to right, #fff 0 4px, transparent 4px 8px, #fff 8px 12px);
+}
+
+/* 播放中的呼吸圈 */
+.audio-btn.playing::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid rgba(226, 96, 31, .65);
+    animation: audio-pulse 1.6s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes audio-pulse {
+    0% { transform: scale(.9); opacity: .85; }
+    100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* 想在按钮后面跟一句说明文字，给它加 class="audio-caption" */
+.audio-caption {
+    font-size: 13px;
+    color: #4a6fdc;
+    margin-left: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .audio-btn { transition: none; }
+    .audio-btn.playing::after { animation: none; opacity: 0; }
 }

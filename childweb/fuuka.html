@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>爱清枫香</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/character.css">
+    <link rel="stylesheet" href="../css/utils.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-user"></i>
+                <span>人物详情</span>
+            </div>
+            <div class="submenu">
+                <a href="#data"><div class="submenu-item">面板数据</div></a>
+                <a href="#ability"><div class="submenu-item">角色被动</div></a>
+                <a href="#info"><div class="submenu-item">信息</div></a>
+                <a href="#item"><div class="submenu-item">物品总览</div></a>
+                <a href="#issue"><div class="submenu-item">易冲突模组</div></a>
+            </div>
+        </div>
+
+        <a href="./yuzu_item.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-briefcase"></i>
+            <span>物品详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-book"></i>
+                <span>新地形介绍</span>
+            </div>
+            <div class="submenu">
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-coffee"></i>
+                <span>关于作者</span>
+            </div>
+            <div class="submenu">
+            </div>
+        </div>
+
+    </div>
+</aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>人物详情</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <div class="wiki-content">
+                <h2>爱清枫香</h2>
+
+                <div id="data" class="chardata">
+                    <div class="paneldata"><span><strong>175</strong></span><img src="../image/40px-Health_Meter.png"></div>
+                    <div class="paneldata"><span><strong>250</strong></span><img src="../image/40px-Hunger_Meter.png"></div>
+                    <div class="paneldata"><span><strong>200</strong></span><img src="../image/40px-Sanity_Meter.png"></div>
+                </div>
+
+                <div><span><b>角色TAG：</b></span>&nbsp;<span class="category-tag" style="background: linear-gradient(135deg, rgb(238, 244, 255) 0%, rgb(223, 233, 255) 100%) rgb(255, 255, 255);">煮饭婆</span><span class="category-tag" style="background: linear-gradient(135deg, rgb(238, 244, 255) 0%, rgb(223, 233, 255) 100%) rgb(255, 255, 255);">后勤</span><span class="category-tag" style="background-color: white;">生存</span></div>
+
+                <div class="info-box">
+                    <p><strong>？？？：</strong>希望今天也是平和的一天啊~</p>
+                </div>
+
+                <h2>角色被动</h2>
+                <div id="ability">
+                    <p>爱清枫香初始携带以下效果：</p>
+                    <ul>
+                        <li><strong>最强后勤：</strong>枫香可以随地种植种子，可以使用大厨的调味罐和研磨器，专属烹饪锅可以烹饪大厨料理和自己的独特料理，采集蜂蜜时不会被蜜蜂仇恨，允许制作植物人的泻药，在火上烤制食物时所用的时间减半。</li><li><strong>烹杀万物：</strong>永恒世界的阴影放大了人内心的黑暗面——即便是枫香也不例外。枫香拥有一个隐藏的血气计数，该计数会影响枫香相关物品的属性。初始上限为10层，击杀任意生物时，该属性层数+1，新的一天开始时层数-3，食用甜食（太妃糖）时层数清空。当层数大于等于10层时，枫香进入<strong>烹杀万物</strong>状态，该状态下枫香的理智会快速流失（-0.5<b><img src="http://127.0.0.1:8787/image/40px-Sanity_Meter.png" class="u-w20"></b>s）</li><li><strong>过劳人：</strong>当枫香的理智低于25%时，枫香会进入过劳状态，该状态下枫香的攻击倍率下降为0.25，同时略微提升饱食度消耗，食用任意烹饪料理可以暂时缓解，将理智提升至40%并解除debuff，通过其他方式将理智恢复到25%以上也可以解除。</li>
+                    </ul>
+                </div>
+
+                <h2>信息</h2>
+                <div id="info">
+                    <p>在这里写角色的背景故事。</p>
+                </div>
+
+                <h2>物品总览</h2>
+                <div id="item">
+                    <ul>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="搜索物品...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div class="categories">
+                            <button class="category-btn active" data-category="all">全部</button>
+                            <button class="category-btn" data-category="creatable">可制作</button>
+                            <button class="category-btn" data-category="uncreatable">不可制作</button>
+                            <button class="category-btn" data-category="weapon">武器</button>
+                            <button class="category-btn" data-category="tools">工具</button>
+                            <button class="category-btn" data-category="hat">头部装备</button>
+                            <button class="category-btn" data-category="body">身体装备</button>
+                            <button class="category-btn" data-category="building">建筑</button>
+                            <button class="category-btn" data-category="other">杂项</button>
+                        </div>
+
+                        <div class="grid" id="iconGrid"><div class="empty-state"><i class="fas fa-search"></i><h3>还没有物品</h3><p>在左侧「数据」里添加物品，这里就会自动出现</p></div></div>
+                    </ul>
+                </div>
+
+                <h2>易冲突模组</h2>
+                <div id="issue">
+                    <ul>
+                        <p></p><li>由于游玩人数不足，本mod暂时没有收集到冲突mod的信息，如有发现请前往群内汇报。</li><p></p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./nav.js"></script>
+    <script>
+        // 物品总览：数据来自 ./fuuka_data/item.json，由页面自动生成
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchInput = document.getElementById('searchInput');
+            var categoryButtons = document.querySelectorAll('.category-btn');
+            var grid = document.getElementById('iconGrid');
+            var activeCategory = 'all';
+
+            function renderIcons(list) {
+                if (!grid) return;
+                grid.innerHTML = '';
+                if (!list.length) {
+                    grid.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>未找到匹配的物品</h3><p>请尝试其他搜索词或选择其他分类</p></div>';
+                    return;
+                }
+                list.forEach(function (item) {
+                    var card = document.createElement('a');
+                    card.href = item.link;
+                    card.className = 'card';
+                    card.innerHTML = '<div class="icon-container"><img src="' + item.imageUrl + '" alt="' + item.name + '" class="icon-img"></div>';
+                    grid.appendChild(card);
+                });
+            }
+
+            function applyFilters() {
+                var list = icons;
+                if (activeCategory !== 'all') {
+                    list = list.filter(function (item) {
+                        return item.category.toLowerCase() === activeCategory.toLowerCase() ||
+                            item.tags.some(function (tag) { return tag.toLowerCase() === activeCategory.toLowerCase(); });
+                    });
+                }
+                var term = (searchInput.value || '').trim().toLowerCase();
+                if (term) {
+                    list = list.filter(function (item) {
+                        return item.name.toLowerCase().indexOf(term) >= 0 ||
+                            item.category.toLowerCase().indexOf(term) >= 0 ||
+                            item.tags.some(function (tag) { return tag.toLowerCase().indexOf(term) >= 0; });
+                    });
+                }
+                renderIcons(list);
+            }
+
+            var icons = [];
+            fetch('./fuuka_data/item.json').then(function (r) { return r.json(); }).then(function (data) {
+                icons = data.icons || [];
+                renderIcons(icons);
+                if (searchInput) searchInput.addEventListener('input', applyFilters);
+                Array.prototype.forEach.call(categoryButtons, function (button) {
+                    button.addEventListener('click', function () {
+                        Array.prototype.forEach.call(categoryButtons, function (b) { b.classList.remove('active'); });
+                        button.classList.add('active');
+                        activeCategory = button.dataset.category || 'all';
+                        applyFilters();
+                    });
+                });
+            }).catch(function (err) {
+                console.error('加载物品数据失败:', err);
+            });
+        });
+    </script>
+</body>
+</html>
