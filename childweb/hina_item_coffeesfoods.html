@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>空崎日奈-咖啡料理</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../css/utils.css">
+</head>
+<body>
+    <!-- 侧边导航栏 - 保持不变 -->
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <a href="./hina.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-user"></i>
+            <span>人物详情</span>
+        </div>
+        <div class="submenu">
+            <a href="./hina.html#data"><div class="submenu-item">面板数据</div></a>
+            <a href="./hina.html#ability"><div class="submenu-item">角色被动</div></a>
+            <a href="./hina.html#info"><div class="submenu-item">信息</div></a>
+            <a href="./hina.html#item"><div class="submenu-item">物品总览</div></a>
+            <a href="./hina.html#issue"><div class="submenu-item">易冲突模组</div></a>
+        </div>
+    </div>
+        </a>
+
+        <a href="./hina_item.html">
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-briefcase"></i>
+                <span>物品详情</span>
+            </div>
+            <div class="submenu">
+            </div>
+        </div>
+        </a>
+
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-coffee"></i>
+                <span>关于作者</span>
+            </div>
+            <div class="submenu">
+            </div>
+        </div>
+
+    </div>
+</aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>物品详情</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            
+            <div class="wiki-content" id="hina_coffee">
+
+                <!-- ============================ 美式咖啡 ============================ -->
+                <div class="charitem" id="mark">
+                    <div class="item_text">
+                        <div class="item_content">
+                            <div class="u-glass">
+                                <p><b>美式咖啡</b> 只能由<b>烹饪</b>产生</p>
+                                <p>在锅中烹饪<b>同时满足以下条件</b>即可产生：</p>
+                                <p><b>不可食用度≤1</b></p>
+                                <p><b>肉度＜0.5</b></p>
+                                <p><b>咖啡豆/咖啡果≥1</b></p>
+                                <p><br></p>
+                                <p>食用后<b>4分钟</b>内获得以下效果：</p>
+                                <p><b>任何理智消耗行为将会累积，期间理智无法下降</b></p>
+                                <p>料理效果结束后<b><span class="u-c-red">累积的理智会全部结算扣除</span></b></p>
+                                <p><b>免疫催眠</b></p>
+                                <p><b><span class="u-c-red">本饮品不提供动作加速</span></b></p>
+                                <p><br></p>
+                                <p><b>使用调味品</b><b>右键</b>点击咖啡，可为其<b>额外增加食用后恢复的状态</b>：</p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr><th>调味品</th><th>返还物品</th><th>额外效果</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><img src="../image/honey.png" class="u-ic32" title="蜂蜜"> 蜂蜜</td><td>有点甜的美式咖啡</td><td><b><img src="../image/40px-Health_Meter.png" class="u-w20">+10</b></td></tr>
+                                        <tr><td><img src="../image/saltrock.png" class="u-ic32" title="盐晶"> 盐晶</td><td>有点咸的美式咖啡</td><td><b><img src="../image/40px-Sanity_Meter.png" class="u-w20">+8</b></td></tr>
+                                        <tr><td><img src="../image/ice.png" class="u-ic32" title="冰块"> 冰块</td><td>凉凉的美式咖啡</td><td><b><img src="../image/40px-Hunger_Meter.png" class="u-w20">-10&nbsp;<img src="../image/40px-Sanity_Meter.png" class="u-w20">+10</b></td></tr>
+                                        <tr><td><img src="../image/goatmilk.png" class="u-ic32" title="电羊奶"> 电羊奶</td><td>有点刺激的拿铁咖啡</td><td><br></td></tr>
+                                    </tbody>
+                                </table>
+                                <p><img src="../image/cookpot.png" class="u-cookpot" alt="烹饪锅"> <b>烹饪示例</b></p>
+                                <p><b>配方一：</b><img src="../image/hina/hina_coffee_fruit.png" class="u-cookicon" title="咖啡果"> + <img src="../image/hina/hina_coffee_fruit.png" class="u-cookicon" title="咖啡果"> + <img src="../image/hina/hina_coffee_fruit.png" class="u-cookicon" title="咖啡果"> + <img src="../image/hina/hina_coffee_fruit.png" class="u-cookicon" title="咖啡果"></p>
+                                <p><b>配方二：</b><img src="../image/nightmarefuel.png" class="u-cookicon" title="噩梦燃料"> + <img src="../image/hina/hina_coffee_bean.png" class="u-cookicon" title="咖啡豆"> + <img src="../image/ice.png" class="u-cookicon" title="冰块"> + <img src="../image/ice.png" class="u-cookicon" title="冰块"></p>
+                                <p><span style="font-size: small;">配方中的图标代表锅内的 4 格食材，除咖啡豆／咖啡果外的锅位可用任意不改变料理判定的食材填充（示例使用冰块）。</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item_info">
+                        <div class="top-box">
+                            <div class="item_content u-drop">
+                                <h3>美式咖啡</h3>
+                            </div>
+                        </div>
+                        <div class="top-box">
+                            <div class="item_content u-tint">
+                                <img src="../image/hina/hina_coffee.png" alt="美式咖啡">
+                            </div>
+                        </div>
+                        <div class="bottom-box">
+                            <div class="item_content u-drop">
+                                <p class="u-mb10"><br></p>
+                            </div>
+                        </div>
+                        <div class="bottom-box u-mb50">
+                            <div class="item_content u-blur">
+                                <p><b>食用后：</b></p>
+                                <p><b><img src="../image/40px-Hunger_Meter.png" class="u-w20">+5&nbsp;&nbsp;<img src="../image/40px-Sanity_Meter.png" class="u-w20">-5&nbsp;&nbsp;<img src="../image/40px-Health_Meter.png" class="u-w20">+10</b></p>
+                                <p><b>保质期：5天</b><span style="font-size: small;">（大约40分钟）</span></p>
+                                <p><b>堆叠上限：20</b></p>
+                                <p><b>漂浮：是</b></p>
+                                <p><b><u><abbr title="在满足多个料理条件的情况下，数值越高越优先于从锅中产出">优先级</abbr></u>：10</b></p>
+                                <p><b>烹饪时长：20秒</b></p>
+                                <p><b>腐烂产物：<abbr title="刷锅水？"><img src="../image/hina/hina_coffee.png" class="u-ic32"></abbr></b></p>
+                                <p class="u-mb1"><b>物品id：hina_coffee</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================ 拿铁咖啡 ============================ -->
+                <div class="charitem" id="hina_milkcoffee">
+                    <div class="item_text">
+                        <div class="item_content">
+                            <div class="u-glass">
+                                <p><b>拿铁咖啡</b> 只能由<b>烹饪</b>产生</p>
+                                <p>在锅中烹饪<b>同时满足以下条件</b>即可产生：</p>
+                                <p><b>不可食用度≤1</b></p>
+                                <p><b>肉度＜0.5</b></p>
+                                <p><b>咖啡豆≥1</b></p>
+                                <p><b>乳制品≥1</b></p>
+                                <p>拿铁咖啡<b>不能使用咖啡果</b>制作，只认<b>咖啡豆</b></p>
+                                <p>可提供乳制品度的食材：<b>电羊奶</b>、<b>乳白物</b>；<b>黄油</b>也算乳制品，但会优先做成<b>黄油咖啡</b></p>
+                                <p><br></p>
+                                <p>食用后<b>6分钟</b>内获得以下效果：</p>
+                                <p><b>任何理智消耗行为将会累积，期间理智无法下降</b></p>
+                                <p>料理效果结束后<b><span class="u-c-red">累积的理智会全部结算扣除</span></b></p>
+                                <p><b>免疫催眠</b></p>
+                                <p><b><u><abbr title="砍伐、采集、建造、使用物品等动作的播放速度，不影响攻击速度">动作速度</abbr></u>&nbsp;+20%</b></p>
+                                <p><b>动作加速的生效范围：</b></p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr><th>动作</th><th>原版</th><th>拿铁 +20%</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>砍树（每次挥击）</td><td>0.87 秒</td><td>0.72 秒</td></tr>
+                                        <tr><td>挖矿 / 锤击（每次挥击）</td><td>0.63 秒</td><td>0.53 秒</td></tr>
+                                        <tr><td>挖掘（每次挥击）</td><td>1.20 秒</td><td>1.00 秒</td></tr>
+                                        <tr><td>采集草 / 树枝 / 芦苇 / 仙人掌</td><td>1.00 秒</td><td>0.83 秒</td></tr>
+                                        <tr><td>建造</td><td>0.70 秒</td><td>0.58 秒</td></tr>
+                                        <tr><td>采集蘑菇 / 花 / 胡萝卜 / 洞穴蕨，拾取 / 使用物品、种植、喂食等</td><td>0.33 秒</td><td>0.28 秒</td></tr>
+                                        <tr><td>采集浆果丛</td><td colspan="2"><b><span class="u-c-red">不生效</span></b></td></tr>
+                                        <tr><td>攻击</td><td colspan="2"><b><span class="u-c-red">不生效</span></b></td></tr>
+                                        <tr><td>钓鱼</td><td colspan="2"><b><span class="u-c-red">不生效</span></b></td></tr>
+                                    </tbody>
+                                </table>
+                                <p><span style="font-size: small;">砍树 / 挖矿 / 锤击 / 挖掘是循环作业，每次挥击的间隔直接缩短，连续作业时体感最明显。<br>采集浆果丛在游戏里走的是独立的「摇晃」动作分支，和采草、采树枝不是同一套，这套加速没有覆盖它，所以喝咖啡采浆果不会变快。</span></p>
+                                <p><br></p>
+                                <p><b>使用调味品</b><b>右键</b>点击咖啡，可为其<b>额外增加食用后恢复的状态</b>：</p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr><th>调味品</th><th>返还物品</th><th>额外效果</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><img src="../image/honey.png" class="u-ic32" title="蜂蜜"> 蜂蜜</td><td>有点甜的拿铁咖啡</td><td><b><img src="../image/40px-Health_Meter.png" class="u-w20">+10</b></td></tr>
+                                        <tr><td><img src="../image/saltrock.png" class="u-ic32" title="盐晶"> 盐晶</td><td>有点咸的拿铁咖啡</td><td><b><img src="../image/40px-Sanity_Meter.png" class="u-w20">+15</b></td></tr>
+                                        <tr><td><img src="../image/ice.png" class="u-ic32" title="冰块"> 冰块</td><td>凉凉的拿铁咖啡</td><td><b><img src="../image/40px-Sanity_Meter.png" class="u-w20">+15</b></td></tr>
+                                        <tr><td><img src="../image/goatmilk.png" class="u-ic32" title="电羊奶"> 电羊奶</td><td>有点刺激的拿铁咖啡</td><td>获得<b>电羊冻</b>效果</td></tr>
+                                    </tbody>
+                                </table>
+                                <p><img src="../image/cookpot.png" class="u-cookpot" alt="烹饪锅"> <b>烹饪示例</b></p>
+                                <p><b>配方一：</b><img src="../image/hina/hina_coffee_bean.png" class="u-cookicon" title="咖啡豆"> + <img src="../image/milkywhites.png" class="u-cookicon" title="乳白物"> + <img src="../image/ice.png" class="u-cookicon" title="冰块"> + <img src="../image/ice.png" class="u-cookicon" title="冰块"></p>
+                                <p><span style="font-size: small;">配方中的图标代表锅内的 4 格食材，除咖啡豆与乳制品外的锅位可用任意不改变料理判定的食材填充（示例使用冰块）。</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item_info">
+                        <div class="top-box">
+                            <div class="item_content u-drop">
+                                <h3>拿铁咖啡</h3>
+                            </div>
+                        </div>
+                        <div class="top-box">
+                            <div class="item_content u-tint">
+                                <img src="../image/hina/hina_milkcoffee.png" alt="拿铁咖啡">
+                            </div>
+                        </div>
+                        <div class="bottom-box">
+                            <div class="item_content u-drop">
+                                <p class="u-mb10"><br></p>
+                            </div>
+                        </div>
+                        <div class="bottom-box u-mb50">
+                            <div class="item_content u-blur">
+                                <p><b>食用后：</b></p>
+                                <p><b><img src="../image/40px-Hunger_Meter.png" class="u-w20">+20&nbsp;&nbsp;<img src="../image/40px-Sanity_Meter.png" class="u-w20">+10&nbsp;&nbsp;<img src="../image/40px-Health_Meter.png" class="u-w20">+30</b></p>
+                                <p><b>保质期：5天</b><span style="font-size: small;">（大约40分钟）</span></p>
+                                <p><b>堆叠上限：20</b></p>
+                                <p><b>漂浮：是</b></p>
+                                <p><b><u><abbr title="在满足多个料理条件的情况下，数值越高越优先于从锅中产出">优先级</abbr></u>：10</b></p>
+                                <p><b>烹饪时长：20秒</b></p>
+                                <p><b>腐烂产物：<abbr title="刷锅水？"><img src="../image/hina/hina_coffee.png" class="u-ic32"></abbr></b></p>
+                                <p class="u-mb1"><b>物品id：hina_milkcoffee</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================ 黄油咖啡 ============================ -->
+                <div class="charitem" id="hina_buttercoffee">
+                    <div class="item_text">
+                        <div class="item_content">
+                            <div class="u-glass">
+                                <p><b>黄油咖啡</b> 只能由<b>烹饪</b>产生</p>
+                                <p>在锅中烹饪<b>同时满足以下条件</b>即可产生：</p>
+                                <p><b>不可食用度≤1</b></p>
+                                <p><b>肉度＜0.5</b></p>
+                                <p><b>咖啡豆≥1</b></p>
+                                <p><b>黄油≥1</b></p>
+                                <p>黄油咖啡<b>不能使用咖啡果</b>制作，只认<b>咖啡豆</b></p>
+                                <p><br></p>
+                                <p>食用后<b>8分钟</b>内获得以下效果：</p>
+                                <p><b>任何理智消耗行为将会累积，期间理智无法下降</b></p>
+                                <p>料理效果结束后<b><span class="u-c-red">累积的理智会全部结算扣除</span></b></p>
+                                <p><b>免疫催眠</b></p>
+                                <p><b><u><abbr title="砍伐、采集、建造、使用物品等动作的播放速度，不影响攻击速度">动作速度</abbr></u>&nbsp;+50%</b></p>
+                                <p><b>动作加速的生效范围：</b></p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr><th>动作</th><th>原版</th><th>黄油 +50%</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>砍树（每次挥击）</td><td>0.87 秒</td><td>0.58 秒</td></tr>
+                                        <tr><td>挖矿 / 锤击（每次挥击）</td><td>0.63 秒</td><td>0.42 秒</td></tr>
+                                        <tr><td>挖掘（每次挥击）</td><td>1.20 秒</td><td>0.80 秒</td></tr>
+                                        <tr><td>采集草 / 树枝 / 芦苇 / 仙人掌&nbsp;</td><td>1.00 秒</td><td>0.67 秒</td></tr>
+                                        <tr><td>建造</td><td>0.70 秒</td><td>0.47 秒</td></tr>
+                                        <tr><td>采集蘑菇 / 花 / 胡萝卜 / 洞穴蕨，拾取 / 使用物品、种植、喂食等</td><td>0.33 秒</td><td>0.22 秒</td></tr>
+                                        <tr><td>采集浆果丛</td><td colspan="2"><b><span class="u-c-red">不生效</span></b></td></tr>
+                                        <tr><td>攻击</td><td colspan="2"><b><span class="u-c-red">不生效</span></b></td></tr>
+                                        <tr><td>钓鱼</td><td colspan="2"><b><span class="u-c-red">不生效</span></b></td></tr>
+                                    </tbody>
+                                </table>
+                                <p><span style="font-size: small;">砍树 / 挖矿 / 锤击 / 挖掘是循环作业，每次挥击的间隔直接缩短，连续作业时体感最明显。<br>采集浆果丛在游戏里走的是独立的「摇晃」动作分支，和采草、采树枝不是同一套，这套加速没有覆盖它，所以喝咖啡采浆果不会变快。</span></p>
+                                <p><b>攻击命中时</b>，有 <b>10%</b> 概率使目标被<u><b><abbr title="目标行为暂停，移速-100%，技能计时器暂停">黄油糊脸</abbr></b> </u><b>2秒</b></p>
+                                <p><br></p>
+                                <p><b>使用调味品</b><b>右键</b>点击咖啡，可为其<b>额外增加食用后恢复的状态</b>：</p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr><th>调味品</th><th>返还物品</th><th>额外效果</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><img src="../image/honey.png" class="u-ic32" title="蜂蜜"> 蜂蜜</td><td>有点甜的黄油咖啡</td><td><b><img src="../image/40px-Health_Meter.png" class="u-w20">+20</b></td></tr>
+                                        <tr><td><img src="../image/saltrock.png" class="u-ic32" title="盐晶"> 盐晶</td><td>有点咸的黄油咖啡</td><td><b><img src="../image/40px-Sanity_Meter.png" class="u-w20">+15</b></td></tr>
+                                        <tr><td><img src="../image/ice.png" class="u-ic32" title="冰块"> 冰块</td><td>凉凉的黄油咖啡</td><td><b><img src="../image/40px-Sanity_Meter.png" class="u-w20">+10</b></td></tr>
+                                        <tr><td><img src="../image/goatmilk.png" class="u-ic32" title="电羊奶"> 电羊奶</td><td>有点刺激的黄油咖啡</td><td>获得<b>电羊冻</b>效果，<b>日奈</b>额外获得 <b>10% 暴击率</b></td></tr>
+                                    </tbody>
+                                </table>
+                                <p><img src="../image/cookpot.png" class="u-cookpot" alt="烹饪锅"> <b>烹饪示例</b></p>
+                                <p><b>配方一：</b><img src="../image/hina/hina_coffee_bean.png" class="u-cookicon" title="咖啡豆"> + <img src="../image/butter.png" class="u-cookicon" title="黄油"> + <img src="../image/ice.png" class="u-cookicon" title="冰块"> + <img src="../image/ice.png" class="u-cookicon" title="冰块"></p>
+                                <p><span style="font-size: small;">配方中的图标代表锅内的 4 格食材，除咖啡豆与黄油外的锅位可用任意不改变料理判定的食材填充（示例使用冰块）。</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item_info">
+                        <div class="top-box">
+                            <div class="item_content u-drop">
+                                <h3>黄油咖啡</h3>
+                            </div>
+                        </div>
+                        <div class="top-box">
+                            <div class="item_content u-tint">
+                                <img src="../image/hina/hina_buttercoffee.png" alt="黄油咖啡">
+                            </div>
+                        </div>
+                        <div class="bottom-box">
+                            <div class="item_content u-drop">
+                                <p class="u-mb10"><br></p>
+                            </div>
+                        </div>
+                        <div class="bottom-box u-mb50">
+                            <div class="item_content u-blur">
+                                <p><b>食用后：</b></p>
+                                <p><b><img src="../image/40px-Hunger_Meter.png" class="u-w20">+20&nbsp;&nbsp;<img src="../image/40px-Sanity_Meter.png" class="u-w20">+30&nbsp;&nbsp;<img src="../image/40px-Health_Meter.png" class="u-w20">+60</b></p>
+                                <p><b>保质期：5天</b><span style="font-size: small;">（大约40分钟）</span></p>
+                                <p><b>堆叠上限：20</b></p>
+                                <p><b>漂浮：是</b></p>
+                                <p><b><u><abbr title="在满足多个料理条件的情况下，数值越高越优先于从锅中产出">优先级</abbr></u>：100</b></p>
+                                <p><b>烹饪时长：20秒</b></p>
+                                <p><b>腐烂产物：<abbr title="刷锅水？"><img src="../image/hina/hina_coffee.png" class="u-ic32"></abbr></b></p>
+                                <p class="u-mb1"><b>物品id：hina_buttercoffee</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================ 刷锅水？ ============================ -->
+                <div class="charitem" id="mark">
+                    <div class="item_text">
+                        <div class="item_content">
+                            <div class="u-glass">
+                                <p><b><span class="u-c-red">所有人拒绝食用</span></b></p>
+                                <p>使用<b>火源烹饪</b>之后变为<b> 美式咖啡<img src="../image/hina/hina_coffee.png" class="u-ic32" style="border-radius: 10px;"></b></p>
+                                <p><br></p>
+                                <p><b>任何</b>咖啡饮品（美式／拿铁／黄油咖啡，含各自的调味变体）<b>腐烂后</b>都会变成 <b>刷锅水？</b></p>
+                                <p>由于腐烂产物固定为刷锅水？，<b><span class="u-c-red">放坏的调味咖啡经火源加热后只会得到普通的美式咖啡</span></b>，调味效果不会保留</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item_info">
+                        <div class="top-box">
+                            <div class="item_content u-drop">
+                                <h3>刷锅水？</h3>
+                            </div>
+                        </div>
+                        <div class="top-box">
+                            <div class="item_content u-tint">
+                                <img src="../image/hina/hina_coffee.png" alt="刷锅水？">
+                            </div>
+                        </div>
+                        <div class="bottom-box">
+                            <div class="item_content u-drop">
+                                <p class="u-mb10"><br></p>
+                            </div>
+                        </div>
+                        <div class="bottom-box u-mb50">
+                            <div class="item_content u-blur">
+                                <p><b>堆叠上限：20</b></p>
+                                <p><b>漂浮：是</b></p>
+                                <p><b><u><abbr title="对着它按右键不会出现进食选项">食用</abbr></u>：不可食用</b></p>
+                                <p class="u-mb1"><b>物品id：hina_coffeebadwater</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>物品总览</h2>
+                <div id="item">
+                    <ul>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="搜索物品...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div class="categories">
+                            <button class="category-btn active" data-category="all">全部</button>
+                            <button class="category-btn" data-category="creatable">可制作</button>
+                            <button class="category-btn" data-category="uncreatable">不可制作</button>
+                            <button class="category-btn" data-category="weapon">武器</button>
+                            <button class="category-btn" data-category="tools">工具</button>
+                            <button class="category-btn" data-category="hat">头部装备</button>
+                            <button class="category-btn" data-category="body">身体装备</button>
+                            <button class="category-btn" data-category="building">建筑</button>
+                            <button class="category-btn" data-category="other">杂项</button>
+                        </div>
+
+                        <div class="grid" id="iconGrid"><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_destoryer.png" alt="终幕：毁灭者" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_swimring.png" alt="日奈的假日游泳圈" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_sleepdress.png" alt="安心睡衣" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_coffee_fruit.png" alt="咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_coffee.png" alt="美式咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_milkcoffee.png" alt="拿铁咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_buttercoffee.png" alt="黄油咖啡" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_shears.png" alt="精巧剪刀" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_overcoat.png" alt="风纪委员长大衣" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_mark.png" alt="风纪委员会肩章" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_swimsuit.png" alt="迷你学校泳衣" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hina/hina_bear.png" alt="棕色小熊玩偶" class="icon-img"></div></a></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./nav.js"></script>
+    <script>
+        // 物品总览：数据来自 ./hina_data/item.json，由页面自动生成
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchInput = document.getElementById('searchInput');
+            var categoryButtons = document.querySelectorAll('.category-btn');
+            var grid = document.getElementById('iconGrid');
+            var activeCategory = 'all';
+
+            function renderIcons(list) {
+                if (!grid) return;
+                grid.innerHTML = '';
+                if (!list.length) {
+                    grid.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>未找到匹配的物品</h3><p>请尝试其他搜索词或选择其他分类</p></div>';
+                    return;
+                }
+                list.forEach(function (item) {
+                    var card = document.createElement('a');
+                    card.href = item.link;
+                    card.className = 'card';
+                    card.innerHTML = '<div class="icon-container"><img src="' + item.imageUrl + '" alt="' + item.name + '" class="icon-img"></div>';
+                    grid.appendChild(card);
+                });
+            }
+
+            function applyFilters() {
+                var list = icons;
+                if (activeCategory !== 'all') {
+                    list = list.filter(function (item) {
+                        return item.category.toLowerCase() === activeCategory.toLowerCase() ||
+                            item.tags.some(function (tag) { return tag.toLowerCase() === activeCategory.toLowerCase(); });
+                    });
+                }
+                var term = (searchInput.value || '').trim().toLowerCase();
+                if (term) {
+                    list = list.filter(function (item) {
+                        return item.name.toLowerCase().indexOf(term) >= 0 ||
+                            item.category.toLowerCase().indexOf(term) >= 0 ||
+                            item.tags.some(function (tag) { return tag.toLowerCase().indexOf(term) >= 0; });
+                    });
+                }
+                renderIcons(list);
+            }
+
+            var icons = [];
+            fetch('./hina_data/item.json').then(function (r) { return r.json(); }).then(function (data) {
+                icons = data.icons || [];
+                renderIcons(icons);
+                if (searchInput) searchInput.addEventListener('input', applyFilters);
+                Array.prototype.forEach.call(categoryButtons, function (button) {
+                    button.addEventListener('click', function () {
+                        Array.prototype.forEach.call(categoryButtons, function (b) { b.classList.remove('active'); });
+                        button.classList.add('active');
+                        activeCategory = button.dataset.category || 'all';
+                        applyFilters();
+                    });
+                });
+            }).catch(function (err) {
+                console.error('加载物品数据失败:', err);
+            });
+        });
+    </script>
+</body>
+</html>

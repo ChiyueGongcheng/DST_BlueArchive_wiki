@@ -11,78 +11,85 @@
                     "name": "日奈的假日游泳圈", 
                     "imageUrl": "../image/hina/hina_swimring.png",
                     "category": "tools",
-                    "link": "#",
+                    "link": "./hina_item_swimring.html",
                     "tags":["泳圈","游泳圈","creatable"]
                 },
                 { 
                     "name": "安心睡衣", 
                     "imageUrl": "../image/hina/hina_sleepdress.png",
                     "category": "body",
-                    "link": "#",
+                    "link": "./hina_item_sleepdress.html",
                     "tags":["creatable"]
                 },
                 { 
                     "name": "咖啡", 
                     "imageUrl": "../image/hina/hina_coffee_fruit.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffees.html",
                     "tags":["咖啡作物","食材","uncreatable"]
                 },
                 { 
                     "name": "美式咖啡", 
                     "imageUrl": "../image/hina/hina_coffee.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffeesfoods.html#hina_coffee",
                     "tags":["咖啡","creatable"]
                 },
                 { 
                     "name": "拿铁咖啡", 
                     "imageUrl": "../image/hina/hina_milkcoffee.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffeesfoods.html#hina_milkcoffee",
                     "tags":["咖啡","creatable"]
                 },
                 { 
                     "name": "黄油咖啡", 
                     "imageUrl": "../image/hina/hina_buttercoffee.png",
                     "category": "food",
-                    "link": "#",
+                    "link": "./hina_item_coffeesfoods.html#hina_buttercoffee",
                     "tags":["咖啡","creatable"]
                 },
                 { 
                     "name": "精巧剪刀", 
                     "imageUrl": "../image/hina/hina_shears.png",
                     "category": "tools",
-                    "link": "#",
+                    "link": "./hina_item_shear.html",
                     "tags":["creatable"]
                 },
                 { 
                     "name": "风纪委员长大衣", 
                     "imageUrl": "../image/hina/hina_overcoat.png",
                     "category": "body",
-                    "link": "#",
+                    "link": "./hina_item_overcoat.html",
                     "tags":["常服","creatable","原皮"]
                 },
                 { 
                     "name": "风纪委员会肩章", 
                     "imageUrl": "../image/hina/hina_mark.png",
                     "category": "other",
-                    "link": "#",
+                    "link": "./hina_item_overcoat.html#mark",
                     "tags":["升级","creatable","原皮","风纪委员长大衣","常服"]
                 },
                 { 
                     "name": "迷你学校泳衣", 
                     "imageUrl": "../image/hina/hina_swimsuit.png",
                     "category": "body",
-                    "link": "#",
+                    "link": "./hina_item_swimsuit.html",
                     "tags":["泳装","creatable","水奈"]
                 },
                 { 
                     "name": "棕色小熊玩偶", 
                     "imageUrl": "../image/hina/hina_bear.png",
                     "category": "other",
-                    "link": "#",
+                    "link": "./hina_item_bear.html",
                     "tags":["玩具熊的午夜后宫","creatable","弗莱迪垃圾桶"]
+                },
+                { 
+                    "name": "咖啡农作", 
+                    "imageUrl": "../image/hina/hina_farm_coffee_icon.png",
+                    "category": "other",
+                    "link": "./crop_coffee.html",
+                    "tags":["咖啡","农作物"]
                 }
             ]
 }

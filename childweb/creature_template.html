@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生物图鉴-猎犬（生物页例子）</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/character.css">
+    <link rel="stylesheet" href="../css/creature.css">
+    <link rel="stylesheet" href="../css/utils.css">
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-paw"></i>
+                <span>生物详情</span>
+            </div>
+            <div class="submenu">
+                <a href="#data"><div class="submenu-item">面板数据</div></a>
+                <a href="#behavior"><div class="submenu-item">行为习性</div></a>
+                <a href="#assault"><div class="submenu-item">猎犬袭击</div></a>
+                <a href="#variant"><div class="submenu-item">形态变体</div></a>
+                <a href="#combat"><div class="submenu-item">应对技巧</div></a>
+                <a href="#trivia"><div class="submenu-item">你知道吗</div></a>
+            </div>
+        </div>
+
+        <a href="../index.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-home"></i>
+            <span>返回首页</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+    </div>
+</aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>生物图鉴</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <!--
+            ====================================================================
+            生物介绍模板（本页以原版「猎犬」为示例，复制本文件后按下面的清单改）
+            --------------------------------------------------------------------
+            1. 改 <title> 和 .content-header 里的 <h1>
+            2. 顶部「生物名片」是整页的数据中心：一个形态一个标签页，点标签切换，
+               每个标签页里放该形态自己的立绘 / 属性 / 生成信息 / 掉落物。
+               加形态：在 .mob-tabs 里补一对「input + label」，再到 .mob-panels 里
+               按同样顺序补一个 .mob-panel（最多 6 个）。
+               一页放多张名片时，input 的 name 要各用各的，否则会串组。
+            3. 把 .mob-portrait 里的 .mob-portrait-empty 整块删掉，
+               换成 <img src="../image/creature/生物名.png" alt="生物名">
+            4. 正文各章节按需保留：行为习性 / 袭击机制 / 形态变体 / 应对技巧 / 你知道吗；
+               用不到的整段删掉，侧边栏的子菜单项一并删
+            5. 表格用现成的 .wiki-table（表头粉、隔行浅蓝），不要自己写 style
+            6. 新开的图片统一放 image/creature/ 目录；
+               注意部署白名单在 .github/workflows/deploy.yml，只同步常见后缀
+            ====================================================================
+            -->
+
+            <div class="wiki-content">
+
+                <!-- ==================== ① 生物名片（形态切换） ==================== -->
+                <div id="data" class="mob-card">
+                    <!-- 形态标签：纯 CSS 单选实现，编辑器预览里也能点着切 -->
+                    <div class="mob-tabs">
+                        <input type="radio" name="mob-form" id="mob-form-1" class="mob-tab-input" checked="">
+                        <label class="mob-tab" for="mob-form-1">猎犬</label>
+
+                        <input type="radio" name="mob-form" id="mob-form-2" class="mob-tab-input">
+                        <label class="mob-tab" for="mob-form-2">红色猎犬</label>
+
+                        <input type="radio" name="mob-form" id="mob-form-3" class="mob-tab-input">
+                        <label class="mob-tab" for="mob-form-3">蓝色猎犬</label>
+                    </div>
+
+                    <div class="mob-panels">
+
+                        <!-- ---------- 形态 1：猎犬 ---------- -->
+                        <div class="mob-panel">
+                            <div class="mob-portrait">
+                                <!-- 有立绘后把下面这一层删掉，换成：
+                                     <img src="../image/creature/hound.png" alt="猎犬"> -->
+                                <div class="mob-portrait-empty">
+                                    <i class="fas fa-paw"></i>
+                                    <span>猎犬立绘</span>
+                                    <small>建议 512×512 PNG<br>透明背景</small>
+                                </div>
+                            </div>
+
+                            <div class="mob-card-body">
+                                <h2 class="mob-name">猎犬<span class="mob-en">Hound</span></h2>
+
+                                <div class="mob-tags">
+                                    <span class="category-tag">敌对生物</span>
+                                    <span class="category-tag">成群出现</span>
+                                    <span class="category-tag"><abbr class="underline" title="游戏会周期性地派一群猎犬主动上门，规模随天数增长。">猎犬袭击</abbr></span>
+                                    <span class="category-tag"><abbr class="underline" title="沙漠地带的猎犬冢会持续刷出猎犬。">沙漠 / 猎犬冢</abbr></span>
+                                </div>
+
+                                <p class="mob-desc">外形似狼的敌对生物，单只并不可怕，可怕的是它们永远成群结队地来。</p>
+
+                                <div class="mob-stats">
+                                    <div class="mob-stat mob-stat--hp">
+                                        <span class="mob-stat-label">生命值</span>
+                                        <span class="mob-stat-value">150</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--damage">
+                                        <span class="mob-stat-label">伤害</span>
+                                        <span class="mob-stat-value">20</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击间隔</span>
+                                        <span class="mob-stat-value">2<small>秒</small></span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击距离</span>
+                                        <span class="mob-stat-value">3</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">跑速</span>
+                                        <span class="mob-stat-value">10</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--sanity">
+                                        <span class="mob-stat-label">疯狂光环</span>
+                                        <span class="mob-stat-value">-40<small>/分钟</small></span>
+                                    </div>
+                                </div>
+
+                                <dl class="mob-meta">
+                                    <div>
+                                        <dt>生成自</dt>
+                                        <dd><abbr class="underline" title="沙漠地带成群刷出猎犬的巢穴，打掉后不会再刷新。">猎犬冢</abbr></dd>
+                                    </div>
+                                    <div>
+                                        <dt>生成代码</dt>
+                                        <dd><code>"hound"</code></dd>
+                                    </div>
+                                </dl>
+
+                                <div class="mob-block-title">掉落物</div>
+                                <div class="mob-drops">
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-drumstick-bite"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">怪物肉</span>
+                                            <span class="mob-drop-rate">必掉</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-tooth"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">狗牙</span>
+                                            <span class="mob-drop-rate">12.5%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ---------- 形态 2：红色猎犬 ---------- -->
+                        <div class="mob-panel">
+                            <div class="mob-portrait">
+                                <!-- 换成 <img src="../image/creature/red_hound.png" alt="红色猎犬"> -->
+                                <div class="mob-portrait-empty">
+                                    <i class="fas fa-fire"></i>
+                                    <span>红色猎犬</span>
+                                    <small>建议 512×512 PNG<br>透明背景</small>
+                                </div>
+                            </div>
+
+                            <div class="mob-card-body">
+                                <h2 class="mob-name">红色猎犬<span class="mob-en">Red Hound</span></h2>
+
+                                <div class="mob-tags">
+                                    <span class="category-tag">敌对生物</span>
+                                    <span class="category-tag">免疫燃烧</span>
+                                    <span class="category-tag">死亡自焚</span>
+                                    <span class="category-tag">夏季 · 秋季</span>
+                                </div>
+
+                                <p class="mob-desc">也叫火焰猎犬、火狗。血量更低但咬得更疼，死后会当场烧起来，把周围的东西一起点着。</p>
+
+                                <div class="mob-stats">
+                                    <div class="mob-stat mob-stat--hp">
+                                        <span class="mob-stat-label">生命值</span>
+                                        <span class="mob-stat-value">100</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--damage">
+                                        <span class="mob-stat-label">伤害</span>
+                                        <span class="mob-stat-value">30</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击间隔</span>
+                                        <span class="mob-stat-value">2<small>秒</small></span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击距离</span>
+                                        <span class="mob-stat-value">3</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">跑速</span>
+                                        <span class="mob-stat-value">10</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--sanity">
+                                        <span class="mob-stat-label">疯狂光环</span>
+                                        <span class="mob-stat-value">-40<small>/分钟</small></span>
+                                    </div>
+                                </div>
+
+                                <dl class="mob-meta">
+                                    <div>
+                                        <dt>生成自</dt>
+                                        <dd>猎犬冢（夏季 / 秋季）</dd>
+                                    </div>
+                                    <div>
+                                        <dt>生成代码</dt>
+                                        <dd><code>"firehound"</code></dd>
+                                    </div>
+                                </dl>
+
+                                <div class="mob-block-title">掉落物</div>
+                                <div class="mob-drops">
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-drumstick-bite"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">怪物肉</span>
+                                            <span class="mob-drop-rate">必掉</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-tooth"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">狗牙</span>
+                                            <span class="mob-drop-rate">必掉</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-gem"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">红宝石</span>
+                                            <span class="mob-drop-rate">20%</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-fire"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">灰烬</span>
+                                            <span class="mob-drop-rate">自焚后留下</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ---------- 形态 3：蓝色猎犬 ---------- -->
+                        <div class="mob-panel">
+                            <div class="mob-portrait">
+                                <!-- 换成 <img src="../image/creature/blue_hound.png" alt="蓝色猎犬"> -->
+                                <div class="mob-portrait-empty">
+                                    <i class="fas fa-snowflake"></i>
+                                    <span>蓝色猎犬</span>
+                                    <small>建议 512×512 PNG<br>透明背景</small>
+                                </div>
+                            </div>
+
+                            <div class="mob-card-body">
+                                <h2 class="mob-name">蓝色猎犬<span class="mob-en">Blue Hound</span></h2>
+
+                                <div class="mob-tags">
+                                    <span class="category-tag">敌对生物</span>
+                                    <span class="category-tag">免疫冰冻</span>
+                                    <span class="category-tag">攻击附带冰冻</span>
+                                    <span class="category-tag">冬季 · 春季</span>
+                                </div>
+
+                                <p class="mob-desc">也叫冰狗、寒冰猎犬。同样血量低、伤害高，被它咬到会被冻住，收尾时还可能被寒气补一刀。</p>
+
+                                <div class="mob-stats">
+                                    <div class="mob-stat mob-stat--hp">
+                                        <span class="mob-stat-label">生命值</span>
+                                        <span class="mob-stat-value">100</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--damage">
+                                        <span class="mob-stat-label">伤害</span>
+                                        <span class="mob-stat-value">30</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击间隔</span>
+                                        <span class="mob-stat-value">2<small>秒</small></span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击距离</span>
+                                        <span class="mob-stat-value">3</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">跑速</span>
+                                        <span class="mob-stat-value">10</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--sanity">
+                                        <span class="mob-stat-label">疯狂光环</span>
+                                        <span class="mob-stat-value">-40<small>/分钟</small></span>
+                                    </div>
+                                </div>
+
+                                <dl class="mob-meta">
+                                    <div>
+                                        <dt>生成自</dt>
+                                        <dd>猎犬冢、海象冰屋（冬季 / 春季）</dd>
+                                    </div>
+                                    <div>
+                                        <dt>生成代码</dt>
+                                        <dd><code>"icehound"</code></dd>
+                                    </div>
+                                </dl>
+
+                                <div class="mob-block-title">掉落物</div>
+                                <div class="mob-drops">
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-drumstick-bite"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">怪物肉</span>
+                                            <span class="mob-drop-rate">必掉</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-tooth"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">狗牙 ×2</span>
+                                            <span class="mob-drop-rate">必掉</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><i class="fas fa-gem"></i></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">蓝宝石</span>
+                                            <span class="mob-drop-rate">20%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>“狗狗们来了！”</strong> —— 韦伯</p>
+                </div>
+
+                <!-- ==================== ② 行为习性 ==================== -->
+                <h2>行为习性</h2>
+                <div id="behavior">
+                    <ul>
+                        <li><strong>主动仇恨玩家：</strong>猎犬是极具攻击性的生物，看到玩家就会直接扑上来，没有任何试探。</li>
+                        <li><strong>非常容易分心：</strong>发动一次攻击后，无论是否命中，它都有概率停下来吠叫，并改为锁定<b>离自己最近的生物或地上的食物</b>。把猎犬引到一群<abbr class="underline" title="皮弗娄牛，发情期外被攻击会群体反击。">野牛</abbr>中间，它们很快就会自己打起来。</li>
+                        <li><strong>吠叫就是破绽：</strong>猎犬会「咬一阵 → 吠叫 → 再追击」，吠叫的空档是安全反击的窗口；但数量一多，这个窗口基本会被其他猎犬堵住。</li>
+                        <li><strong>会拆墙：</strong>如果目标被围墙完全围死、没有留出入口，它们会直接啃墙破口；只要留一个入口，它们就会顺着入口冲进来——<b>想用墙挡狗，就得留门，然后用门做击杀通道。</b></li>
+                        <li><strong>猎犬冢的猎犬会回家：</strong>从猎犬冢刷出的猎犬会跟巢保持一定距离，追玩家追得太远就会撤退回巢，不会一路追到天涯海角。</li>
+                    </ul>
+                </div>
+
+                <!-- ==================== ③ 猎犬袭击 ==================== -->
+                <h2>猎犬袭击</h2>
+                <div id="assault">
+                    <p>猎犬会周期性地成群袭击玩家，是前期最主要的生存压力之一。袭击<b>至少两只起步</b>，数量随游戏天数增长；从第二次袭击开始，普通猎犬有一定概率被替换成当季的特殊猎犬（<b>冬天出寒冰猎犬、夏天出火焰猎犬</b>），替换概率随时间推移越来越高。</p>
+
+                    <p>袭击到来前，角色会先听到由小变大的喘气与咆哮声，并自动说出警示台词，例如：</p>
+                    <ul>
+                        <li>威尔森：<i>你听到了吗？</i></li>
+                        <li>薇洛：<i>现形吧！</i></li>
+                        <li>温蒂：<i>猎狗在狂吠。</i></li>
+                        <li>WX-78：<i>有东西来了。</i></li>
+                        <li>韦伯：<i>狗狗们来了！</i></li>
+                    </ul>
+
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>游戏天数（预设）</th>
+                                <th>下次袭击间隔</th>
+                                <th>猎犬数量</th>
+                                <th>警告时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0 – 9 天</td>
+                                <td>6 – 12 天</td>
+                                <td>2</td>
+                                <td>120 秒</td>
+                            </tr>
+                            <tr>
+                                <td>10 – 24 天</td>
+                                <td>6 – 12 天</td>
+                                <td>3 – 4</td>
+                                <td>60 秒</td>
+                            </tr>
+                            <tr>
+                                <td>25 – 49 天</td>
+                                <td>4 – 10 天</td>
+                                <td>4 – 6</td>
+                                <td>45 秒</td>
+                            </tr>
+                            <tr>
+                                <td>50 – 99 天</td>
+                                <td>4 – 10 天</td>
+                                <td>5 – 7</td>
+                                <td>30 秒</td>
+                            </tr>
+                            <tr>
+                                <td>100 天及以后</td>
+                                <td>3 – 7 天</td>
+                                <td>7 – 10</td>
+                                <td>30 秒</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>在自订世界里，袭击规模不会随时间升级，始终是固定档位：</p>
+
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>自订设定</th>
+                                <th>下次袭击间隔</th>
+                                <th>猎犬数量</th>
+                                <th>警告时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>无</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>较少</td>
+                                <td>6 – 12 天</td>
+                                <td>2 – 4</td>
+                                <td>60 秒</td>
+                            </tr>
+                            <tr>
+                                <td>较多</td>
+                                <td>4 – 10 天</td>
+                                <td>3 – 5</td>
+                                <td>45 秒</td>
+                            </tr>
+                            <tr>
+                                <td>大量</td>
+                                <td>3 – 7 天</td>
+                                <td>4 – 6</td>
+                                <td>30 秒</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>另外，<abbr class="underline" title="巨人王朝中的大型猎犬首领，对玩家有敌意时会嚎叫召唤猎犬。">座狼</abbr>对玩家产生敌意时会嚎叫，一次召唤两只猎犬，种类按当前季节决定。</p>
+                </div>
+
+                <!-- ==================== ④ 形态变体（详细说明） ==================== -->
+                <h2>形态变体</h2>
+                <div id="variant">
+                    <p>三种形态的属性与掉落物都在页面顶部的名片里切换查看，这里补充它们的实战差异。</p>
+
+                    <h2 class="mob-variant-title mob-variant-title--fire"><i class="fas fa-fire"></i>红色猎犬</h2>
+
+                    <div class="charitem mob-variant-card mob-variant-card--fire">
+                        <div class="item_text">
+                            <h3>要点</h3>
+                            <p>死亡后会当场化为三团火焰并持续燃烧至少 6 秒，熄灭后留下灰烬。</p>
+                            <p><b>这几团火会点燃周围的建筑和植物</b>——基地里打死火狗，损失往往比被咬几口更大。</p>
+                            <p>它对冰冻有较高抗性，靠冰冻法杖控它效果很差；掉落的<b>红宝石</b>是它的标志性产物。</p>
+                            <p>野外偶尔能遇到由 4 – 5 只睡着的火焰猎犬看守的<b>火焰法杖布景</b>：直接捡法杖会被群殴；正确做法是<b>先单只点杀沉睡的猎犬</b>，它们不会因为同伴被打而惊醒，清完再捡。</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 换成 <img src="../image/creature/red_hound.png" alt="红色猎犬"> -->
+                            <div class="mob-portrait">
+                                <div class="mob-portrait-empty">
+                                    <i class="fas fa-fire"></i>
+                                    <span>红色猎犬</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="mob-variant-title mob-variant-title--ice"><i class="fas fa-snowflake"></i>蓝色猎犬</h2>
+
+                    <div class="charitem mob-variant-card mob-variant-card--ice">
+                        <div class="item_text">
+                            <h3>要点</h3>
+                            <p>被击杀时会喷发寒气，给尸体附近的生物（<b>包括玩家</b>）叠一层结冰效果。</p>
+                            <p>结冰效果叠到<b>两层就会被冻住 5 秒</b>——被冻住的这几秒正好是其他猎犬的免费输出时间，所以别站在狗堆中间收尾。</p>
+                            <p>它免疫冰冻，但照样吃火焰伤害；掉落的<b>狗牙 ×2</b> 是前期做<abbr class="underline" title="用狗牙制作的陷阱，踩上去会受到伤害。">尖牙陷阱</abbr>的主要来源。</p>
+                            <p>海象狩猎队里固定跟着两只蓝猎犬，由小海象指挥；晚上能在海象冰屋外看到它们睡觉。</p>
+                        </div>
+                        <div class="item_img">
+                            <!-- 换成 <img src="../image/creature/blue_hound.png" alt="蓝色猎犬"> -->
+                            <div class="mob-portrait">
+                                <div class="mob-portrait-empty">
+                                    <i class="fas fa-snowflake"></i>
+                                    <span>蓝色猎犬</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== ⑤ 应对技巧 ==================== -->
+                <h2>应对技巧</h2>
+                <div id="combat">
+                    <ul>
+                        <li><strong>硬刚：</strong>只有 2 – 3 只时，<b>木甲 + 橄榄球头盔 + 长矛</b>就足以轻松清场，站桩对拼的代价完全可以接受。</li>
+                        <li><strong>别穿减速装备：</strong>背包、大理石护甲这类降低移速的装备会让你多挨好几口；猎犬比你快，跑是跑不掉的。</li>
+                        <li><strong>要跑就得提速：</strong>想靠走位脱身，需要<abbr class="underline" title="装备后提升移动速度。">行动手杖</abbr>或走在<abbr class="underline" title="地图上天然生成的道路，走在上面有移速加成。">道路</abbr>上带来的速度加成。</li>
+                        <li><strong>借刀杀人：</strong>把猎犬引到野牛群、<abbr class="underline" title="食人花会主动吞掉附近的生物。">食人花</abbr>或<abbr class="underline" title="眼球激光塔会自动攻击范围内的敌对生物。">眼球激光塔</abbr>旁边，让它们替你打；猎犬分心之后基本不会再回头找你。</li>
+                        <li><strong>陷阱走廊：</strong>沿路铺一排尖牙陷阱，把猎犬引进去，是后期性价比最高的解法。</li>
+                        <li><strong>冰冻法杖：</strong>需要<b>两下</b>才能冻住一只普通猎犬，火狗和冰狗的抗性还要更高，别指望用它控场。</li>
+                    </ul>
+                </div>
+
+                <!-- ==================== ⑥ 你知道吗 ==================== -->
+                <h2>你知道吗</h2>
+                <div id="trivia">
+                    <ul>
+                        <li>猎犬与火焰猎犬在 <i>The Birds and the Bees &amp; Dogs That Want to Kill You</i> 版本加入，寒冰猎犬则在 <i>A Winter's Tale</i>（2013 年 2 月 26 日）版本加入。</li>
+                        <li>猎犬的原型是神话里的<abbr class="underline" title="看守冥界入口的恶犬，常被描述为黑毛、红眼、力大且迅捷。">地狱犬</abbr>：黑毛、红眼、速度极快，在欧洲传说中看到它或听到它的嚎叫被视为死亡预兆。</li>
+                        <li>火焰猎犬不会被点燃，但依然会吃到火焰伤害。</li>
+                        <li>麦斯威尔观察火焰猎犬时会说：「将宝石放在其中只是个玩笑罢了。」——暗示它的红毛色与死时自燃，都来自体内的红宝石；寒冰猎犬的冰抗自然也来自蓝宝石。</li>
+                    </ul>
+                </div>
+
+                <!--
+                ==================== ⑦ 生物音效（可选区块） ====================
+                站内已有音频播放器组件（样式在 utils.css，用法见那里的注释）。
+                把 mp3 放进 audio/ 目录后，删掉这层注释即可启用：
+
+                <h2>生物音效</h2>
+                <div id="sound">
+                    <p>靠近时：<span class="audio-player">
+                        <button type="button" class="audio-btn" title="播放 / 暂停"
+                                onclick="var a=this.nextElementSibling;a.paused?a.play():a.pause()"></button>
+                        <audio src="../audio/hound_idle.mp3" preload="none"
+                               onplay="this.previousElementSibling.classList.add('playing')"
+                               onpause="this.previousElementSibling.classList.remove('playing')"
+                               onended="this.previousElementSibling.classList.remove('playing')"></audio>
+                    </span></p>
+                </div>
+                -->
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // 分类点击事件
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+
+                    // 关闭其他分类
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            otherCategory.querySelector('.submenu').classList.remove('active');
+                        }
+                    });
+
+                    // 切换当前分类
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+
+            // 内容区域，子菜单跳转时用于淡入动画
+            const content = document.querySelector('.wiki-content');
+
+            // 子菜单项点击事件
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    // 添加当前活动状态
+                    this.classList.add('active-page');
+
+                    // 添加动画效果
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = "translateY(20px)";
+                        setTimeout(() => {
+                            content.style.transition = "opacity 0.5s, transform 0.5s";
+                            content.style.opacity = 1;
+                            content.style.transform = "translateY(0)";
+                        }, 50);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="./nav.js"></script>
+</body>
+</html>

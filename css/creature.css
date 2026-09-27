@@ -1,0 +1,514 @@
+/* =====================================================================
+   生物图鉴页样式（css/creature.css）
+   ---------------------------------------------------------------------
+   用途：给「生物介绍」页面用的一套组件，配合 character.css / utils.css。
+   配色、圆角、阴影、断点全部沿用站点原有的一套值
+   （主色 #1a2a6c / #2a5298，强调粉 #ff9a9e，卡片圆角 16px，
+     阴影 0 10px 30px rgba(0,0,0,.06)，断点 1200 / 900 / 768 / 480），
+   所以生物页和角色页、物品页看起来是同一张皮肤。
+
+   模块清单：
+     .mob-card           生物名片：顶部形态切换 + 各形态的立绘 / 属性 / 掉落物
+     .mob-tabs           形态切换标签（纯 CSS 单选实现，不依赖脚本）
+     .mob-portrait       立绘框；没图时放 .mob-portrait-empty 占位
+     .mob-stats          核心属性网格
+     .mob-meta           元信息（生成自 / 生成代码）
+     .mob-drops          掉落物网格
+     .mob-variant-title  形态变体标题（火焰 / 寒冰两套配色）
+
+   依赖：character.css 里的 .wiki-content / .category-tag / .info-box /
+         .charitem / .wiki-table / .submenu 等，本文件只补生物页特有的部分。
+   ===================================================================== */
+
+/* ---------- 生物名片 ---------- */
+/* 顶部一行形态标签，下面挂若干面板；「左图右文」的横排交给 .mob-panel */
+.mob-card {
+    display: block;
+    padding: 30px;
+    margin: 10px 0 35px;
+    background: linear-gradient(135deg, #fbfdff 0%, #f2f7fd 100%);
+    border: 1px solid #e6eef8;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(26, 42, 108, 0.07);
+}
+
+/* flex 子项默认 min-width:auto，不加这行会被内部内容撑破 */
+.mob-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =====================================================================
+   形态切换（参考饥荒 wiki 的 tabber）
+   ---------------------------------------------------------------------
+   纯 CSS：每个形态一个单选按钮 + 一个标签 + 一个面板，三者顺序一一对应。
+   不用任何脚本 —— 编辑器预览里会剥掉 <script>，靠脚本做的话预览就切不动了。
+
+     <div class="mob-card">
+         <div class="mob-tabs">
+             <input type="radio" name="mob-form" id="mob-form-1" class="mob-tab-input" checked>
+             <label class="mob-tab" for="mob-form-1">猎犬</label>
+             <input type="radio" name="mob-form" id="mob-form-2" class="mob-tab-input">
+             <label class="mob-tab" for="mob-form-2">红色猎犬</label>
+         </div>
+         <div class="mob-panels">
+             <div class="mob-panel">…形态 1…</div>
+             <div class="mob-panel">…形态 2…</div>
+         </div>
+     </div>
+
+   注意：同一个页面上有多张名片时，name 要各用各的（mob-form-a / mob-form-b），
+   否则radio 会串组，点一张卡会切换另一张。
+   ===================================================================== */
+
+.mob-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e8f0fa;
+}
+
+/* 单选按钮本体藏起来，只留标签当按钮用 */
+.mob-tab-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.mob-tab {
+    padding: 9px 22px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2a5298;
+    background: linear-gradient(135deg, #eef4ff 0%, #dfe9ff 100%);
+    border: 1px solid #d6e0f0;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.25s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mob-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(42, 82, 152, 0.15);
+}
+
+/* 选中的标签：实心蓝，和未选中的浅蓝拉开对比 */
+.mob-tab-input:checked + .mob-tab {
+    color: #fff;
+    background: linear-gradient(135deg, #2a5298, #3a6ea5);
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(42, 82, 152, 0.28);
+}
+
+.mob-panel {
+    display: none;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* 第 N 个单选按钮选中 → 显示第 N 个面板。
+   单选按钮在 .mob-tabs 里、面板在 .mob-panels 里，两者不是兄弟关系，
+   所以不能用 ~ 选择器，得用 :has() 从名片往下找。
+   要加形态就照着往下续一行；编辑器里那对「＋ / −」按钮的上限（8 个）
+   就是照这里数的，改这里记得把编辑器那边的上限一起改。 */
+.mob-card:has(.mob-tab-input:nth-of-type(1):checked) .mob-panels > .mob-panel:nth-child(1),
+.mob-card:has(.mob-tab-input:nth-of-type(2):checked) .mob-panels > .mob-panel:nth-child(2),
+.mob-card:has(.mob-tab-input:nth-of-type(3):checked) .mob-panels > .mob-panel:nth-child(3),
+.mob-card:has(.mob-tab-input:nth-of-type(4):checked) .mob-panels > .mob-panel:nth-child(4),
+.mob-card:has(.mob-tab-input:nth-of-type(5):checked) .mob-panels > .mob-panel:nth-child(5),
+.mob-card:has(.mob-tab-input:nth-of-type(6):checked) .mob-panels > .mob-panel:nth-child(6),
+.mob-card:has(.mob-tab-input:nth-of-type(7):checked) .mob-panels > .mob-panel:nth-child(7),
+.mob-card:has(.mob-tab-input:nth-of-type(8):checked) .mob-panels > .mob-panel:nth-child(8) {
+    display: flex;
+}
+
+/* 兜底：万一 checked 被手滑删掉，也别让整张卡空着 */
+.mob-card:not(:has(.mob-tab-input:checked)) .mob-panels > .mob-panel:first-child {
+    display: flex;
+}
+
+/* ---------- 立绘框 ---------- */
+/* 图片和占位提示共用同一个方框，换成真图时页面高度不会跳 */
+.mob-portrait {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 240px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffffff 0%, #eaf1fb 100%);
+    border: 1px solid #e0e8f0;
+    border-radius: 16px;
+    box-shadow: inset 0 2px 10px rgba(26, 42, 108, 0.05);
+}
+
+.mob-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 竖长的立绘（大多数生物全身像都是）给个高一点的框：
+   同样一张图放在正方形里只能撑到一半宽，看着会很小。
+   用法：<div class="mob-portrait mob-portrait--tall"> */
+.mob-portrait--tall {
+    height: 320px;
+}
+
+/* 还没放立绘时的虚线占位：放上 <img> 后把这一层整块删掉。
+   父级 .mob-portrait 是 flex 容器，这里靠 flex + stretch 撑满，
+   只留 12px 外边距——写 width/height:100% 会被 margin 顶出去再被裁掉。 */
+.mob-portrait-empty {
+    display: flex;
+    flex: 1;
+    align-self: stretch;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px;
+    border: 2px dashed #c3d4ea;
+    border-radius: 12px;
+    color: #9fb0c9;
+    text-align: center;
+}
+
+.mob-portrait-empty i {
+    font-size: 34px;
+}
+
+.mob-portrait-empty span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #7d90ad;
+}
+
+.mob-portrait-empty small {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ---------- 生物名 ---------- */
+.mob-name {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* 名字后面的英文原名 */
+.mob-en {
+    font-size: 15px;
+    font-weight: 500;
+    color: #7d90ad;
+    letter-spacing: 0.5px;
+}
+
+/* 标签行：.category-tag 自带右 / 下外边距，这里只收一下与简介之间的距离 */
+.mob-tags {
+    margin: 0 0 14px;
+}
+
+.mob-desc {
+    margin-bottom: 0;
+}
+
+/* 名片内部的小节标题（比如「掉落物」）。
+   用 <div> 而不是 <p>：.wiki-content p 的字号颜色特异性更高，会盖掉这里的设置 */
+.mob-block-title {
+    margin: 22px 0 10px;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #1a2a6c;
+    border-left: 3px solid #2a5298;
+    border-radius: 2px;
+}
+
+/* ---------- 核心属性网格 ---------- */
+.mob-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.mob-stat {
+    padding: 12px 8px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e2ebf7;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(26, 42, 108, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mob-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(42, 82, 152, 0.14);
+}
+
+.mob-stat-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: #5a6c84;
+}
+
+.mob-stat-value {
+    display: block;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a2a6c;
+}
+
+.mob-stat-value small {
+    margin-left: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #5a6c84;
+}
+
+/* 生命 / 伤害 / 理智三类数值换色，扫一眼就能区分开 */
+.mob-stat--hp .mob-stat-value {
+    color: #d94f4f;
+}
+
+.mob-stat--damage .mob-stat-value {
+    color: #e2601f;
+}
+
+.mob-stat--sanity .mob-stat-value {
+    color: #7b5ea7;
+}
+
+/* ---------- 元信息栏 ---------- */
+.mob-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px 24px;
+    margin: 18px 0 4px;
+    padding: 16px 20px;
+    background: #f7faff;
+    border: 1px solid #e8f0fa;
+    border-radius: 12px;
+}
+
+.mob-meta > div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 15px;
+}
+
+.mob-meta dt {
+    flex-shrink: 0;
+    color: #5a6c84;
+}
+
+.mob-meta dd {
+    margin: 0;
+    color: #1a2a6c;
+    font-weight: 600;
+}
+
+/* 生成代码这类小块代码：元信息栏和表格里统一是同一种长相 */
+.mob-meta code,
+.wiki-table code {
+    padding: 2px 8px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 14px;
+    color: #2a5298;
+    background: #eaf1fb;
+    border-radius: 6px;
+}
+
+/* ---------- 掉落物网格 ---------- */
+/* 一格的最小宽度：原来是 140，名字长一点（「火药 ×2 – 5」这种）就会被挤成两行，
+   所以加宽 1/4 到 175，给名字和概率说明留出余地 */
+.mob-drops {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.mob-drop {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1px solid #e0e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(26, 42, 108, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mob-drop:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(42, 82, 152, 0.14);
+}
+
+.mob-drop-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #f7faff 0%, #eaf1fb 100%);
+    border: 1px solid #e6eef8;
+    border-radius: 10px;
+}
+
+/* 掉落物图标与「制作配方」里的材料图标同规格：32×32
+   （对应 utils.css 的 .u-ic32；给 <img> 直接挂那个类也是同样的尺寸）。
+   没找到素材时才退回用 Font Awesome 的 <i>，见下面的 .mob-drop-icon i。 */
+.mob-drop-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.mob-drop-icon i {
+    font-size: 18px;
+    color: #7d90ad;
+}
+
+.mob-drop-text {
+    min-width: 0;
+}
+
+.mob-drop-name {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.mob-drop-rate {
+    display: block;
+    font-size: 12px;
+    color: #5a6c84;
+}
+
+/* ---------- 形态变体标题：火焰 / 寒冰各一套配色 ---------- */
+.mob-variant-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wiki-content h2.mob-variant-title--fire {
+    color: #c9541a;
+}
+
+.wiki-content h2.mob-variant-title--fire:after {
+    background: linear-gradient(90deg, #e2601f, #f0a06a);
+}
+
+.wiki-content h2.mob-variant-title--ice {
+    color: #2f6fb5;
+}
+
+.wiki-content h2.mob-variant-title--ice:after {
+    background: linear-gradient(90deg, #2f6fb5, #6aa9e0);
+}
+
+/* ---------- 变体卡片里的小标题（火 / 冰 / 普通形态的强调线） ---------- */
+.mob-variant-card {
+    border-left: 4px solid #2a5298;
+}
+
+.mob-variant-card--fire {
+    border-left-color: #e2601f;
+}
+
+.mob-variant-card--ice {
+    border-left-color: #2f6fb5;
+}
+
+/* .charitem 原本是「左边文字 + 右边贴图」，
+   这里的贴图换成占位框，尺寸跟 .item_img 对齐（200×200） */
+.mob-variant-card .mob-portrait {
+    width: 200px;
+    height: 200px;
+}
+
+/* ---------- 响应式：窄屏名片改为上下排列 ---------- */
+@media (max-width: 900px) {
+    .mob-card {
+        padding: 22px;
+    }
+
+    /* 面板内部由「左图右文」改成上下，立绘居中 */
+    .mob-panel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mob-portrait {
+        width: 200px;
+        height: 200px;
+    }
+
+    .mob-card-body {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .mob-stats {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .mob-meta {
+        grid-template-columns: 1fr;
+        padding: 14px 16px;
+    }
+
+    /* 窄屏下标签换行后收一点，别占掉半屏 */
+    .mob-tabs {
+        gap: 6px;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+    }
+
+    .mob-tab {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* 变体卡片在窄屏下由 character.css 改成上下排列，
+       占位框跟着居中，不要贴着左边 */
+    .mob-variant-card .mob-portrait {
+        margin: 0 auto 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mob-portrait {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* 变体卡片里的占位框跟着缩，否则会顶破 .item_img */
+    .mob-variant-card .mob-portrait {
+        width: 160px;
+        height: 160px;
+    }
+
+    .mob-drop-name {
+        font-size: 14px;
+    }
+}
