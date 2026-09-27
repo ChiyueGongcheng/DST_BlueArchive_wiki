@@ -1359,3 +1359,18 @@ body {
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.35;
 }
+
+/* ---------- 作者卡上的「职任」小药丸 ---------- */
+/* 药丸固定 40px 高、上下内边距各 10px，内容区只剩 20px；
+   而里面的 <p> 行高是 1.6 × 17px = 27.2px，比内容区还高。
+   文字从内容区顶部往下排，结果上边距约 15px、下边距只剩 8px，看着就是偏下。
+   把药丸本身改成居中容器、再清掉 <p> 的外边距，文字才会真正居中。 */
+.u-pill {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.u-pill p {
+    margin: 0 !important;
+}
