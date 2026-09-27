@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>花冈柚子-苦力怕</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/character.css">
+    <link rel="stylesheet" href="../css/creature.css">
+    <link rel="stylesheet" href="../css/utils.css">
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <a href="./yuzu.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-user"></i>
+            <span>人物详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <a href="./yuzu_item.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-briefcase"></i>
+            <span>物品详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <a href="./yuzu_developer.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-coffee"></i>
+            <span>关于作者</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+    </div>
+</aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>生物图鉴</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <!--
+            ====================================================================
+            苦力怕（yuzu_creeper）—— 花冈柚子 MOD 新增的敌对生物
+            数据来源：MOD 里的 scripts/yuzu_tuning.lua + scripts/prefabs/yuzu_creeper.lua
+                     + scripts/yuzu_creeper_spawn.lua
+            改数值时记得同步回去，两边对不上会很难查。
+            ====================================================================
+            -->
+
+            <div class="wiki-content">
+
+                <!-- ==================== ① 生物名片 ==================== -->
+                <div id="data" class="mob-card">
+                    <div class="mob-tabs">
+                        <input type="radio" name="mob-form" id="mob-form-1" class="mob-tab-input" checked="checked">
+                        <label class="mob-tab" for="mob-form-1">苦力怕</label>
+                    
+
+</div>
+
+                    <div class="mob-panels">
+
+                        <div class="mob-panel">
+                            <div class="mob-portrait mob-portrait--tall">
+                                <img src="../image/yuzu/yuzu_creeper.png" alt="苦力怕">
+                            </div>
+
+                            <div class="mob-card-body">
+                                <h2 class="mob-name">苦力怕<span class="mob-en">Creeper</span></h2>
+
+                                <div class="mob-tags">
+                                    <span class="category-tag">敌对生物</span>
+                                    <span class="category-tag">MOD 生物</span>
+                                    <span class="category-tag"><abbr title="它不做普通近战，唯一的攻击手段是贴到身边引爆自己。">自爆</abbr></span>
+                                    <span class="category-tag"><abbr title="只在猎犬袭击期间出现，跟着狗群一起来。">伴随猎犬袭击</abbr></span>
+                                <span class="category-tag"><abbr title="会被猪人、兔人和浣猫主动仇恨。">怪物</abbr></span><span class="category-tag"><abbr title="MOD来源">花冈柚子</abbr></span></div>
+
+                                <p class="mob-desc"><b>从方块世界入侵而来的怪物！到底是谁把它放到永恒大陆的？！</b></p>
+
+                                <div class="mob-stats">
+                                    <div class="mob-stat mob-stat--hp">
+                                        <span class="mob-stat-label">生命值</span>
+                                        <span class="mob-stat-value">100</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--damage">
+                                        <span class="mob-stat-label">爆炸伤害</span>
+                                        <span class="mob-stat-value">100</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">攻击半径</span>
+                                        <span class="mob-stat-value">5</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">索敌半径</span>
+                                        <span class="mob-stat-value">10</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">跑速</span>
+                                        <span class="mob-stat-value">5</span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--sanity">
+                                        <span class="mob-stat-label">疯狂光环</span>
+                                        <span class="mob-stat-value">-50<small>/分钟</small></span>
+                                    </div>
+                                </div>
+
+                                <dl class="mob-meta">
+                                    <div>
+                                        <dt>生成自</dt>
+                                        <dd><abbr class="underline" title="跟着猎犬袭击一起来，猎犬丘和猎犬口哨叫出来的狗不会带它。">猎犬袭击</abbr></dd>
+                                    </div>
+                                    <div>
+                                        <dt>生成代码</dt>
+                                        <dd><code>"yuzu_creeper"</code></dd>
+                                    </div>
+                                </dl>
+
+                                <div class="mob-block-title">掉落物</div>
+                                <div class="mob-drops">
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><img src="../image/yuzu/material/Gunpowder.png" class="u-ic32" alt="火药"></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">火药 ×2 ~ 5</span>
+                                            <span class="mob-drop-rate"><abbr title="因自爆死亡时，掉落数量减半（向上取整）">自爆死亡减半</abbr></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>？？？：你们说部长还会觉得自己缺火药吗</strong><span style="background-color: initial;"><b>……噗哈哈ww</b></span></p>
+                </div>
+
+                <!-- ==================== ② 自爆机制 ==================== -->
+                <h2>技能详情</h2><div class="info-box">
+    <p><strong>？？？：</strong><span style="background-color: initial; color: rgb(68, 68, 68); font-size: 17px;"><span class="u-c-primary" style=""><b>爱丽丝知道！这个魔物会追着人跑，然后“磅！！”的一下爆炸！</b></span></span></p>
+</div><div id="explode">
+                    <ul>
+                        <li><strong>① 锁定：</strong>只主动仇恨<b>玩家</b>，<b>索敌半径 10 单位距离</b></li>
+                        <li><strong>② 贴脸：</strong>追到目标 <b>2 单位距离</b>以内，才会开始点火</li>
+                        <li><strong>③ 引信：</strong>点火后身体会<b>红白闪烁</b>，约 <b>0.9 秒</b>后引爆</li>
+                        <li><strong>④ 中止：</strong>只要目标跑出 <b>5 单位距离</b>的爆炸半径，它就会<b>取消自爆</b>，重新追上来再点一次</li>
+                    </ul>
+
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>爆炸效果</th>
+                                <th>数值</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>对玩家伤害</td>
+                                <td>100</td>
+                                <td>范围内的玩家都会吃到</td>
+                            </tr>
+                            <tr>
+                                <td>对其他生物伤害</td>
+                                <td>250</td>
+                                <td>玩家的 <b>2.5 倍</b></td>
+                            </tr>
+                            <tr>
+                                <td>扣除理智</td>
+                                <td>30</td>
+                                <td>只对吃到爆炸的玩家生效</td>
+                            </tr>
+                            <tr>
+                                <td>爆炸半径</td>
+                                <td>5</td>
+                                <td>也是取消自爆的判定半径</td>
+                            </tr>
+                            <tr>
+                                <td>击飞</td>
+                                <td>半径 3</td>
+                                <td>越靠近爆心飞得越远；免疫击飞的目标不受影响</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <p><strong>可以在MOD设置中</strong>「<b>苦力怕破坏建筑</b>」：调整苦力怕是否摧毁建筑物。<br></p>
+                    </div>
+                </div>
+
+                <!-- ==================== ③ 刷新方式 ==================== -->
+                <h2>刷新方式</h2>
+                <div id="spawn">
+                    <p>苦力怕<b>不会自己在地图上生成</b>，它只在猎犬袭击期间跟着一起来：袭击开始时，围绕<b>每一个被袭击的玩家</b>各刷一批，落在该玩家周围 10 单位内的随机可站立位置。</p>
+
+                    <p>刷出来的苦力怕会像猎犬一样<b>淡入现身</b>，并且一落地就被指派给那位玩家——所以你听到狗叫的时候，身边可能已经站着几只了。</p>
+
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>游戏天数</th>
+                                <th>每波数量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 – 9 天</td>
+                                <td>1 – 2 只</td>
+                            </tr>
+                            <tr>
+                                <td>10 – 24 天</td>
+                                <td>1 – 2 只</td>
+                            </tr>
+                            <tr>
+                                <td>25 – 49 天</td>
+                                <td>2 – 3 只</td>
+                            </tr>
+                            <tr>
+                                <td>50 – 99 天</td>
+                                <td>2 – 4 只</td>
+                            </tr>
+                            <tr>
+                                <td>100 天及以后</td>
+                                <td>3 – 5 只</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>和猎犬的关系：</strong><b>猎犬不会主动攻击苦力怕</b>——你也不想看见苦力怕冲过去炸死猎犬的吧...？</p>
+
+                    <p>只有<b>真正的猎犬袭击</b>才会带苦力怕：猎犬丘自己刷的狗、猎犬口哨吹出来的狗都不会生成苦力怕。</p>
+                </div>
+
+                <!-- ==================== ④ 行为习性 ==================== -->
+                <h2>行为习性</h2>
+                <div id="behavior">
+                    <ul>
+                        <li><strong>只盯着玩家：</strong>主动索敌只认玩家，对野牛、猪人这些一概不理——除非你先动手。</li>
+                        <li><strong>不会普通攻击：</strong>没有近战伤害，贴上来就是为了炸。被它追着跑时不用怕被咬。</li>
+                        <li><strong>挨打会还手：</strong>被谁打了就把谁设成目标，所以远程偷袭之后它会直接朝你冲过来。</li>
+                        <li><strong>没目标时原地打转：</strong>围着自己的生成点徘徊，<b>范围约 32 单位距离</b>，不会满地图乱逛。</li>
+                        <li><strong>怕猫：</strong>察觉到 <b>10 单位距离</b>内的<abbr title="游戏里带「猫科」标签的生物，比如浣猫。"><u><b>猫类生物</b></u></abbr>就会掉头逃跑，跑到 <b>16 单位距离</b>外才会停止。</li>
+                        <li><strong>可燃也可冻：</strong>和大多数中型生物一样，能被点着，也能被冻住。</li>
+                    </ul>
+                </div>
+
+                <!-- ==================== ⑤ 应对技巧 ==================== -->
+                
+                
+
+                <!-- ==================== ⑥ 你知道吗 ==================== -->
+                <h2>你知道吗</h2>
+                <div id="trivia">
+                    <ul>
+                        <li>MC生物在《饥荒联机版》当中也一样怕船！</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // 分类点击事件
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+
+                    // 关闭其他分类
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            otherCategory.querySelector('.submenu').classList.remove('active');
+                        }
+                    });
+
+                    // 切换当前分类
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+
+            // 内容区域，子菜单跳转时用于淡入动画
+            const content = document.querySelector('.wiki-content');
+
+            // 子菜单项点击事件
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    // 添加当前活动状态
+                    this.classList.add('active-page');
+
+                    // 添加动画效果
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = "translateY(20px)";
+                        setTimeout(() => {
+                            content.style.transition = "opacity 0.5s, transform 0.5s";
+                            content.style.opacity = 1;
+                            content.style.transform = "translateY(0)";
+                        }, 50);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="./nav.js"></script>
+</body>
+</html>

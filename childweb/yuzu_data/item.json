@@ -30,7 +30,7 @@
                 },
                 { 
                     "name": "纸箱", 
-                    "imageUrl":"../image/yuzu/yuzu_paperbox.png",
+                    "imageUrl": "../image/yuzu/yuzu_paperbox.png",
                     "category": "body",
                     "link": "./yuzu_item_paperbox.html",
                     "tags":["箱子","潜行纸箱","creatable"]
@@ -62,6 +62,13 @@
                     "category": "hat",
                     "link": "./hoshino_item_kirbyhat.html",
                     "tags":["帽子","creatable","联动","彩蛋"]
+                },
+                { 
+                    "name": "苦力怕", 
+                    "imageUrl": "../image/yuzu/yuzu_creeper.png",
+                    "category": "other",
+                    "link": "./yuzu_mob_creeper.html",
+                    "tags":["Minecraft","MC","爬行者","火药","爆炸","自爆"]
                 }
             ]
 }

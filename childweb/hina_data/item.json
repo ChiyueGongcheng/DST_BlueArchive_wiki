@@ -83,6 +83,13 @@
                     "category": "other",
                     "link": "./hina_item_bear.html",
                     "tags":["玩具熊的午夜后宫","creatable","弗莱迪垃圾桶"]
+                },
+                { 
+                    "name": "咖啡农作", 
+                    "imageUrl": "../image/hina/hina_farm_coffee_icon.png",
+                    "category": "other",
+                    "link": "./crop_coffee.html",
+                    "tags":["咖啡","农作物"]
                 }
             ]
 }

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>空崎日奈-咖啡植株</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/character.css">
+    <link rel="stylesheet" href="../css/creature.css">
+    <link rel="stylesheet" href="../css/utils.css">
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <a href="./hina.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-user"></i>
+            <span>人物详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <a href="./hina_item.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-briefcase"></i>
+            <span>物品详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <div class="menu-category">
+            <div class="menu-item u-top3">
+                <i class="fas fa-coffee"></i>
+                <span>关于作者</span>
+            </div>
+            <div class="submenu">
+            </div>
+        </div>
+
+    </div>
+</aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>作物图鉴</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <!--
+            ====================================================================
+            咖啡植株（farm_plant_hina_farm_coffee）—— 空崎日奈 MOD 新增的农作物
+            数据来源：MOD 里的 hinamain/hook.lua（作物定义与收获逻辑）
+                     + scripts/prefabs/hina_farm_coffee_stems.lua（采后留茎）
+                     + scripts/prefabs/hina_coffeefoods.lua（咖啡果本身）
+            它整套生长参数都是照抄原版火龙果（dragonfruit）的，只有养分那一项是自定义的，
+            改数值时记得两边一起对。
+            ====================================================================
+            -->
+
+            <div class="wiki-content">
+
+                <!-- ==================== ① 作物名片 ==================== -->
+                <div id="data" class="mob-card">
+                    <div class="mob-tabs">
+                        <input type="radio" name="mob-form" id="mob-form-1" class="mob-tab-input" checked="">
+                        <label class="mob-tab" for="mob-form-1">咖啡植株</label>
+                    </div>
+
+                    <div class="mob-panels">
+
+                        <div class="mob-panel">
+                            <div class="mob-portrait mob-portrait--tall">
+                                <img src="../image/hina/hina_farm_coffeefull.png" alt="咖啡植株">
+                            </div>
+
+                            <div class="mob-card-body">
+                                <h2 class="mob-name">咖啡植株<span class="mob-en">Coffee Plant</span></h2>
+
+                                <div class="mob-tags">
+                                    <span class="category-tag">农作物</span>
+                                    <span class="category-tag">MOD 作物</span>
+                                    <span class="category-tag"><abbr title="收完第一茬后原地留茎，还能再结两次果。">可再生</abbr></span>
+                                    <span class="category-tag"><abbr title="和火龙果一样带 fireproof 标记，不会被火点燃。">防火</abbr></span>
+                                </div>
+
+                                <p class="mob-desc">种一次能连收三茬，是咖啡饮品的原料来源。</p>
+
+                                <div class="mob-stats">
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">生长时间</span>
+                                        <span class="mob-stat-value">4–7<small>天</small></span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">适宜季节</span>
+                                        <span class="mob-stat-value">春 · 夏</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">耗水</span>
+                                        <span class="mob-stat-value">中等</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">成熟保鲜</span>
+                                        <span class="mob-stat-value">4<small>天</small></span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">首株收获</span>
+                                        <span class="mob-stat-value">2–4<small>果</small></span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">可再生</span>
+                                        <span class="mob-stat-value">3<small>茬</small></span>
+                                    </div>
+                                </div>
+
+                                <dl class="mob-meta">
+                                    <div>
+                                        <dt>种子</dt>
+                                        <dd><abbr class="underline" title="咖啡果同时是果实和种子，种到已开垦的农田土块上即可。">咖啡果</abbr></dd>
+                                    </div>
+                                    <div>
+                                        <dt>生成代码</dt>
+                                        <dd><code>"farm_plant_hina_farm_coffee"</code></dd>
+                                    </div>
+                                </dl>
+
+                                <div class="mob-block-title">收获产物</div>
+                                <div class="mob-drops">
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><img src="../image/hina/hina_coffee_fruit.png" class="u-ic32" alt="咖啡果"></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">咖啡果 ×2 ~ 4</span>
+                                            <span class="mob-drop-rate">普通成熟株</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><img src="../image/hina/hina_coffee_fruit.png" class="u-ic32" alt="咖啡果"></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">咖啡果 ×5 ~ 7</span>
+                                            <span class="mob-drop-rate">巨型株</span>
+                                        </div>
+                                    </div>
+                                    <div class="mob-drop">
+                                        <div class="mob-drop-icon"><img src="../image/spoiled_food.png" class="u-ic32" alt="腐烂物"></div>
+                                        <div class="mob-drop-text">
+                                            <span class="mob-drop-name">腐烂物 ×1</span>
+                                            <span class="mob-drop-rate">巨型株给 3 个</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>？？？：跟这个世界的咖啡品种有些不一样。</strong></p>
+                </div>
+
+                <!-- ==================== ② 生长阶段 ==================== -->
+                <h2>生长阶段</h2>
+                <div id="stages">
+                    <p>咖啡植株沿用原版农作物的那套阶段，只是时间参数照抄火龙果。播下去之后大约 <b>0.75 – 1 天</b>发芽，之后 <b>4 – 7 天</b>走完剩下的阶段。</p>
+
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>阶段</th>
+                                <th>外观</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>种子</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeeseed.png" style="height: 96px; width: auto;" alt="种子阶段"></td>
+                                <td>刚播下，约0.75 ~ 1 天后发芽</td>
+                            </tr>
+                            <tr>
+                                <td><b>发芽</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeesprout.png" style="height: 96px; width: auto;" alt="发芽阶段"></td>
+                                <td>冒出嫩芽，还不能采收</td>
+                            </tr>
+                            <tr>
+                                <td><b>小</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeesmall.png" style="height: 96px; width: auto;" alt="小阶段"></td>
+                                <td>植株开始长开</td>
+                            </tr>
+                            <tr>
+                                <td><b>中</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeemed.png" style="height: 96px; width: auto;" alt="中阶段"></td>
+                                <td>临近成熟，这段时间最容易缺水</td>
+                            </tr>
+                            <tr>
+                                <td><b>成熟</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeefull.png" style="height: 96px; width: auto;" alt="成熟阶段"></td>
+                                <td>可以采收，<b>&nbsp;4 天不收就会烂掉</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>巨型</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeeoversized.png" style="height: 96px; width: auto;" alt="巨型阶段"></td>
+                                <td>满足巨型作物条件时长成，收获翻倍</td>
+                            </tr>
+                            <tr>
+                                <td><b>腐烂</b></td>
+                                <td><img src="../image/hina/hina_farm_coffeerot.png" style="height: 96px; width: auto;" alt="腐烂阶段"></td>
+                                <td>只能收到腐烂物，采完<b>连农田土一起毁掉</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ==================== ③ 茎与再生 ==================== -->
+                <h2>茎与再生</h2>
+                <div id="stems">
+                    <p>这是咖啡和原版作物差别最大的地方：<b>采收之后植株不会消失</b>，而是在原地留下一株「咖啡果茎」，过一阵子重新结果——也就是说<b>种一次能连收三茬</b>。</p>
+
+                    <ul>
+                        <li><strong>第一次采收：</strong>正常收获后留下茎，普通株留普通茎、巨型株留巨型茎。</li>
+                        <li><strong>后续两茬：</strong>茎会重新走一遍「等待 → 结果」的循环，再结果的时间大约是 <b>0.8 ~ 1.4 天</b>。</li>
+                        <li><strong>第三茬收完就报废：</strong>累计采收满 <b>3 次</b>后，茎会立刻永久枯萎。</li>
+                        <li><strong>养分照旧：</strong>茎每轮重新结果时，会重复首株那套「吃堆肥、还粪肥」的循环。</li>
+                        <li><strong>可以铲掉：</strong>拿铲子能挖掉枯萎的茎，但<b>不会返还种子或果实</b>，只是清理场地。</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>和原版作物的区别：</strong>原版作物收完就没了，得重新播种；咖啡靠留茎把「一次播种」变成「三次收获」，种下去之后省的是重复开垦和等待发芽的时间。</p>
+                    </div>
+                </div>
+
+                <!-- ==================== ④ 种植要点 ==================== -->
+                <h2>种植要点</h2>
+                <div id="planting">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>咖啡植株</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>消耗养分</td>
+                                <td><b>堆肥</b>（中等）</td>
+                                <td>每阶段消耗 4 点</td>
+                            </tr>
+                            <tr>
+                                <td>产出养分</td>
+                                <td><b>粪肥</b>（+8）</td>
+                                <td>同一阶段往第 3 类养分里补 8 点</td>
+                            </tr>
+                            <tr>
+                                <td>耗水</td>
+                                <td>中等</td>
+                                <td>和茄子、南瓜同档（每阶段2%）</td>
+                            </tr>
+                            <tr>
+                                <td>适宜季节</td>
+                                <td>春 · 夏</td>
+                                <td>秋冬生长会变慢，且不会变成巨大</td>
+                            </tr>
+                            <tr>
+                                <td>防火</td>
+                                <td>是</td>
+                                <td>带 fireproof 标记，不会被火点着</td>
+                            </tr>
+                            <tr>
+                                <td>巨型作物</td>
+                                <td>可以</td>
+                                <td>条件和火龙果同一档，长成后一次收 5 – 7 个</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>种子从哪来：</strong>咖啡果本身就是种子，直接种到已开垦的农田土块上就行；此外<b>普通随机种子也有概率开出咖啡</b>，权重和火龙果同属稀有档。</p>
+                </div>
+
+                <!-- ==================== ⑤ 你知道吗 ==================== -->
+                <h2>你知道吗</h2><div id="trivia"><ul>
+                        <li>原版火龙果和咖啡1:1混种可以互相管住对方的肥料需求。</li>
+                        <li>咖啡果<b>既是果实也是种子</b>：烤了能做成「鼻青脸肿的烤咖啡豆」，铺在地上晾晒则变成咖啡豆。</li>
+                        <li>它没有注册进原版的<b>植物图鉴</b>——因为「采后留茎、一株三收」的机制和图鉴的进度统计对不上，索性就不塞进去了。</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // 分类点击事件
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+
+                    // 关闭其他分类
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            otherCategory.querySelector('.submenu').classList.remove('active');
+                        }
+                    });
+
+                    // 切换当前分类
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+
+            // 内容区域，子菜单跳转时用于淡入动画
+            const content = document.querySelector('.wiki-content');
+
+            // 子菜单项点击事件
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    // 添加当前活动状态
+                    this.classList.add('active-page');
+
+                    // 添加动画效果
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = "translateY(20px)";
+                        setTimeout(() => {
+                            content.style.transition = "opacity 0.5s, transform 0.5s";
+                            content.style.opacity = 1;
+                            content.style.transform = "translateY(0)";
+                        }, 50);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="./nav.js"></script>
+</body>
+</html>
