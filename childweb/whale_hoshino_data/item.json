@@ -1,0 +1,249 @@
+{
+    "icons": [
+                { 
+                    "name": "荷鲁斯之眼", 
+                    "imageUrl": "../image/hoshino_whale/eyeofherus.png",
+                    "category": "weapon",
+                    "link": "./eyeofherus_item.html",
+                    "tags":["武器","远程武器 专武"]
+                },
+                { 
+                    "name": "钢铁荷鲁斯", 
+                    "imageUrl": "../image/hoshino_whale/ironofherus.png",
+                    "category": "body",
+                    "link": "./ironofherus_item.html",
+                    "tags":["防具"]
+                },
+                { 
+                    "name": "战术背心", 
+                    "imageUrl": "../image/hoshino_whale/tactical_vest.png",
+                    "category": "body",
+                    "link": "./tactical_vest_item.html",
+                    "tags":["防具"]
+                },
+                { 
+                    "name": "临战战术背心", 
+                    "imageUrl": "../image/hoshino_whale/tactical_vest_shield.png",
+                    "category": "body",
+                    "link": "./tactical_vest_shield_item.html",
+                    "tags":["防具"]
+                },
+                { 
+                    "name": "蓝鲸抱枕", 
+                    "imageUrl": "../image/hoshino_whale/pillow.png",
+                    "category": "creatable",
+                    "link": "./pillow_item.html",
+                    "tags":["物品"]
+                },
+                { 
+                    "name": "急救绷带", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_bandage.png",
+                    "category": "creatable",
+                    "link": "./hoshino_bandage_item.html",
+                    "tags":["物品"]
+                },
+                { 
+                    "name": "沃普赛克合金斧镐", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_multitool.png",
+                    "category": "tools",
+                    "link": "./hoshino_multitool_item.html",
+                    "tags":["工具"]
+                },
+                { 
+                    "name": "制造工坊", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_keji.png",
+                    "category": "building",
+                    "link": "./hoshino_keji_item.html",
+                    "tags":["建筑","科技"]
+                },
+                { 
+                    "name": "跨次元数据共享科研台", 
+                    "imageUrl": "../image/hoshino_whale/millennium_lab1.png",
+                    "category": "building",
+                    "link": "./millennium_lab_item.html",
+                    "tags":["建筑","科技"]
+                },
+                { 
+                    "name": "鸟弹弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_bird.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "鹿弹弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "鹿弹弹药袋改进型", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_lv2.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "暗影鹿弹弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_lv3.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "独头弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_dutou.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "改进型独头弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_dutou_lv2.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "暗影独头弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_dutou_lv3.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "辉煌独头弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_dutou_lv4.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "爆炎龙息弹", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_drangon.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹","消耗品"]
+                },
+                { 
+                    "name": "易爆黏胶弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_oil.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "改进型易爆黏胶弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_oil_lv2.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "暗影易爆黏胶弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_lv3.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "辉煌易爆黏胶弹药袋", 
+                    "imageUrl": "../image/hoshino_whale/hoshinosgammo_lv4.png",
+                    "category": "creatable",
+                    "link": "./hoshino_ammos_item.html",
+                    "tags":["子弹"]
+                },
+                { 
+                    "name": "仙人掌插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_cactus.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "重型装甲插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_heavy.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "轻型装甲插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_light.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "保暖装插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_winter.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "隔热装甲插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_summer.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "龙蝇装甲插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_dragonfly.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "绝望石装甲插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_dreadstone.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "亮茄装甲插板", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_armor_lunarplant.png",
+                    "category": "creatable",
+                    "link": "./hoshino_armor_item.html",
+                    "tags":["插板"]
+                },
+                { 
+                    "name": "制造石", 
+                    "imageUrl": "../image/hoshino_whale/crafting_stone.png",
+                    "category": "uncreatable",
+                    "link": "./crafting_stone_item.html",
+                    "tags":["材料"]
+                },
+                { 
+                    "name": "次元稳定器", 
+                    "imageUrl": "../image/hoshino_whale/hoshino_cylx.png",
+                    "category": "uncreatable",
+                    "link": "./hoshino_cylx_item.html",
+                    "tags":["材料"]
+                },
+                { 
+                    "name": "沃普赛克钢铁", 
+                    "imageUrl": "../image/hoshino_whale/wopsek_iron.png",
+                    "category": "uncreatable",
+                    "link": "./wopsek_iron_item.html",
+                    "tags":["材料"]
+                },
+                { 
+                    "name": "高纯沃普赛克钢铁", 
+                    "imageUrl": "../image/hoshino_whale/high_wopsek_iron.png",
+                    "category": "creatable",
+                    "link": "./wopsek_iron_item.html",
+                    "tags":["材料"]
+                },
+                { 
+                    "name": "硫磺", 
+                    "imageUrl": "../image/hoshino_whale/sulphur.png",
+                    "category": "uncreatable",
+                    "link": "./sulphur_item.html",
+                    "tags":["材料"]
+                }
+            ]
+}

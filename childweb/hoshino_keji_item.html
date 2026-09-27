@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>制造工坊</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../css/utils.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-book-open"></i>
+        <h2>知识库导航</h2>
+    </div>
+    <div class="menu">
+        <a href="./whale_hoshino.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-user"></i>
+            <span>人物详情</span>
+        </div>
+        <div class="submenu">
+            <a href="#data"><div class="submenu-item">面板数据</div></a>
+            <a href="#ability"><div class="submenu-item">角色被动</div></a>
+            <a href="#info"><div class="submenu-item">信息</div></a>
+            <a href="#item"><div class="submenu-item">物品总览</div></a>
+            <a href="#issue"><div class="submenu-item">易冲突模组</div></a>
+        </div>
+    </div>
+        </a>
+
+        <a href="./hoshino_item.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-briefcase"></i>
+            <span>物品详情</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <a href="./hoshino_skilltree.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-book"></i>
+            <span>技能树系统</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <a href="./whale_newland.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-book"></i>
+            <span>新地形介绍</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+        <a href="./about_whale.html">
+    <div class="menu-category">
+        <div class="menu-item u-top3">
+            <i class="fas fa-coffee"></i>
+            <span>关于作者</span>
+        </div>
+        <div class="submenu">
+        </div>
+    </div>
+        </a>
+
+    </div>
+</aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>物品详情</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <div class="wiki-content">
+                <div class="charitem">
+                    <div class="item_text">
+                        <div class="item_content">
+                            <div class="u-glass">
+                                <p>本模组的一级科技</p><p>可以解锁初级子弹 战术背心和初级防弹插板的配方</p><p>同时可以制作<b>跨次元数据共享科研台</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item_info">
+                        <div class="top-box">
+                            <div class="item_content u-drop">
+                                <h3>制造工坊</h3>
+                            </div>
+                        </div>
+                        <div class="top-box">
+                            <div class="item_content u-tint">
+                                <img src="../image/hoshino_whale/hoshino_keji.png">
+                            </div>
+                        </div>
+                        <div class="bottom-box">
+                            <div class="item_content u-drop">
+                                <p class="u-mb10"><b>制作配方</b></p>
+                                <p><b>4</b><abbr title="沃普赛克钢铁"><img src="http://127.0.0.1:8787/image/hoshino_whale/wopsek_iron.png" class="u-ic32"></abbr><b>+2</b><abbr title="制造石"><img src="../image/hoshino_whale/crafting_stone.png" class="u-ic32"></abbr></p>
+                            </div>
+                        </div>
+                        <div class="bottom-box u-mb50">
+                            <div class="item_content u-blur">
+                                <p><b>解锁：</b><img src="http://127.0.0.1:8787/image/yuzu/material/need_L2.png" class="u-img24m"></p>
+                                <p><b>可作业工具：锤子类型工具</b></p><p><b>工作次数：4</b></p><p><b>耐久次数：无限</b></p><p><b>不可燃烧</b></p>
+                                <p class="u-mb1"><b>物品id：hoshino_keji</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>物品总览</h2>
+                <div id="item">
+                    <ul>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="搜索物品...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div class="categories">
+                            <button class="category-btn active" data-category="all">全部</button>
+                            <button class="category-btn" data-category="creatable">可制作</button>
+                            <button class="category-btn" data-category="uncreatable">不可制作</button>
+                            <button class="category-btn" data-category="weapon">武器</button>
+                            <button class="category-btn" data-category="tools">工具</button>
+                            <button class="category-btn" data-category="hat">头部装备</button>
+                            <button class="category-btn" data-category="body">身体装备</button>
+                            <button class="category-btn" data-category="building">建筑</button>
+                            <button class="category-btn" data-category="other">杂项</button>
+                        </div>
+
+                        <div class="grid" id="iconGrid"><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/eyeofherus.png" alt="荷鲁斯之眼" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/ironofherus.png" alt="钢铁荷鲁斯" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/pillow.png" alt="蓝鲸抱枕" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshino_keji.png" alt="制造工坊" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/millennium_lab1.png" alt="跨次元数据共享科研台" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshino_multitool.png" alt="沃普赛克合金斧镐" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_bird.png" alt="鸟弹弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo.png" alt="鹿弹弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_lv2.png" alt="鹿弹弹药袋改进型" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_lv3.png" alt="暗影鹿弹弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_dutou.png" alt="独头弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_dutou_lv2.png" alt="改进型独头弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_dutou_lv3.png" alt="暗影独头弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_dutou_lv4.png" alt="辉煌独头弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_drangon.png" alt="爆炎龙息弹" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_oil.png" alt="易爆黏胶弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_oil_lv2.png" alt="改进型易爆黏胶弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_lv3.png" alt="暗影易爆黏胶弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshinosgammo_lv4.png" alt="辉煌易爆黏胶弹药袋" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/crafting_stone.png" alt="制造石" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/wopsek_iron.png" alt="沃普赛克钢铁" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/high_wopsek_iron.png" alt="高纯沃普赛克钢铁" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/sulphur.png" alt="硫磺" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_whale/hoshino_cylx.png" alt="次元稳定器" class="icon-img"></div></a></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./nav.js"></script>
+    <script>
+        // 物品总览：数据来自 ./hoshino_keji_data/item.json，由页面自动生成
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchInput = document.getElementById('searchInput');
+            var categoryButtons = document.querySelectorAll('.category-btn');
+            var grid = document.getElementById('iconGrid');
+            var activeCategory = 'all';
+
+            function renderIcons(list) {
+                if (!grid) return;
+                grid.innerHTML = '';
+                if (!list.length) {
+                    grid.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>未找到匹配的物品</h3><p>请尝试其他搜索词或选择其他分类</p></div>';
+                    return;
+                }
+                list.forEach(function (item) {
+                    var card = document.createElement('a');
+                    card.href = item.link;
+                    card.className = 'card';
+                    card.innerHTML = '<div class="icon-container"><img src="' + item.imageUrl + '" alt="' + item.name + '" class="icon-img"></div>';
+                    grid.appendChild(card);
+                });
+            }
+
+            function applyFilters() {
+                var list = icons;
+                if (activeCategory !== 'all') {
+                    list = list.filter(function (item) {
+                        return item.category.toLowerCase() === activeCategory.toLowerCase() ||
+                            item.tags.some(function (tag) { return tag.toLowerCase() === activeCategory.toLowerCase(); });
+                    });
+                }
+                var term = (searchInput.value || '').trim().toLowerCase();
+                if (term) {
+                    list = list.filter(function (item) {
+                        return item.name.toLowerCase().indexOf(term) >= 0 ||
+                            item.category.toLowerCase().indexOf(term) >= 0 ||
+                            item.tags.some(function (tag) { return tag.toLowerCase().indexOf(term) >= 0; });
+                    });
+                }
+                renderIcons(list);
+            }
+
+            var icons = [];
+            fetch('./whale_hoshino_data/item.json').then(function (r) { return r.json(); }).then(function (data) {
+                icons = data.icons || [];
+                renderIcons(icons);
+                if (searchInput) searchInput.addEventListener('input', applyFilters);
+                Array.prototype.forEach.call(categoryButtons, function (button) {
+                    button.addEventListener('click', function () {
+                        Array.prototype.forEach.call(categoryButtons, function (b) { b.classList.remove('active'); });
+                        button.classList.add('active');
+                        activeCategory = button.dataset.category || 'all';
+                        applyFilters();
+                    });
+                });
+            }).catch(function (err) {
+                console.error('加载物品数据失败:', err);
+            });
+        });
+    </script>
+</body>
+</html>
