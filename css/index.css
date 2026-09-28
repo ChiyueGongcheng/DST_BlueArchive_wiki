@@ -188,11 +188,16 @@
             background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/hoshino_whale/whale_hoshino_none.png);
         }
         
+        /* 枫香：暂无专属立绘，暂用星野（鲸）的图占位 */
         .item:nth-child(5) .item-content {
-            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/AL1S/alice.png);
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/hoshino_whale/whale_hoshino_none.png);
         }
 
         .item:nth-child(6) .item-content {
+            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/AL1S/alice.png);
+        }
+
+        .item:nth-child(7) .item-content {
             background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/CCC_Tachibana/CCC_Tachibana.jpg);
         }
 
