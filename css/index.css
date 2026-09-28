@@ -184,8 +184,9 @@
             background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/hoshino_leaf/hoshino2_none.png);
         }
         
+        /* 星野（鲸）已开放：按编辑器的规则，开放卡片不带渐变压暗 */
         .item:nth-child(4) .item-content {
-            background-image: linear-gradient(rgba(28, 9, 44,0), rgba(28, 9, 44, 0.8)), url(../image/hoshino_whale/whale_hoshino_none.png);
+            background-image: url(../image/hoshino_whale/whale_hoshino_none.png);
         }
         
         /* 枫香：暂无专属立绘，暂用星野（鲸）的图占位 */
