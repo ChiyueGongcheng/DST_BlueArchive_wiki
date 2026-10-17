@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>花冈柚子-发电机</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../css/utils.css">
+    <style>
+        /* 每个主要部分各用一块 u-glass / u-glass-top，后者的 margin-top:70px 就是部分之间的留白 */
+        .wiki-content .u-glass ul,
+        .wiki-content .u-glass-top ul {
+            margin: 10px 0 6px;
+            padding-left: 22px;
+        }
+        .wiki-content .u-glass li,
+        .wiki-content .u-glass-top li {
+            margin-bottom: 8px;
+            line-height: 1.65;
+            color: #444;
+            font-size: 17px;
+        }
+        .wiki-content .u-glass table.wiki-table,
+        .wiki-content .u-glass-top table.wiki-table {
+            margin-top: 16px;
+        }
+        .wiki-content .u-glass h3,
+        .wiki-content .u-glass-top h3 {
+            margin: 24px 0 10px;
+            color: #1a2a6c;
+        }
+        .wiki-content .u-glass h3:first-child,
+        .wiki-content .u-glass-top h3:first-child {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-book-open"></i>
+            <h2>知识库导航</h2>
+        </div>
+
+        <div class="menu">
+            <a href="./yuzu.html">
+                <div class="menu-category">
+                    <div class="menu-item u-top3">
+                        <i class="fas fa-user"></i>
+                        <span>人物详情</span>
+                    </div>
+                    <div class="submenu">
+                        <a href="./yuzu.html#data"><div class="submenu-item">面板数据</div></a>
+                        <a href="./yuzu.html#ability"><div class="submenu-item">角色被动</div></a>
+                        <a href="./yuzu.html#info"><div class="submenu-item">信息</div></a>
+                        <a href="./yuzu.html#item"><div class="submenu-item">物品总览</div></a>
+                        <a href="./yuzu.html#issue"><div class="submenu-item">易冲突模组</div></a>
+                    </div>
+                </div>
+            </a>
+
+            <a href="./yuzu_item.html">
+                <div class="menu-category active-category">
+                    <div class="menu-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>物品详情</span>
+                    </div>
+                    <div class="submenu">
+
+                    </div>
+                </div>
+            </a>
+
+            <a href="./black_suit.html">
+                <div class="menu-category">
+                    <div class="menu-item">
+                        <i class="fas fa-mask"></i>
+                        <span>黑服</span>
+                    </div>
+                    <div class="submenu">
+                        <a href="./black_suit.html#get"><div class="submenu-item">遇到黑服</div></a>
+                        <a href="./black_suit.html#trade"><div class="submenu-item">交易</div></a>
+                        <a href="./black_suit.html#skin"><div class="submenu-item">皮肤与兑换</div></a>
+                    </div>
+                </div>
+            </a>
+
+            <a href="./yuzu_developer.html">
+                <div class="menu-category">
+                    <div class="menu-item">
+                        <i class="fas fa-coffee"></i>
+                        <span>关于作者</span>
+                    </div>
+                    <div class="submenu">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>物品详情</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <div class="wiki-content">
+
+                <div class="charitem">
+                    <div class="item_text">
+                        <div class="item_content">
+
+                            <div class="u-glass">
+                                <p><b>发电机</b>是一台给 <a href="https://dontstarve.huijiwiki.com/wiki/%E8%96%87%E8%AF%BA%E5%A8%9C" target="_blank"><b><u>薇诺娜</u></b></a> 机械供电的大型建筑</p>
+                                <p>目前<b>无法通过制作获得</b>，也不会从任何生物身上掉落</p>
+                                <p>放下时<b>是一台空壳</b>，血量只剩 1 点、电力为 0，需要玩家一点点修起来</p>
+                                <p><b>修理：</b>对发电机<b>按住左键</b>即可持续修理，<b>每修一次同时恢复 1% 的血量与电力</b>，每秒结算一次</p>
+                                <p>修理时<b>离开 3 单位距离以外</b>会中断</p>
+                                <p><b>薇诺娜</b>亲自修理时效率提升 15%</p><p>身上带有<u><abbr title="详情"><b><a href="https://dontstarve.huijiwiki.com/wiki/%E5%86%B0%E5%86%BB" target="_blank">冰冻值</a></b></abbr></u>、<b><u><abbr title="详情"><a href="https://dontstarve.huijiwiki.com/wiki/%E5%82%AC%E7%9C%A0" target="_blank">催眠值</a></abbr></u></b>或理智低于 30 点时效率降低 50%，两种减益可以叠加</p>
+                                <p>多人同时修理时，效率为所有正在修理的人的总和</p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr>
+                                            <th>修理情况</th>
+                                            <th>效率</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>薇诺娜亲自修理</td>
+                                            <td><b>+15%</b></td>
+                                            <td>工程师上手更快</td>
+                                        </tr>
+                                        <tr>
+                                            <td>身上带有冰冻值或催眠值</td>
+                                            <td><b>−50%</b></td>
+                                            <td>被冻住、被催眠时手会变慢</td>
+                                        </tr>
+                                        <tr>
+                                            <td>理智低于 30 点</td>
+                                            <td><b>−50%</b></td>
+                                            <td>戴<u><abbr title="会把理智视作 0">梦魇护符</abbr></u>／<u><abbr title="会把理智视作 0">骨头头盔</abbr></u>时同样算数</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="u-glass-top">
+                                <h3>技能检定</h3>
+                                <p>累计修理满 <b>8 ~ 15 秒</b>之后，屏幕正中会弹出<b>技能检定</b>，弹出前会先响一声预警</p>
+                                <p>指针开始转动（约 2 秒一圈），在指针进入<b>判定区</b>时按下<u><b><abbr title="默认：空格 ；可以在mod设置当中配置">指定按键</abbr></b></u>即可</p>
+                                <p>判定按键可以在 <b>MOD 设置</b>里的「发电机技能检定按键」选项中修改</p>
+                                <p>按下时靠左的黑色部分算<b>成功检定，</b>靠右的白色区域算<b>完美检定</b></p>
+                                <p><b>失败后</b>这台发电机<b>会被锁住 4 秒</b>，期间怎么修都不涨进度</p>
+                                <p>检定失败还有机会招来麻烦：<b>当季 BOSS</b>（每个季节一次）或<b>下一次猎犬袭击</b></p>
+                                <table class="wiki-table">
+                                    <thead>
+                                        <tr>
+                                            <th>判定结果</th>
+                                            <th>进度变化</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><b>完美</b></td>
+                                            <td><b>+5%</b></td>
+                                            <td>额外恢复生命值与电力</td>
+                                        </tr>
+                                        <tr>
+                                            <td>成功</td>
+                                            <td><b>±0</b></td>
+                                            <td>无奖励/惩罚</td>
+                                        </tr>
+                                        <tr>
+                                            <td>失败 / 超时没按</td>
+                                            <td><b>−5%</b></td>
+                                            <td>当场爆炸</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="u-glass-top">
+                                <h3>供电</h3>
+                                <p>发电机可以给周围的薇诺娜机械供电，每个用电器<b>每秒消耗 1 点电力</b>；机械待机时不算耗电</p>
+                                <p>电力耗尽后机械会停工，<b>需要重新修理</b>才能继续供电</p>
+                                <p>修满之后进入<b>满电免耗期</b>，<b>10 天内供电完全不耗电</b>，受到攻击会立刻解除</p>
+                                <p>免耗期内发电机还会产生<b>半径 11 单位距离的光芒</b></p>
+                                <h3>吸引仇恨</h3>
+                                <p>修理进度＞0%时，发电机<b>会持续吸引半径11单位距离的生物仇恨</b></p>
+                                <p><b>不会吸引猪人、兔人和石虾，也不会吸引已经有主人的随从</b></p>
+                            </div>
+
+                            <div class="u-glass-top">
+                                <h3>受伤机制</h3>
+                                <p>发电机<b>单次受到伤害最多扣除 100 点生命</b>，血量最低停在 1 点</p>
+                                <p>受伤时会爆炸一次，<b>对周围半径 4 范围内的生物造成 85 点伤害</b>，不会伤到玩家与随从</p>
+                                <p><b>WX-78</b> 攻击发电机时会被电一下，并回复 <b>1 格电荷</b></p>
+                            </div>
+
+                            
+
+                            
+
+                        </div>
+                    </div>
+
+                    <div class="item_info">
+                        <div class="top-box">
+                            <div class="item_content u-drop">
+                                <h3>发电机</h3>
+                            </div>
+                        </div>
+                        <div class="top-box">
+                            <div class="item_content u-tint">
+                                <img src="../image/yuzu/yuzu_generator.png">
+                            </div>
+                        </div>
+                        <div class="bottom-box">
+                            <div class="item_content u-drop">
+                                <p class="u-mb10"><b>制作配方</b></p>
+                                <p>目前<b>无法制作</b></p>
+                            </div>
+                        </div>
+                        <div class="bottom-box u-mb50">
+                            <div class="item_content u-blur">
+                                <p><b>生命值：1000</b></p>
+                                <p><b>可作业工具：</b><b><img src="http://127.0.0.1:8787/image/hammer.png" class="u-img24m" style="border-radius: 10px;"></b></p>
+                                <p><b>工作次数：4</b></p>
+                                <p><b>掉落：石砖</b></p>
+                                <p><b>不可燃烧</b></p>
+                                <p class="u-mb1"><b>物品id：yuzu_generator</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="item">
+                    <ul>
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="搜索物品...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div class="categories">
+                            <button class="category-btn active" data-category="all">全部</button>
+                            <button class="category-btn" data-category="creatable">可制作</button>
+                            <button class="category-btn" data-category="uncreatable">不可制作</button>
+                            <button class="category-btn" data-category="weapon">武器</button>
+                            <button class="category-btn" data-category="tools">工具</button>
+                            <button class="category-btn" data-category="hat">头部装备</button>
+                            <button class="category-btn" data-category="body">身体装备</button>
+                            <button class="category-btn" data-category="building">建筑</button>
+                            <button class="category-btn" data-category="other">杂项</button>
+                        </div>
+
+                        <div class="grid" id="iconGrid"><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_coat.png" alt="柚子定制千禧外套" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_gun.png" alt="喵冲" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_grenade_icon.png" alt="榴弹子弹" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_wardrobe.png" alt="储物柜" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_paperbox.png" alt="纸箱" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_duster.png" alt="无敌炫酷双色鸡毛掸子" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_wateringcan.png" alt="全自动灌溉水桶" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_maidsuit.png" alt="女仆装" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/hoshino_leaf/hat_kirby.png" alt="卡比帽子" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_creeper.png" alt="苦力怕" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/yuzu_generator.png" alt="发电机" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/blacksuit_face.png" alt="黑服" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/bs_reporticon.png" alt="神秘研究报告" class="icon-img"></div></a><a href="#" class="card"><div class="icon-container"><img src="../image/yuzu/block_invasion.png" alt="方块入侵" class="icon-img"></div></a></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+            const content = document.querySelector('.wiki-content');
+
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+                if (!menuItem || !submenu) {
+                    return;
+                }
+
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            const otherSubmenu = otherCategory.querySelector('.submenu');
+                            if (otherSubmenu) {
+                                otherSubmenu.classList.remove('active');
+                            }
+                        }
+                    });
+
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    this.classList.add('active-page');
+
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = "translateY(20px)";
+                        setTimeout(() => {
+                            content.style.transition = "opacity 0.5s, transform 0.5s";
+                            content.style.opacity = 1;
+                            content.style.transform = "translateY(0)";
+                        }, 50);
+                    }
+                });
+            });
+
+            // 物品总览（数据来自 yuzu_data/item.json）
+            function renderIcons(iconsArray) {
+                const grid = document.getElementById('iconGrid');
+                if (!grid) {
+                    return;
+                }
+                grid.innerHTML = '';
+
+                if (iconsArray.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <h3>未找到匹配的物品</h3>
+                            <p>请尝试其他搜索词或选择其他分类</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                iconsArray.forEach(item => {
+                    const card = document.createElement('a');
+                    card.href = item.link;
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="icon-container">
+                            <img src="${item.imageUrl}" alt="${item.name}" class="icon-img">
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            function loadIcons() {
+                return fetch("./yuzu_data/item.json")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('网络响应不正常');
+                        }
+                        return response.json();
+                    })
+                    .then(data => data.icons);
+            }
+
+            async function initPage() {
+                const grid = document.getElementById('iconGrid');
+                const searchInput = document.getElementById('searchInput');
+                if (!grid || !searchInput) {
+                    return;
+                }
+                try {
+                    const icons = await loadIcons();
+                    const categoryButtons = document.querySelectorAll('.category-btn');
+                    let activeCategory = 'all';
+
+                    function applyFilters() {
+                        let list = icons;
+                        if (activeCategory !== 'all') {
+                            list = list.filter(item =>
+                                item.category.toLowerCase() === activeCategory.toLowerCase() ||
+                                item.tags.some(tag => tag.toLowerCase() === activeCategory.toLowerCase())
+                            );
+                        }
+
+                        const searchTerm = searchInput.value.trim().toLowerCase();
+                        if (searchTerm) {
+                            list = list.filter(item =>
+                                item.name.toLowerCase().includes(searchTerm) ||
+                                item.category.toLowerCase().includes(searchTerm) ||
+                                item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                            );
+                        }
+
+                        renderIcons(list);
+                    }
+
+                    renderIcons(icons);
+
+                    searchInput.addEventListener('input', applyFilters);
+
+                    categoryButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            categoryButtons.forEach(btn => btn.classList.remove('active'));
+                            button.classList.add('active');
+
+                            activeCategory = button.dataset.category || 'all';
+                            applyFilters();
+                        });
+                    });
+                } catch (error) {
+                    console.error('加载图标数据失败:', error);
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>无法加载图标数据</h3>
+                            <p>请检查网络连接或稍后再试</p>
+                        </div>
+                    `;
+                }
+            }
+
+            initPage();
+        });
+    </script>
+    <script src="./nav.js"></script>
+</body>
+</html>

@@ -90,6 +90,20 @@
                     "category": "other",
                     "link": "./crop_coffee.html",
                     "tags":["咖啡","农作物"]
+                },
+                { 
+                    "name": "黑服", 
+                    "imageUrl": "../image/yuzu/blacksuit_face.png",
+                    "category": "other",
+                    "link": "./hina_black_suit.html",
+                    "tags":["数秘术","月黑","皮肤","兑换码","uncreatable"]
+                },
+                { 
+                    "name": "神秘研究报告", 
+                    "imageUrl": "../image/yuzu/bs_reporticon.png",
+                    "category": "other",
+                    "link": "./hina_black_suit.html#get",
+                    "tags":["召唤器","月黑","黑服","uncreatable"]
                 }
             ]
 }

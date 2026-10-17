@@ -69,6 +69,34 @@
                     "category": "other",
                     "link": "./yuzu_mob_creeper.html",
                     "tags":["Minecraft","MC","爬行者","火药","爆炸","自爆"]
+                },
+                { 
+                    "name": "发电机", 
+                    "imageUrl": "../image/yuzu/yuzu_generator.png",
+                    "category": "building",
+                    "link": "./yuzu_item_generator.html",
+                    "tags":["迷雾","供电","薇诺娜","uncreatable"]
+                },
+                { 
+                    "name": "黑服", 
+                    "imageUrl": "../image/yuzu/blacksuit_face.png",
+                    "category": "other",
+                    "link": "./black_suit.html",
+                    "tags":["数秘术","月黑","皮肤","交易","uncreatable"]
+                },
+                { 
+                    "name": "神秘研究报告", 
+                    "imageUrl": "../image/yuzu/bs_reporticon.png",
+                    "category": "other",
+                    "link": "./black_suit.html#get",
+                    "tags":["召唤器","月黑","黑服","uncreatable"]
+                },
+                { 
+                    "name": "方块入侵", 
+                    "imageUrl": "../image/yuzu/block_invasion.png",
+                    "category": "other",
+                    "link": "./black_suit.html#trade",
+                    "tags":["黑服","苦力怕","突袭","uncreatable"]
                 }
             ]
 }

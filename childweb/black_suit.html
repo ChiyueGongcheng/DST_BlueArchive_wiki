@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数秘术-黑服</title>
+    <link rel="icon" type="image/png" href="../image/main_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../css/creature.css">
+    <link rel="stylesheet" href="../css/utils.css">
+    <style>
+        /* ---------- 顶部预览名片 ---------- */
+        .hero-card {
+            margin: 6px 0 42px;
+        }
+        .hero-card .mob-panel {
+            align-items: center;
+        }
+        .hero-card .mob-portrait {
+            width: 230px;
+            height: 300px;
+        }
+        .hero-card .mob-portrait img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 18px rgba(26, 42, 108, 0.18));
+        }
+        .wiki-content .hero-card .mob-name {
+            margin: 0 0 10px;
+            padding-bottom: 0;
+            border-bottom: none;
+            font-size: 32px;
+        }
+        .wiki-content .hero-card .mob-name:after {
+            display: none;
+        }
+
+        /* ---------- 各主要部分之间留白 ---------- */
+        .wiki-content h2 {
+            margin-top: 64px;
+        }
+        .wiki-content h2:first-of-type {
+            margin-top: 34px;
+        }
+        .wiki-content h3 {
+            margin-top: 26px;
+        }
+        .wiki-content .u-glass,
+        .wiki-content .u-glass-top {
+            margin-bottom: 30px;
+        }
+        .wiki-content .u-glass h3:first-child,
+        .wiki-content .u-glass-top h3:first-child {
+            margin-top: 0;
+        }
+        .wiki-content .u-glass ul,
+        .wiki-content .u-glass-top ul {
+            margin: 10px 0 6px;
+            padding-left: 22px;
+        }
+        .wiki-content .u-glass li,
+        .wiki-content .u-glass-top li {
+            margin-bottom: 8px;
+            line-height: 1.65;
+            color: #444;
+            font-size: 17px;
+        }
+        .wiki-content .u-glass table.wiki-table,
+        .wiki-content .u-glass-top table.wiki-table {
+            margin-top: 16px;
+        }
+
+        /* ---------- 窄屏 ---------- */
+        @media (max-width: 900px) {
+            .hero-card .mob-portrait {
+                width: 200px;
+                height: 260px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-card .mob-portrait {
+                width: 160px;
+                height: 210px;
+            }
+        }
+
+        
+        /* ==================== 黑服交易界面（1280×800 设计稿，原素材） ==================== */
+        .bs-ui {
+            position: relative;
+            margin: 18px 0 30px;
+            border-radius: 18px;
+            overflow: hidden;
+            background:
+                radial-gradient(110% 90% at 26% 0%, #22304d 0%, #0d1626 62%, #080e19 100%);
+            border: 1px solid rgba(140, 190, 255, .22);
+            box-shadow: 0 18px 40px rgba(8, 16, 32, .45);
+        }
+        .bs-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        .bs-stage {
+            container-type: inline-size;
+            min-width: 960px;
+        }
+        .bs-scene {
+            --u: 0.078125cqw;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1280 / 800;
+            overflow: hidden;
+        }
+        .bs-scene > * {
+            position: absolute;
+        }
+
+        /* 面板背后的流光 */
+        .bs-glow {
+            left: calc(var(--u) * 355);
+            top: calc(var(--u) * 72);
+            width: calc(var(--u) * 860);
+            height: calc(var(--u) * 678);
+            background: url(../image/yuzu/ui/glow.png) center/100% 100% no-repeat;
+            opacity: .34;
+            animation: bs-glow-breathe 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes bs-glow-breathe {
+            0%, 100% { opacity: .18; }
+            50% { opacity: .44; }
+        }
+
+        /* 黑服立绘 */
+        .bs-char {
+            left: calc(var(--u) * -200);
+            top: calc(var(--u) * 180);
+            width: calc(var(--u) * 1100);
+            height: calc(var(--u) * 566);
+            object-fit: contain;
+            filter: drop-shadow(0 calc(var(--u) * 10) calc(var(--u) * 18) rgba(0, 0, 0, .55));
+            pointer-events: none;
+        }
+
+        /* 面板（bg 1247×962 → 705×544） */
+        .bs-panel {
+            left: calc(var(--u) * 463);
+            top: calc(var(--u) * 110);
+            width: calc(var(--u) * 705);
+            height: calc(var(--u) * 544);
+            background: url(../image/yuzu/ui/panel.png) center/100% 100% no-repeat;
+            filter: drop-shadow(0 calc(var(--u) * 8) calc(var(--u) * 20) rgba(0, 0, 0, .5));
+        }
+
+        /* 角色筛选条：一排圆形头像 */
+        .bs-tabs {
+            left: calc(var(--u) * 519);
+            top: calc(var(--u) * 179);
+            width: calc(var(--u) * 596);
+            height: calc(var(--u) * 48);
+            display: flex;
+            align-items: center;
+            gap: calc(var(--u) * 8);
+            padding: 0 calc(var(--u) * 2);
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 calc(var(--u) * 10), #000 calc(100% - var(--u) * 10), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 calc(var(--u) * 10), #000 calc(100% - var(--u) * 10), transparent 100%);
+        }
+        .bs-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        .bs-tab {
+            flex: 0 0 auto;
+            width: calc(var(--u) * 46);
+            height: calc(var(--u) * 46);
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 42%, rgba(74, 84, 128, .9), rgba(24, 28, 48, .92));
+            border: calc(var(--u) * 2) solid rgba(126, 142, 192, .5);
+            box-shadow: inset 0 0 calc(var(--u) * 6) rgba(0, 0, 0, .55);
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+            transition: border-color .18s, box-shadow .18s, transform .18s, filter .18s;
+            filter: saturate(.7) brightness(.86);
+        }
+        .bs-tab img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            padding: calc(var(--u) * 1);
+            box-sizing: border-box;
+        }
+        .bs-tab:hover {
+            border-color: rgba(186, 200, 244, .8);
+            filter: saturate(1) brightness(1);
+            transform: translateY(calc(var(--u) * -2));
+        }
+        .bs-tab.is-active {
+            border-color: rgba(214, 226, 255, .95);
+            box-shadow: 0 0 calc(var(--u) * 9) rgba(126, 158, 255, .85), inset 0 0 calc(var(--u) * 6) rgba(0, 0, 0, .4);
+            filter: saturate(1) brightness(1.06);
+        }
+
+        /* 分隔线（1087×56 → 620×40） */
+        .bs-divider {
+            left: calc(var(--u) * 505);
+            top: calc(var(--u) * 206);
+            width: calc(var(--u) * 620);
+            height: calc(var(--u) * 40);
+            background: url(../image/yuzu/ui/divider.png) center/100% 100% no-repeat;
+            pointer-events: none;
+        }
+
+        /* 卡片区：4 列 × 2 行，间距拉大（item 250×301 → 129×155） */
+        .bs-grid {
+            left: calc(var(--u) * 521);
+            top: calc(var(--u) * 254);
+            width: calc(var(--u) * 586);
+            height: calc(var(--u) * 334);
+            display: grid;
+            grid-template-columns: repeat(4, calc(var(--u) * 130));
+            grid-template-rows: repeat(2, calc(var(--u) * 156));
+            gap: calc(var(--u) * 22);
+        }
+        /* 每张卡片的格位：选中光层垫在卡片下方 */
+        .bs-cell {
+            position: relative;
+            transition: transform .18s;
+        }
+        .bs-cell:hover {
+            transform: translateY(calc(var(--u) * -3));
+            z-index: 2;
+        }
+        .bs-cell-glow {
+            position: absolute;
+            left: calc(var(--u) * -3);
+            top: calc(var(--u) * -3);
+            width: calc(100% + var(--u) * 6);
+            height: calc(100% + var(--u) * 6);
+            background: url(../image/yuzu/ui/card_selected.png) center/100% 100% no-repeat;
+            opacity: 0;
+            transition: opacity .18s;
+            pointer-events: none;
+        }
+        .bs-cell:hover .bs-cell-glow {
+            opacity: 1;
+        }
+        .bs-card {
+            position: absolute;
+            inset: 0;
+            background: url(../image/yuzu/ui/card.png) center/100% 100% no-repeat;
+            cursor: pointer;
+            transition: filter .18s;
+        }
+        .bs-cell:hover .bs-card {
+            filter: brightness(1.12);
+        }
+        /* 图标框：对准卡片正中的深色方块（100,128 → 212,245 / 250×301） */
+        .bs-card-icon {
+            position: absolute;
+            left: 51.1%;
+            top: 59.6%;
+            transform: translate(-50%, -50%);
+            width: 46%;
+            height: 38.9%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bs-card-icon img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 calc(var(--u) * 2) calc(var(--u) * 4) rgba(0, 0, 0, .65));
+        }
+        .bs-card-icon.is-empty {
+            color: #cfd6ff;
+            font-size: calc(var(--u) * 14);
+            font-weight: 700;
+        }
+        .bs-card-count {
+            position: absolute;
+            right: 21%;
+            bottom: 26%;
+            font-size: calc(var(--u) * 11);
+            font-weight: 700;
+            line-height: 1;
+            color: #ffe6a3;
+            text-shadow: 0 calc(var(--u) * 1) calc(var(--u) * 2) rgba(0, 0, 0, .9);
+        }
+        /* 卡片右下角的角色头像 */
+        .bs-card-role {
+            position: absolute;
+            right: 5%;
+            bottom: 6%;
+            width: calc(var(--u) * 23);
+            height: calc(var(--u) * 23);
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(20, 24, 40, .55);
+            box-shadow: 0 0 calc(var(--u) * 5) rgba(0, 0, 0, .75);
+            pointer-events: none;
+        }
+        .bs-card-role img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* 翻页：分居卡片区两侧 */
+        .bs-arrow {
+            width: calc(var(--u) * 33);
+            height: calc(var(--u) * 21);
+            background: url(../image/yuzu/ui/arrow.png) center/100% 100% no-repeat;
+            cursor: pointer;
+            opacity: .9;
+            transition: opacity .18s;
+        }
+        .bs-arrow:hover {
+            opacity: 1;
+        }
+        .bs-arrow.is-disabled {
+            opacity: .22;
+            cursor: default;
+        }
+        #bsPrev {
+            left: calc(var(--u) * 477);
+            top: calc(var(--u) * 660);
+        }
+        #bsNext {
+            left: calc(var(--u) * 1121);
+            top: calc(var(--u) * 660);
+            transform: scaleX(-1);
+        }
+        .bs-dots {
+            left: calc(var(--u) * 815.5);
+            transform: translateX(-50%);
+            top: calc(var(--u) * 636);
+            display: flex;
+            gap: calc(var(--u) * 5);
+        }
+        .bs-dot {
+            width: calc(var(--u) * 7);
+            height: calc(var(--u) * 7);
+            border-radius: 50%;
+            background: rgba(199, 205, 245, .35);
+            cursor: pointer;
+        }
+        .bs-dot.is-active {
+            background: #cbd5ff;
+            box-shadow: 0 0 calc(var(--u) * 6) rgba(150, 175, 255, .9);
+        }
+
+        /* 确认按钮：移到面板下方（Confirm 643×113 → 197×35） */
+        .bs-confirm {
+            left: calc(var(--u) * 702);
+            top: calc(var(--u) * 666);
+            width: calc(var(--u) * 226);
+            height: calc(var(--u) * 40);
+            background: url(../image/yuzu/ui/btn_confirm.png) center/100% 100% no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(var(--u) * 15);
+            font-weight: 700;
+            letter-spacing: calc(var(--u) * 3);
+            color: #e6ebff;
+            text-shadow: 0 0 calc(var(--u) * 6) rgba(150, 180, 255, .5);
+            pointer-events: none;
+        }
+
+        /* ---------- 卡片详情弹窗 ---------- */
+        .trade-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(5, 11, 21, .78);
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+        }
+        .trade-modal.is-open {
+            display: flex;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        .trade-dialog {
+            position: relative;
+            width: min(720px, 100%);
+            max-height: 86vh;
+            overflow: auto;
+            padding: 26px 26px 22px;
+            border-radius: 18px;
+            color: #dbe7f7;
+            background: linear-gradient(165deg, #132039, #1d2e4c);
+            border: 1px solid rgba(140, 190, 255, .35);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+        }
+        .trade-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            line-height: 1;
+            color: #cfe0f5;
+            background: rgba(255, 255, 255, .1);
+            cursor: pointer;
+        }
+        .trade-close:hover {
+            background: rgba(255, 255, 255, .2);
+        }
+        .trade-deal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(10, 22, 40, .55);
+            border: 1px solid rgba(140, 190, 255, .18);
+        }
+        .trade-deal-side {
+            min-width: 120px;
+            text-align: center;
+        }
+        .trade-deal-label {
+            font-size: 12px;
+            color: #d3e2f7;
+        }
+        .trade-deal-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 68px;
+            margin: 6px 0;
+        }
+        .trade-deal-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .45));
+        }
+        /* 生命 / 理智 / 饥饿图标本身体积比物品图标小，稍微放大对齐 */
+        .trade-deal-icon img.is-stat {
+            height: 46px;
+        }
+        .trade-deal-icon.is-empty {
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .08);
+            color: #9fb6d6;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .trade-deal-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #eaf3ff;
+        }
+        .trade-deal-arrow {
+            font-size: 24px;
+            color: #8fc2ff;
+        }
+        .trade-item-title {
+            margin: 20px 0 8px;
+            font-size: 22px;
+            color: #eaf3ff;
+        }
+        .trade-item-desc {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #f2f8ff;
+        }
+        .trade-item-meta {
+            margin-top: 14px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #cfe0f5;
+        }
+        .trade-item-link {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #9dd2ff;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(157, 210, 255, .55);
+            transition: color .15s, border-color .15s;
+        }
+        .trade-item-link:hover {
+            color: #d6ecff;
+            border-bottom-color: rgba(214, 236, 255, .9);
+        }
+        .trade-item-link.is-hidden {
+            display: none;
+        }
+
+        @supports not (container-type: inline-size) {
+            .bs-stage {
+                width: 1280px;
+                min-width: 1280px;
+            }
+            .bs-scene {
+                --u: 1px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .trade-deal {
+                flex-direction: column;
+            }
+            .trade-deal-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边导航栏 -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-book-open"></i>
+            <h2>知识库导航</h2>
+        </div>
+
+        <div class="menu">
+            <a href="./yuzu.html">
+                <div class="menu-category">
+                    <div class="menu-item u-top3">
+                        <i class="fas fa-user"></i>
+                        <span>人物详情</span>
+                    </div>
+                    <div class="submenu">
+                        <a href="./yuzu.html#data"><div class="submenu-item">面板数据</div></a>
+                        <a href="./yuzu.html#ability"><div class="submenu-item">角色被动</div></a>
+                        <a href="./yuzu.html#info"><div class="submenu-item">信息</div></a>
+                        <a href="./yuzu.html#item"><div class="submenu-item">物品总览</div></a>
+                        <a href="./yuzu.html#issue"><div class="submenu-item">易冲突模组</div></a>
+                    </div>
+                </div>
+            </a>
+
+            <a href="./yuzu_item.html">
+                <div class="menu-category">
+                    <div class="menu-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>物品详情</span>
+                    </div>
+                    <div class="submenu">
+                    </div>
+                </div>
+            </a>
+
+            <div class="menu-category active-category">
+                <div class="menu-item">
+                    <i class="fas fa-mask"></i>
+                    <span>黑服</span>
+                </div>
+                <div class="submenu active">
+                    <a href="#get"><div class="submenu-item active-page">遇到黑服</div></a>
+                    <a href="#trade"><div class="submenu-item">交易</div></a>
+                    <a href="#list"><div class="submenu-item">交易清单</div></a>
+                    <a href="#punish"><div class="submenu-item">交易惩罚</div></a>
+                    <a href="#skin"><div class="submenu-item">皮肤与兑换</div></a>
+                    <a href="#both"><div class="submenu-item">同时装日奈</div></a>
+                </div>
+            </div>
+
+            <a href="./yuzu_developer.html">
+                <div class="menu-category">
+                    <div class="menu-item">
+                        <i class="fas fa-coffee"></i>
+                        <span>关于作者</span>
+                    </div>
+                    <div class="submenu">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>黑服</h1>
+                <a href="../index.html">
+                    <button id="icon-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </a>
+            </div>
+
+            <div class="wiki-content">
+
+                <!-- 顶部预览名片 -->
+                <div class="mob-card hero-card">
+                    <div class="mob-panels">
+                        <div class="mob-panel">
+                            <div class="mob-portrait mob-portrait--tall">
+                                <img src="../image/yuzu/blacksuit.png" alt="黑服">
+                            </div>
+                            <div class="mob-card-body">
+                                <h2 class="mob-name">黑服<span class="mob-en">Blacksuit</span></h2>
+                                <div class="mob-tags">
+                                    <span class="category-tag">数秘术</span>
+                                    <span class="category-tag">交易</span>
+                                    <span class="category-tag">皮肤系统</span>
+                                    <span class="category-tag"><abbr title="新月（月黑）之夜才会出现。">月黑之夜</abbr></span>
+                                    <span class="category-tag">交易惩罚</span>
+                                </div>
+                                <p class="mob-desc"><b>外来者</b>：用材料、属性和 boss 的雕塑草图跟它交易，它同时还掌管<b>皮肤界面</b>与<b>兑换码</b>。全世界同时只存在一只，而且只有在月黑之夜才找得到它。</p>
+                                <div class="mob-stats">
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">交易条目</span>
+                                        <span class="mob-stat-value">76</span>
+                                    </div>
+                                    <div class="mob-stat">
+                                        <span class="mob-stat-label">每日免罚</span>
+                                        <span class="mob-stat-value">3<small>笔</small></span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--damage">
+                                        <span class="mob-stat-label">交易惩罚</span>
+                                        <span class="mob-stat-value">9<small>种</small></span>
+                                    </div>
+                                    <div class="mob-stat mob-stat--sanity">
+                                        <span class="mob-stat-label">皮肤</span>
+                                        <span class="mob-stat-value">6<small>套</small></span>
+                                    </div>
+                                </div>
+                                <dl class="mob-meta">
+                                    <div><dt>生成代码</dt><dd><code>"gematria_blacksuit"</code></dd></div>
+                                    <div><dt>召唤物</dt><dd>神秘研究报告</dd></div>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>？？？：</strong>您好先生，看看这些物品能对您有什么帮助？只需要一点小小的代价。</p>
+                </div>
+
+                <div class="u-glass">
+                    <p>一位来自数秘术的商人，可以用材料、属性甚至 boss 的<b>雕塑草图</b>跟它交易</p>
+                    <p>它同时掌管<b>皮肤界面</b>与<b>兑换码</b></p>
+                    <p>黑服<b>没有血量，也无法被摧毁</b>，只能被新的召唤器顶替</p>
+                    <p><b>全世界同时只会存在一只黑服</b></p>
+                </div>
+
+                <h2 id="get">遇见</h2>
+                <div class="u-glass">
+                    <p>黑服平时不在世界上，要先去<b>月黑之夜</b>把它找出来：</p>
+                    <ul>
+                        <li><strong>出现时机：</strong>只在<b><u><abbr title="新月之夜，晚上完全看不到月亮。">月黑之夜</abbr></u></b>出现，而且只在地面世界，洞穴里不会刷</li>
+                        <li><strong>出现位置：</strong>会出现在某个玩家附近<b>完全黑暗</b>的地方</li>
+                        <li><strong>找到他：</strong>带着火把走近、用光照到他，它就会散掉，换个暗处重新出现</li>
+                        <li><strong>连续找到三次：</strong>它会把自己的&nbsp;<b>神秘研究报告&nbsp;</b>丢在脚边，然后离开，这一晚就算完成了</li>
+                        <li><strong>没找完：</strong>天亮之前没完成的话，下一次月黑要重新找三次</li>
+                    </ul>
+                    <p>捉迷藏中的黑服<b>不能交易</b>只能靠光把它找出来</p>
+                </div>
+
+                <h2>召唤</h2>
+                <div class="u-glass">
+                    <p>拾起&nbsp;<b>神秘研究报告&nbsp;</b>之后，<b>右键即可在指定位置召唤黑服</b></p>
+                    <p>召唤时场上原有的黑服会被收走</p>
+                    <p>放下后 <b>5 秒</b>开始营业：附近 <b>5 单位</b>以内有玩家就会播放背景音乐，没人了就慢慢收摊</p>
+                </div>
+
+                
+
+                <h2 id="trade">交易</h2>
+                <div class="u-glass">
+                    <p>左键点击<b>营业中</b>的黑服就能打开交易界面</p>
+                    <p>点界面外面的空白处、走远、黑服收摊或玩家死亡都会关闭界面；<b>单人游戏</b>打开界面时游戏会暂停</p>
+                </div>
+
+                <div class="bs-ui" id="bsUi">
+                    <div class="bs-scroll">
+                        <div class="bs-stage">
+                            <div class="bs-scene">
+                                <div class="bs-glow"></div>
+                                <img class="bs-char" src="../image/yuzu/blacksuit/idle_loop.gif" alt="黑服" loading="lazy">
+                                <div class="bs-panel"></div>
+                                <div class="bs-tabs" id="bsTabs"></div>
+                                <div class="bs-divider"></div>
+                                <div class="bs-grid" id="bsGrid"></div>
+                                <span class="bs-arrow" id="bsPrev" title="上一页"></span>
+                                <span class="bs-dots" id="bsDots"></span>
+                                <span class="bs-arrow" id="bsNext" title="下一页"></span>
+                                <div class="bs-confirm">交易</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h2 id="list">协助</h2>
+                <div class="u-glass">
+                    <p><b>直接给予黑服对应生物的雕像草图，将会换取多余的战利品</b></p>
+
+                    <h3>boss 雕塑草图</h3>
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>交出</th>
+                                <th>换得</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>独眼巨鹿雕塑草图</td><td>独眼巨鹿眼球</td></tr>
+                            <tr><td>熊獾雕塑草图</td><td>熊皮</td></tr>
+                            <tr><td>麋鹿鹅雕塑草图</td><td>麋鹿鹅羽毛 ×5</td></tr>
+                            <tr><td>龙蝇雕塑草图</td><td>鳞片 ×2</td></tr>
+                            <tr><td>远古守护者雕塑草图</td><td>守护者之角</td></tr>
+                            <tr><td>毒菌蟾蜍雕塑草图</td><td>蘑菇皮 ×3</td></tr>
+                            <tr><td>蜂王雕塑草图</td><td>蜂王浆 ×8</td></tr>
+                            <tr><td>克劳斯雕塑草图</td><td>坎普斯背包</td></tr>
+                            <tr><td>蚁狮雕塑草图</td><td>沙之石 ×10</td></tr>
+                            <tr><td>邪天翁雕塑草图</td><td>羽毛帆布</td></tr>
+                            <tr><td>帝王蟹雕塑草图</td><td>刺耳三叉戟</td></tr>
+                            <tr><td>恐怖之眼雕塑草图</td><td>眼面具</td></tr>
+                            <tr><td>双子魔眼雕塑草图</td><td>恐怖盾牌</td></tr>
+                            <tr><td>梦魇疯猪雕塑草图</td><td>纯粹恐惧 ×10</td></tr>
+                            <tr><td>远古织影者雕塑草图</td><td>骨头头盔</td></tr>
+                            <tr><td>晶体独眼巨鹿雕塑草图</td><td>纯粹辉煌 ×5</td></tr>
+                            <tr><td>装甲熊獾雕塑草图</td><td>纯粹辉煌 ×5</td></tr>
+                            <tr><td>附身座狼雕塑草图</td><td>纯粹辉煌 ×5</td></tr>
+                            <tr><td>大霜鲨雕塑草图</td><td>出逃腿靴 ×5</td></tr>
+                            <tr><td>天体英雄雕塑草图</td><td>启迪之冠</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+
+                <h2 id="punish">交易惩罚</h2>
+                <div class="u-glass">
+                    <p>跟黑服做买卖是要付利息的。每天<b>前 3 笔</b>交易不收费，从第 4 笔开始，<b>每成交一笔就会当场降下惩罚</b></p>
+                    <p>而且越往后越多：第 4 笔 <b>1 种</b>、第 5 笔 <b>2 种</b>……最多<b>九种全上</b></p>
+                    <p>同一种惩罚多次触发刷新持续时间</p>
+                    <p>惩罚<b>活到第二天天亮就结束</b>，<b>死亡不会让它提前结束</b></p>
+                    <p>给黑服紫宝石解诅咒<b>也算一笔交易</b></p>
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>惩罚</th>
+                                <th>效果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><b>陨石</b></td><td>脚边不停落陨石（每秒一颗），砸满 120 秒或到天亮为止</td></tr>
+                            <tr><td><b>疲劳</b></td><td>持续保持疲劳状态</td></tr>
+                            <tr><td><b>猴子诅咒饰品</b></td><td>给予对应玩家&nbsp;<b>3 个</b>诅咒饰品</td></tr>
+                            <tr><td><b>精神控制</b></td><td>每隔一段时间将承受一次类似远古织影者的控制技能</td></tr>
+                            <tr><td><b>方向翻转</b></td><td>时不时把移动方向反过来几秒</td></tr>
+                            <tr><td><b>强制攻击</b></td><td>时不时被夺走操作，冲过去砍最近的活物</td></tr>
+                            <tr><td><b>滑倒</b></td><td>隔一阵子摔一跤</td></tr>
+                            <tr><td><b>潜伏梦魇</b></td><td>召唤 <b>3 只</b>潜伏梦魇，不掉落，惩罚结束一起消失</td></tr>
+                            <tr><td><b>伤害放大</b></td><td>受到的伤害变成 <b>100 倍</b>，复活也清不掉</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+                
+
+                <h2 id="skin">皮肤与兑换</h2>
+                <div class="u-glass">
+                    <p>交易界面左下角有一枚<b>皮肤按钮</b>，点它就能切到皮肤界面</p>
+                    <p>右上角有三个复选框，用来拒绝其他装备把外观盖掉：<b><u><abbr title="无视所有方式的角色贴图替换">完全无视</abbr></u></b> /<u><abbr title="无视普通装备的贴图替换"> <b>无视普通装备</b></abbr><b></b></u> / <b><u><abbr title="无视来自装备的皮肤替换">无视皮肤替换</abbr></u></b></p>
+                    <p>下方可以输入<b>兑换码</b>兑换皮肤，兑换成功的记录跟着账号走</p>
+                    <p>兑换码通过赞助开发者获得</p>
+                </div>
+
+                
+                
+
+                
+                
+
+                <div class="info-box">
+                    <p><strong>提示：</strong>月黑任务一轮要找到三次，记得带光源 —— 摸黑走过去是不算「找到」的。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 目录交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.menu-category');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+            const content = document.querySelector('.wiki-content');
+
+            categories.forEach(category => {
+                const menuItem = category.querySelector('.menu-item');
+                const submenu = category.querySelector('.submenu');
+                if (!menuItem || !submenu) {
+                    return;
+                }
+
+                menuItem.addEventListener('click', function(e) {
+                    e.stopPropagation();
+
+                    categories.forEach(otherCategory => {
+                        if (otherCategory !== category) {
+                            otherCategory.classList.remove('active-category');
+                            const otherSubmenu = otherCategory.querySelector('.submenu');
+                            if (otherSubmenu) {
+                                otherSubmenu.classList.remove('active');
+                            }
+                        }
+                    });
+
+                    category.classList.toggle('active-category');
+                    submenu.classList.toggle('active');
+                });
+            });
+
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    submenuItems.forEach(i => i.classList.remove('active-page'));
+                    this.classList.add('active-page');
+
+                    if (content) {
+                        content.style.opacity = 0;
+                        content.style.transform = "translateY(20px)";
+                        setTimeout(() => {
+                            content.style.transition = "opacity 0.5s, transform 0.5s";
+                            content.style.opacity = 1;
+                            content.style.transform = "translateY(0)";
+                        }, 50);
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- 卡片详情弹窗 -->
+    <div class="trade-modal" id="tradeModal">
+        <div class="trade-dialog">
+            <button class="trade-close" id="tradeClose" aria-label="关闭">×</button>
+            <div class="trade-deal">
+                <div class="trade-deal-side">
+                    <div class="trade-deal-label">需要交出</div>
+                    <div class="trade-deal-icon" id="modalCostIcon"></div>
+                    <div class="trade-deal-name" id="modalCostName"></div>
+                </div>
+                <div class="trade-deal-arrow">→</div>
+                <div class="trade-deal-side">
+                    <div class="trade-deal-label">换得</div>
+                    <div class="trade-deal-icon" id="modalRewardIcon"></div>
+                    <div class="trade-deal-name" id="modalRewardName"></div>
+                </div>
+            </div>
+            <h3 class="trade-item-title" id="modalTitle"></h3>
+            <p class="trade-item-desc" id="modalDesc"></p>
+            <div class="trade-item-meta" id="modalMeta"></div>
+            <a class="trade-item-link is-hidden" id="modalWiki" target="_blank" rel="noopener noreferrer">在灰机 wiki 查看 ↗</a>
+        </div>
+    </div>
+
+    <script>
+        // 黑服交易界面：数据来自 yuzu_data/trades.json，界面用 mod 的 UI 图集素材还原
+        (function () {
+            var root = document.getElementById('bsUi');
+            if (!root) { return; }
+
+            var gridEl = document.getElementById('bsGrid');
+            var tabsEl = document.getElementById('bsTabs');
+            var dotsEl = document.getElementById('bsDots');
+            var prevBtn = document.getElementById('bsPrev');
+            var nextBtn = document.getElementById('bsNext');
+
+            var modal = document.getElementById('tradeModal');
+            var modalTitle = document.getElementById('modalTitle');
+            var modalDesc = document.getElementById('modalDesc');
+            var modalMeta = document.getElementById('modalMeta');
+            var modalWiki = document.getElementById('modalWiki');
+            var modalCostIcon = document.getElementById('modalCostIcon');
+            var modalCostName = document.getElementById('modalCostName');
+            var modalRewardIcon = document.getElementById('modalRewardIcon');
+            var modalRewardName = document.getElementById('modalRewardName');
+
+            var trades = [];
+            var perPage = 8;
+            var page = 0;
+            var role = 'all';
+
+            function esc(s) {
+                return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                });
+            }
+
+            function iconInner(icon, name) {
+                if (icon) {
+                    var src = icon.indexOf('/') >= 0 ? icon : '../image/yuzu/trade/' + icon;
+                    var cls = icon.indexOf('Meter') >= 0 ? ' class="is-stat"' : '';
+                    return '<img' + cls + ' src="' + esc(src) + '" alt="' + esc(name) + '" loading="lazy">';
+                }
+                return '<span style="color:#cfd6ff;font-size:19px;font-weight:700;">' + esc((name || '?').charAt(0)) + '</span>';
+            }
+
+            /* 生命 / 理智 / 饥饿 直接用站内的三维图标 */
+            function statIcon(name) {
+                if (!name) { return null; }
+                if (name.indexOf('生命') >= 0) { return '../image/40px-Health_Meter.png'; }
+                if (name.indexOf('理智') >= 0) { return '../image/40px-Sanity_Meter.png'; }
+                if (name.indexOf('饥饿') >= 0) { return '../image/40px-Hunger_Meter.png'; }
+                return null;
+            }
+
+            function costInfo(cost) {
+                if (!cost || cost.type === 'free') {
+                    return { icon: null, text: '免费', name: '免费' };
+                }
+                if (cost.type === 'items') {
+                    var parts = [];
+                    cost.items.forEach(function (it) {
+                        parts.push(it.count === 0 ? it.name + '（不消耗）' : it.name + ' ×' + it.count);
+                    });
+                    return {
+                        icon: cost.items[0] ? cost.items[0].icon : null,
+                        text: parts.join(' + '),
+                        name: cost.items[0] ? cost.items[0].name : ''
+                    };
+                }
+                if (cost.type === 'stat') {
+                    var t = cost.name;
+                    if (cost.percent !== undefined) { t += ' ' + cost.percent + '%'; }
+                    else if (cost.value !== undefined) { t += ' ' + cost.value; }
+                    return { icon: statIcon(cost.name), text: t, name: cost.name };
+                }
+                if (cost.type === 'tag') {
+                    return {
+                        icon: null,
+                        text: cost.name + (cost.count === 0 ? '（不消耗）' : ' ×' + cost.count),
+                        name: cost.name
+                    };
+                }
+                return { icon: null, text: '免费', name: '免费' };
+            }
+
+            function rewardInfo(reward) {
+                if (!reward) { return { icon: null, text: '', name: '' }; }
+                var text = reward.name || '';
+                if (reward.count && reward.type !== 'effect') {
+                    text += ' ×' + reward.count;
+                }
+                return { icon: reward.icon || null, icons: reward.icons || null, text: text, name: reward.name || '' };
+            }
+
+            function filtered() {
+                if (role === 'all') { return trades; }
+                return trades.filter(function (t) { return t.role === role; });
+            }
+
+            function renderTabs() {
+                var roles = [{ key: 'all', name: '全部' }];
+                var seen = {};
+                trades.forEach(function (t) {
+                    if (t.role && !seen[t.role]) {
+                        seen[t.role] = true;
+                        roles.push({ key: t.role, name: t.roleName });
+                    }
+                });
+                tabsEl.innerHTML = roles.map(function (r) {
+                    return '<span class="bs-tab' + (r.key === role ? ' is-active' : '') + '" data-role="' + esc(r.key) + '" title="' + esc(r.name) + '">'
+                        + '<img src="../image/yuzu/avatars/' + esc(r.key) + '.png" alt="' + esc(r.name) + '" loading="lazy"'
+                        + ' onerror="this.onerror=null;this.src=\'../image/yuzu/avatars/all.png\';">'
+                        + '</span>';
+                }).join('');
+                Array.prototype.forEach.call(tabsEl.querySelectorAll('.bs-tab'), function (el) {
+                    el.addEventListener('click', function () {
+                        role = el.getAttribute('data-role');
+                        page = 0;
+                        renderTabs();
+                        renderPage();
+                    });
+                });
+                var activeTab = tabsEl.querySelector('.bs-tab.is-active');
+                if (activeTab) {
+                    tabsEl.scrollLeft = activeTab.offsetLeft - (tabsEl.clientWidth - activeTab.offsetWidth) / 2;
+                }
+            }
+
+            tabsEl.addEventListener('wheel', function (e) {
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                    tabsEl.scrollLeft += e.deltaY;
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            function renderPage() {
+                var list = filtered();
+                var pages = Math.max(1, Math.ceil(list.length / perPage));
+                if (page >= pages) { page = pages - 1; }
+                if (page < 0) { page = 0; }
+
+                var slice = list.slice(page * perPage, page * perPage + perPage);
+                gridEl.innerHTML = slice.map(function (t) {
+                    var r = rewardInfo(t.reward);
+                    var cnt = (t.reward && t.reward.type === 'item' && t.reward.count) ? '×' + t.reward.count : '';
+                    return '' +
+                        '<div class="bs-cell">' +
+                        '<span class="bs-cell-glow"></span>' +
+                        '<div class="bs-card" data-id="' + t.id + '" title="' + esc(t.roleName + '：' + r.text) + '">' +
+                        (t.role ? '<span class="bs-card-role"><img src="../image/yuzu/avatars/' + esc(t.role) + '.png" alt="' + esc(t.roleName) + '" loading="lazy" onerror="this.parentNode.style.visibility=\'hidden\'"></span>' : '') +
+                        '<span class="bs-card-icon' + (r.icon ? '' : ' is-empty') + '"' + (r.icons && r.icons.length ? ' data-cycle="' + esc(r.icons.join('|')) + '"' : '') + '>' + iconInner(r.icon, r.name) + '</span>' +
+                        (cnt ? '<span class="bs-card-count">' + esc(cnt) + '</span>' : '') +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+
+                Array.prototype.forEach.call(gridEl.querySelectorAll('.bs-card'), function (el) {
+                    el.addEventListener('click', function () {
+                        var id = Number(el.getAttribute('data-id'));
+                        trades.forEach(function (t) {
+                            if (t.id === id) { openModal(t); }
+                        });
+                    });
+                });
+
+                var dots = '';
+                for (var i = 0; i < pages; i++) {
+                    dots += '<span class="bs-dot' + (i === page ? ' is-active' : '') + '" data-page="' + i + '"></span>';
+                }
+                dotsEl.innerHTML = dots;
+                Array.prototype.forEach.call(dotsEl.querySelectorAll('.bs-dot'), function (el) {
+                    el.addEventListener('click', function () {
+                        page = Number(el.getAttribute('data-page'));
+                        renderPage();
+                    });
+                });
+
+                prevBtn.classList.toggle('is-disabled', page <= 0);
+                nextBtn.classList.toggle('is-disabled', page >= pages - 1);
+
+                startCycle();
+
+            }
+
+            /* 电路类奖励：图标轮播 */
+            var cycleStep = 0;
+            var cycleTimer = null;
+
+            function startCycle() {
+                if (cycleTimer) { return; }
+                cycleTimer = setInterval(function () {
+                    cycleStep++;
+                    Array.prototype.forEach.call(gridEl.querySelectorAll('.bs-card-icon[data-cycle]'), function (box) {
+                        var list = box.getAttribute('data-cycle').split('|');
+                        var img = box.querySelector('img');
+                        if (img) { img.src = '../image/yuzu/trade/' + list[cycleStep % list.length]; }
+                    });
+                    var mImg = modalRewardIcon.querySelector('img[data-mcycle]');
+                    if (mImg) {
+                        var mList = mImg.getAttribute('data-mcycle').split('|');
+                        mImg.src = '../image/yuzu/trade/' + mList[cycleStep % mList.length];
+                    }
+                }, 900);
+            }
+
+            function openModal(t) {
+                var ci = costInfo(t.cost);
+                var ri = rewardInfo(t.reward);
+
+                modalCostIcon.className = 'trade-deal-icon' + (ci.icon ? '' : ' is-empty');
+                modalCostIcon.innerHTML = iconInner(ci.icon, ci.name);
+                modalCostName.textContent = ci.text;
+
+                modalRewardIcon.className = 'trade-deal-icon' + (ri.icon ? '' : ' is-empty');
+                modalRewardIcon.innerHTML = (ri.icons && ri.icons.length)
+                    ? '<img data-mcycle="' + esc(ri.icons.join('|')) + '" src="../image/yuzu/trade/' + esc(ri.icons[0]) + '" alt="' + esc(ri.name) + '">'
+                    : iconInner(ri.icon, ri.name);
+                modalRewardName.textContent = ri.text;
+
+                modalTitle.textContent = (t.reward && t.reward.name) ? t.reward.name : '';
+                modalDesc.textContent = (t.reward && t.reward.desc) ? t.reward.desc : '这一笔没有物品可描述。';
+
+                var meta = [];
+                meta.push('可换角色：' + (t.role ? t.roleName : '通用（任何角色）'));
+                if (t.note && t.note.length) { meta = meta.concat(t.note); }
+                modalMeta.textContent = meta.join(' · ');
+
+                if (t.reward && t.reward.wiki) {
+                    modalWiki.href = t.reward.wiki;
+                    modalWiki.classList.remove('is-hidden');
+                }
+                else {
+                    modalWiki.removeAttribute('href');
+                    modalWiki.classList.add('is-hidden');
+                }
+
+                modal.classList.add('is-open');
+                document.body.classList.add('modal-open');
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                document.body.classList.remove('modal-open');
+            }
+
+            document.getElementById('tradeClose').addEventListener('click', closeModal);
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) { closeModal(); }
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') { closeModal(); }
+            });
+
+            prevBtn.addEventListener('click', function () {
+                if (page > 0) { page--; renderPage(); }
+            });
+            nextBtn.addEventListener('click', function () {
+                var pages = Math.max(1, Math.ceil(filtered().length / perPage));
+                if (page < pages - 1) { page++; renderPage(); }
+            });
+
+            fetch('./yuzu_data/trades.json')
+                .then(function (res) {
+                    if (!res.ok) { throw new Error('网络响应不正常'); }
+                    return res.json();
+                })
+                .then(function (data) {
+                    trades = data.trades || [];
+                    perPage = data.perPage || 8;
+                    renderTabs();
+                    renderPage();
+                })
+                .catch(function (err) {
+                    console.error('交易数据加载失败:', err);
+                    gridEl.innerHTML = '<div style="grid-column:1/-1;padding:20px;text-align:center;color:#9fb6d6;">交易数据加载失败，请检查网络后刷新</div>';
+                });
+        })();
+    </script>
+    <script src="./nav.js"></script>
+</body>
+</html>
